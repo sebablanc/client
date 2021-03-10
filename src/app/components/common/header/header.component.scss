@@ -1,0 +1,67 @@
+.header-container {
+  height: 100px;
+  background: linear-gradient(90deg, #f29c07, #e69d77);
+  padding: 10px 10px 0;
+  position: sticky;
+  z-index: 99999;
+  top: 0;
+
+  .header-logo {
+    height: 90%;
+  }
+
+  .name-dr {
+    width: max-content;
+    margin: 0;
+    position: absolute;
+    top: 10px;
+    left: 90px;
+  }
+
+  .login-options {
+    position: absolute;
+    top: 10px;
+    left: calc(100% - 220px);
+    display: grid;
+    grid-template-columns: max-content max-content;
+    align-items: center;
+    .login-buttons {
+      display: inline-flex;
+      margin-right: 10px;
+      cursor: pointer;
+    }
+
+    .ingresar-button {
+      text-decoration: underline;
+      color: red;
+    }
+
+    .registrar-button {
+      font-size: 15px;
+      text-align: center;
+      color: #fff;
+      border: none;
+      box-shadow: 4px 6px #999;
+      background-color: red;
+      padding: 10px 30px;
+      border-radius: 50px;
+    }
+  }
+
+  .header-links-container {
+    display: inline-flex;
+    margin-left: 1vw;
+
+    .header-links{
+      padding: 4px 15px;
+      font-size: 17px;
+      border-radius: 15px 15px 0 0;
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .isActive{
+      background: linear-gradient(black,red);
+    }
+  }
+}

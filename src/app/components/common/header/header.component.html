@@ -1,0 +1,14 @@
+<div class="header-container">
+  <img class="header-logo" src="../../../../assets/images/logos/logoDR.png" alt="">
+  <div class="name-dr dr-font"><span class="dr">DR</span> Computers</div>
+  
+  <div class="login-options">
+    <div class="login-buttons ingresar-button">Ingresar</div>
+    <div class="login-buttons registrar-button">Registrar</div>
+  </div>
+
+  <div class="header-links-container">
+    <div *ngFor="let navItem of headerNavItems" class="header-links" [ngClass]="{'isActive': linkActive == navItem.link}" (click)="goTo(navItem.link)">{{ navItem.text }}</div>
+  </div>
+
+</div>

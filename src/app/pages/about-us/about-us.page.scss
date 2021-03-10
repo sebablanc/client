@@ -1,0 +1,105 @@
+.about-us-page {
+  padding-bottom: 20px;
+
+  .about-us-container {
+
+    .about-us-title {
+      text-align: center;
+      font-size: 30px;
+      margin-bottom: 20px;
+    }
+
+    .paragraph {
+      font-size: 16px;
+    }
+
+    .about-us-subtitle {
+      text-align: center;
+      font-size: 20px;
+      margin: 10px 0;
+      text-decoration: underline;
+    }
+
+    .sala-1 {
+      display: grid;
+      grid-template-columns: 25% auto;
+      .sala-1-text {
+        padding-left: 20px;
+        .sala-1-description {
+          display: contents;
+        }
+      }
+    }
+
+    .sala-2 {
+      display: grid;
+      grid-template-columns: auto 50%;
+      margin-top: 50px;
+      .sala-2-text {
+        padding-right: 20px;
+        .sala-2-description {
+          display: contents;
+        }
+      }
+      img {
+        width: 70%;
+        justify-self: center;
+      }
+    }
+
+    .profesores {
+      display: grid;
+      grid-template-columns: 25% auto;
+      margin-top: 50px;
+      .profesores-img {
+        width: 84px;
+        justify-self: center;
+      }
+      .profesores-text {
+        padding-left: 20px;
+        .profesores-description {
+          display: contents;
+        }
+      }
+    }
+
+    .recomendacion {
+      display: grid;
+      grid-template-columns: auto 35%;
+      margin-top: 50px;
+      .recomendacion-text {
+        padding-left: 20px;
+        .dr,
+        .computer {
+          font-size: 16px;
+        }
+        .recomendacion-description {
+          display: contents;
+        }
+      }
+      .recomendacion-img {
+        justify-self: center;
+      }
+    }
+
+    .informacion-contacto {
+      display: grid;
+      grid-template-columns: auto 35%;
+      margin-top: 50px;
+      font-size: 16px;
+      .informacion-text {
+        text-align: center;
+        width: 85%;
+        justify-self: center;
+        .info-title {
+          font-weight: 700;
+          margin-bottom: 20px;
+        }
+        .info-item {
+          text-decoration: underline;
+          font-style: italic;
+        }
+      }
+    }
+  }
+}

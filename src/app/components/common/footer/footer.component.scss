@@ -1,0 +1,46 @@
+.footer-container {
+    background: linear-gradient(0deg, #000, red 43%);
+    color: #fff;
+    position: relative;
+    padding-bottom: 10px;
+    
+    .footer-tabs {
+        padding: 10px;
+        text-align: center;
+        display: grid;
+        grid-template-columns: repeat(3,auto);
+        
+        .tab-item{
+            cursor: pointer;
+        }
+    }
+    .logo-DR {
+        height: 7vh;
+        border-radius: 50%;
+        width: 4vw;
+        position: absolute;
+        margin: 0 auto;
+        text-align: center;
+        top: 0;
+    }
+
+    .SB-container {
+        text-align: center;
+        display: grid;
+        grid-template-columns: auto auto;
+        
+        .logo-SB {
+            border-radius: 32%;
+            height: 7vh;
+            width: 4vw;
+            justify-self: right;
+            align-self: center;
+        }
+
+        .SB-text {
+            align-self: center;
+            padding: 0 10px;
+            justify-self: left;
+        }
+    }
+}

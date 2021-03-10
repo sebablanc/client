@@ -1,0 +1,15 @@
+.dr-kids-page{
+    .dr-kids-container{
+        .dr-kids-text {
+            display: grid;
+            grid-template-columns: 60% 40%;
+            font-size: 14px;
+
+            img {
+                justify-self: center;
+                height: 70%;
+            }
+        }
+
+    }
+}

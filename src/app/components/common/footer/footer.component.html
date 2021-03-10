@@ -1,0 +1,10 @@
+<div class="footer-container">
+  <div class="footer-tabs">
+    <span *ngFor="let nav of navItems" class="tab-item" (click)="goTo(nav.link)">{{ nav.text }}</span>
+  </div>
+  <img alt="logo DR" class="logo-DR" src="assets/images/logos/logoDR.png">
+  <div class="SB-container">
+    <img alt="logo Sofware Builder" class="logo-SB" src="assets/images/logos/SoftwareBuilder.png">
+    <div class="SB-text">Software Builder Company - 2021</div>
+  </div>
+</div>
