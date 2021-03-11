@@ -105,11 +105,14 @@
   min-height: calc(100vh - 252px);
 }
 
+.routerOutlet-kids {
+  background: radial-gradient(circle,#fff,#ff8000 30%,#44ff17);
+}
+
 .page-with-card{
   width: 55%;
   margin: 20px auto 0;
   border-radius: 20px;
-  // padding: 30px;
   padding: 10px 30px 30px;
   margin-bottom: 20px;
 }
@@ -123,6 +126,10 @@
 .card {
   background: #fff;
   color: #000;
+}
+
+.full-width{
+  width: 100%;
 }
 
 @media (prefers-color-scheme: dark) {

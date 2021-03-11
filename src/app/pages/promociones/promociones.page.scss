@@ -1,0 +1,19 @@
+.promociones-page {
+  .promociones-container {
+    .promociones-title {
+      text-align: center;
+      font-size: 30px;
+      margin-bottom: 20px;
+      .dr-font{
+        display: inline;
+    }
+    }
+
+    .promociones-text {
+      display: grid;
+      grid-template-columns: 60% 40%;
+      font-size: 14px;
+      
+    }
+  }
+}

@@ -22,6 +22,18 @@ const routes: Routes = [
   {
     path: 'dr-kids',
     loadChildren: () => import('./pages/dr-kids/dr-kids.module').then( m => m.DrKidsPageModule)
+  },
+  {
+    path: 'promociones',
+    loadChildren: () => import('./pages/promociones/promociones.module').then( m => m.PromocionesPageModule)
+  },
+  {
+    path: 'boletin-informativo',
+    loadChildren: () => import('./pages/boletin-informativo/boletin-informativo.module').then( m => m.BoletinInformativoPageModule)
+  },
+  {
+    path: 'consultas',
+    loadChildren: () => import('./pages/consultas/consultas.module').then( m => m.ConsultasPageModule)
   }
 ];
 

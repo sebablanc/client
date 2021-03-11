@@ -52,7 +52,7 @@
     display: inline-flex;
     margin-left: 1vw;
 
-    .header-links{
+    .header-links {
       padding: 4px 15px;
       font-size: 17px;
       border-radius: 15px 15px 0 0;
@@ -60,8 +60,12 @@
       text-decoration: none;
     }
 
-    .isActive{
-      background: linear-gradient(black,red);
+    .isActive {
+      background: linear-gradient(black, red);
     }
   }
+}
+
+.header-container-kids {
+  background: linear-gradient(90deg, #ff8000, #44ff17);
 }

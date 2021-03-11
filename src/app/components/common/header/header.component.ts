@@ -6,10 +6,10 @@ export const NAV_ITEMS = [
   {text: 'Quiénes somos', link: 'about-us'},
   {text: 'DR Computers', link: 'dr-computers'},
   {text: 'DR Kids', link: 'dr-kids'},
-  {text: 'Promociones', link: ''},
-  {text: 'Boletín informativo', link: ''},
-  {text: 'Consultas', link: ''},
-  {text: 'Premios', link: ''},
+  {text: 'Promociones', link: 'promociones'},
+  {text: 'Boletín informativo', link: 'boletin-informativo'},
+  {text: 'Consultas', link: 'consultas'},
+  {text: 'Premios', link: 'premios'},
 ]
 
 @Component({

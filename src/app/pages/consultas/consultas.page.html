@@ -1,0 +1,44 @@
+<app-layout>
+  <div class="consultas-page routerOutlet">
+    <div class="consultas-container page-with-card card">
+      <div class="consultas-title dr-font">Consultas</div>
+
+      <form class="constulas-form" [formGroup]="form">
+
+        <!-- NOMBRE -->
+        <mat-form-field class="full-width">
+          <mat-label>Nombre</mat-label>
+          <input matInput formControlName="nombre" required>
+        </mat-form-field>
+
+        <!-- APELLIDO -->
+        <mat-form-field class="full-width">
+          <mat-label>Apellido</mat-label>
+          <input matInput formControlName="apellido" required>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+          <mat-label>Teléfono</mat-label>
+          <input matInput formControlName="telefono" required>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+          <mat-label>Correo electrónico</mat-label>
+          <input matInput formControlName="email" required>
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+          <mat-label>Consulta</mat-label>
+          <textarea matInput 
+                    formControlName="consulta"
+                    cdkTextareaAutosize
+                    #autosize="cdkTextareaAutosize"
+                    cdkAutosizeMinRows="2"
+                    cdkAutosizeMaxRows="10"></textarea>
+        </mat-form-field>
+
+        <app-rounded-button></app-rounded-button>
+      </form>
+    </div>
+  </div>
+</app-layout>
