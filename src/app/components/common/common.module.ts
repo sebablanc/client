@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { uiModule } from 'src/app/ui/ui.module';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 
@@ -8,7 +9,10 @@ import { HeaderComponent } from './header/header.component';
     HeaderComponent,
     FooterComponent
   ],
-  imports: [CommonModule],
+  imports: [
+    CommonModule,
+    uiModule
+  ],
   exports: [
     HeaderComponent,
     FooterComponent

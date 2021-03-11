@@ -110,11 +110,19 @@
 }
 
 .page-with-card{
-  width: 55%;
   margin: 20px auto 0;
   border-radius: 20px;
   padding: 10px 30px 30px;
   margin-bottom: 20px;
+  width: 55%;
+
+  @media screen and (max-width: 950px){
+    width: 80%;
+  }
+
+  @media screen and (max-width: 500px){
+    width: 95%;
+  }
 }
 
 .dr-like-title {

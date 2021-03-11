@@ -2,6 +2,7 @@ import { Component, OnInit, NgZone, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CdkTextareaAutosize } from '@angular/cdk/text-field';
 import { take } from 'rxjs/operators';
+import { IRoundedButtonConfig } from 'src/app/ui/rounded-button/rounded-button.component';
 
 @Component({
   selector: 'app-consultas',
@@ -12,10 +13,12 @@ export class ConsultasPage implements OnInit {
   @ViewChild('autosize') autosize: CdkTextareaAutosize;
 
   form: FormGroup;
+  buttonConfig: IRoundedButtonConfig;
 
   constructor(private formBuilder: FormBuilder, private _ngZone: NgZone) { }
 
   ngOnInit() {
+    this.viewComponentsConfiguration();
     this.initForm();
   }
 
@@ -30,7 +33,11 @@ export class ConsultasPage implements OnInit {
 
     this.form.valueChanges.subscribe(ob => {
       console.log(ob);
-    })
+    });
+  }
+
+  viewComponentsConfiguration(){
+    this.buttonConfig = { text: 'Consultar' };
   }
 
   
