@@ -1,0 +1,18 @@
+<app-layout>
+  <div class="premios-page routerOutlet">
+    <div class="premios-title">Resultado de los sorteos</div>
+    <div class="premios-container page-with-card card">
+      <div class="premios-header">
+        <img alt="logoDR" class="header-logos" src="assets/images/logos/logoDR.png">
+        <span>Sorteo mensual año 2021 - Una Cuota</span>
+        <img alt="logoDRKids" class="header-logos" src="assets/images/logos/logoDRKids.png">
+      </div>
+
+      <div>Acá iría tarjetas con los ganadores de las cuotas</div>
+
+      <img class="pc-winner" src="assets/images/DinoPC.webp" (click)="showGanadorPC = !showGanadorPC">
+
+      <div *ngIf="showGanadorPC">Acá iría tarjeta con el ganador de la pc anual</div>
+    </div>
+  </div>
+</app-layout>

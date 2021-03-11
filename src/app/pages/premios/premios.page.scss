@@ -1,0 +1,39 @@
+.premios-page {
+  .premios-title {
+    margin: 2px auto 0;
+    font-size: 35px;
+    text-align: center;
+    width: 55%;
+  }
+
+  .premios-container {
+    text-align: center;
+    .premios-header {
+      display: grid;
+      grid-template-columns: 20% 60% 20%;
+      justify-items: center;
+      width: 100%;
+      align-items: center;
+      font-size: 27px;
+      background: linear-gradient(0deg, red, orange, #ffd390d4, orange, red);
+      padding: 10px;
+      border-radius: 15px;
+      border: 1px solid gray;
+      box-shadow: 0 0 1px 1px grey;
+
+      .header-logos {
+        height: 14vh;
+      }
+    }
+
+    .pc-winner {
+      height: 10vh;
+      margin-top: 5vh;
+      cursor: pointer;
+    }
+
+    .pc-winner:hover {
+      opacity: 0.8;
+    }
+  }
+}
