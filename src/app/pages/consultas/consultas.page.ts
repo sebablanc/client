@@ -40,11 +40,15 @@ export class ConsultasPage implements OnInit {
     this.buttonConfig = { text: 'Consultar' };
   }
 
-  
-
   triggerResize() {
     this._ngZone.onStable.pipe(take(1))
         .subscribe(() => this.autosize.resizeToFitContent(true));
+  }
+
+
+  sendConsulta(event: boolean){
+    console.log('sendConsulta');
+    console.log(event);
   }
 
 }

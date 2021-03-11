@@ -4,7 +4,7 @@
   
   <div class="login-options">
     <div class="login-buttons ingresar-button">Ingresar</div>
-    <app-rounded-button [config]="roundedButtonConfig"></app-rounded-button>
+    <app-rounded-button [config]="roundedButtonConfig" (buttonClicked)="goTo('registrar')"></app-rounded-button>
   </div>
 
   <div class="header-links-container">
