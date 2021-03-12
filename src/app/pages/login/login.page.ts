@@ -38,10 +38,6 @@ export class LoginPage implements OnInit {
     
   }
 
-  forgotPassword(){
-    console.log('Olvidaste tu contraseña click');
-  }
-
   goTo(link: string){
     this.navCtrl.navigateRoot(`/${link}`);
   }

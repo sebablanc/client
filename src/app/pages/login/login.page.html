@@ -19,7 +19,7 @@
         <app-rounded-button class="login-button" [config]="buttonConfig" (buttonClicked)="login($event)"></app-rounded-button>
       </form>
       <img class="login-logoDrKids" src="assets/images/logos/logoDRKids.png">
-      <a class="login-olvidar-pass" (click)="forgotPassword()">¿Olvidaste tu contraseña?</a>
+      <a class="login-olvidar-pass" (click)="goTo('forgot-password')">¿Olvidaste tu contraseña?</a>
       <a class="login-no-cuenta">¿No tenés una cuenta? <div class="gotoRegistrar" (click)="goTo('register')">REGISTRATE</div></a>
     </div>
   </div>
