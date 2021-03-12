@@ -38,6 +38,14 @@ const routes: Routes = [
   {
     path: 'premios',
     loadChildren: () => import('./pages/premios/premios.module').then( m => m.PremiosPageModule)
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: 'register',
+    loadChildren: () => import('./pages/register/register.module').then( m => m.RegisterPageModule)
   }
 ];
 

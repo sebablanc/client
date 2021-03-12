@@ -3,8 +3,8 @@
   <div class="name-dr dr-font"><span class="dr">DR</span> Computers</div>
   
   <div class="login-options">
-    <div class="login-buttons ingresar-button">Ingresar</div>
-    <app-rounded-button [config]="roundedButtonConfig" (buttonClicked)="goTo('registrar')"></app-rounded-button>
+    <div class="login-buttons ingresar-button" (click)="goTo('login')">Ingresar</div>
+    <app-rounded-button [config]="roundedButtonConfig" (buttonClicked)="goTo('register')"></app-rounded-button>
   </div>
 
   <div class="header-links-container">

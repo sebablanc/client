@@ -1,0 +1,25 @@
+.register-page{
+    .register-container{
+        display: grid;
+        grid-template-columns: 25% auto 25%;
+        grid-template-rows: auto auto auto;
+        .register-logoDr {
+            grid-column: 1;
+            grid-row: 1/span 3;
+            width: 150px;
+            justify-self: center;
+        }
+
+        .register-button {
+            justify-self: center;
+            padding: 20px 10px 10px;
+        }
+
+        .register-logoDrKids {
+            grid-column: 3;
+            grid-row: 1/span 3;
+            width: 150px;
+            justify-self: center;
+        }
+    }
+}

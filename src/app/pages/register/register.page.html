@@ -1,0 +1,24 @@
+<app-layout>
+  <div class="register-page routerOutlet">
+    <div class="register-container page-with-card card">
+      <img class="register-logoDr" src="assets/images/logos/logoDR.png">
+      <form *ngIf="form" [formGroup]="form" class="register-form">
+
+        <!-- EMAIL -->
+        <mat-form-field class="full-width">
+          <mat-label>Correo electrónico</mat-label>
+          <input matInput type="email" formControlName="email" required>
+        </mat-form-field>
+
+        <!-- PASSWORD -->
+        <mat-form-field class="full-width">
+          <mat-label>Contraseña</mat-label>
+          <input matInput type="password" formControlName="password" required>
+        </mat-form-field>
+
+        <app-rounded-button [config]="buttonConfig" (buttonClicked)="register($event)"></app-rounded-button>
+      </form>
+      <img class="register-logoDrKids" src="assets/images/logos/logoDRKids.png">
+    </div>
+  </div>
+</app-layout>
