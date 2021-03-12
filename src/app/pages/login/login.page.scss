@@ -1,0 +1,52 @@
+.login-page {
+  .login-container {
+    display: grid;
+    grid-template-columns: 25% auto 25%;
+    grid-template-rows: repeat(7, auto);
+    padding-top: 30px;
+    .login-logoDr {
+      grid-column: 1;
+      grid-row: 1 / span 3;
+      width: 150px;
+      justify-self: center;
+    }
+
+    .login-button {
+      display: block;
+      width: 150px;
+      margin: 0 auto;
+    }
+
+    .login-logoDrKids {
+      grid-column: 3;
+      grid-row: 1 / span 3;
+      width: 150px;
+      justify-self: center;
+    }
+
+    .login-olvidar-pass {
+      grid-column: 2;
+      grid-row: 4;
+      padding: 20px 10px 10px;
+      color: #000;
+      justify-self: center;
+      font-size: 14px;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    .login-no-cuenta {
+      grid-column: 2;
+      grid-row: 7;
+      justify-self: center;
+      color: #000;
+      font-size: 14px;
+      
+      .gotoRegistrar {
+        text-decoration: underline;
+        display: inline;
+        cursor: pointer;
+      }
+    }
+  }
+}

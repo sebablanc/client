@@ -1,0 +1,26 @@
+<app-layout>
+  <div class="login-page routerOutlet">
+    <div class="login-container page-with-card card">
+      <img class="login-logoDr" src="assets/images/logos/logoDR.png">
+      <form *ngIf="form" [formGroup]="form" class="login-form">
+
+        <!-- EMAIL -->
+        <mat-form-field class="full-width">
+          <mat-label>Correo electrónico</mat-label>
+          <input matInput type="email" formControlName="email" required>
+        </mat-form-field>
+
+        <!-- PASSWORD -->
+        <mat-form-field class="full-width">
+          <mat-label>Contraseña</mat-label>
+          <input matInput type="password" formControlName="password" required>
+        </mat-form-field>
+
+        <app-rounded-button class="login-button" [config]="buttonConfig" (buttonClicked)="login($event)"></app-rounded-button>
+      </form>
+      <img class="login-logoDrKids" src="assets/images/logos/logoDRKids.png">
+      <a class="login-olvidar-pass" (click)="forgotPassword()">¿Olvidaste tu contraseña?</a>
+      <a class="login-no-cuenta">¿No tenés una cuenta? <div class="gotoRegistrar" (click)="goTo('register')">REGISTRATE</div></a>
+    </div>
+  </div>
+</app-layout>
