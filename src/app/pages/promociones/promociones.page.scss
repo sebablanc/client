@@ -13,7 +13,11 @@
       display: grid;
       grid-template-columns: 60% 40%;
       font-size: 14px;
-      
+      @media screen and (max-width: 950px){
+        grid-template-columns: auto;
+      }
     }
   }
+
+ 
 }
