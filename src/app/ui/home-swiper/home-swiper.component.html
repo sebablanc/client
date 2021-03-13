@@ -1,0 +1,31 @@
+<div class="slideshow-container card">
+
+  <!-- Full-width images with number and caption text -->
+  <div class="mySlides fade">
+      <img src="assets/images/cursosSinLimites.png" style="width: 346px;">
+      <img src="assets/images/happyFamily.png" style="width: 212px;">
+  </div>
+
+  <div class="mySlides gridSlide fade">
+    <div class="slideGrid">
+      <div class="slideText">Enterate de los cursos para Adolescentes y Adultos</div>
+      <img class="slideImage" src="assets/images/logos/logoDR.png" style="width:100%">
+    </div>
+  </div>
+
+  <div class="mySlides gridSlide fade">
+    <div class="slideGrid">
+      <div class="slideText">En DR Kids tenemos un área para chicos de 4 años</div>
+      <img class="slideImage" src="assets/images/logos/logoDRKids.png" style="width:100%">
+    </div>
+  </div>
+
+  <a class="prev" (click)="plusSlides(-1)">&#10094;</a>
+  <a class="next" (click)="plusSlides(1)">&#10095;</a>
+  
+  <div style="text-align:center">
+    <span class="dot" (click)="currentSlide(1)"></span>
+    <span class="dot" (click)="currentSlide(2)"></span>
+    <span class="dot" (click)="currentSlide(3)"></span>
+  </div>
+</div>
