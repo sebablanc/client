@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { RegisterSingleton } from 'src/app/models/user/register/model/registerSingleton';
 import { IRoundedButtonConfig } from 'src/app/ui/rounded-button/rounded-button.component';
 
 @Component({
@@ -11,6 +12,7 @@ export class RegisterPage implements OnInit {
 
   buttonConfig: IRoundedButtonConfig;
   form: FormGroup;
+  entity: RegisterSingleton;
 
   constructor(private formBuilder: FormBuilder) { }
 
@@ -24,6 +26,10 @@ export class RegisterPage implements OnInit {
       email: ['', {validators: [Validators.required], updateOn: 'change'}],
       password: ['', {validators: [Validators.required], updateOn: 'change'}]
     });
+
+    this.form.valueChanges.subscribe(ob => {
+      this.entity = ob;
+    })
   }
 
   viewComponentsConfiguration() {
@@ -31,10 +37,11 @@ export class RegisterPage implements OnInit {
   }
 
   register(event: boolean) {
-    console.log('se clickeó el botón de registrar');
-    console.log(event);
-    console.log(this.form.value);
-    
+    if(event){
+      // TODO: All about register service
+      console.log(this.entity);
+
+    }
   }
 
 }
