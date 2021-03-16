@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NavController } from '@ionic/angular';
+import { LoginSingleton } from 'src/app/models/user/model/loginSingleton';
 import { ShareService } from 'src/app/services/share-service/share.service';
 import { LoginService } from 'src/app/services/user/login/login.service';
 import { IRoundedButtonConfig } from 'src/app/ui/rounded-button/rounded-button.component';
@@ -15,6 +16,7 @@ export class LoginPage implements OnInit {
   buttonConfig: IRoundedButtonConfig;
   form: FormGroup;
 
+  private entity: LoginSingleton;
   constructor(private formBuilder: FormBuilder,
     private navCtrl: NavController,
     private shareSrv: ShareService,
@@ -30,6 +32,10 @@ export class LoginPage implements OnInit {
       email: ['', {validators: [Validators.required], updateOn: 'change'}],
       pass: ['', {validators: [Validators.required], updateOn: 'change'}]
     });
+
+    this.form.valueChanges.subscribe(ob => {
+      this.entity = ob;
+    })
   }
 
   get email() { return this.form.controls.email; }
@@ -49,7 +55,7 @@ export class LoginPage implements OnInit {
       return;
     }
     
-    let response = await this.loginSrv.login(this.form.value);
+    let response = await this.loginSrv.login(this.entity);
     console.log(response);
     
     

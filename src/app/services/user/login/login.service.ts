@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { LoginSingleton } from 'src/app/models/user/model/loginSingleton';
 import { HttpHelperService } from '../../http/http-helper.service';
 
 @Injectable({
@@ -10,7 +11,7 @@ export class LoginService {
 
   constructor(private httpHelperSrv: HttpHelperService) { }
 
-  login(body: any){
+  login(body: LoginSingleton){
     return this.httpHelperSrv.post({url: this.loginURL, body: body}).then(user =>{
       console.log(user);
       

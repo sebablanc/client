@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
 import { ResultRegisterModalComponent } from 'src/app/components/common/result-register-modal/result-register-modal.component';
+import { Register } from 'src/app/models/user/register/model/register';
 import { RegisterSingleton } from 'src/app/models/user/register/model/registerSingleton';
 import { ShareService } from 'src/app/services/share-service/share.service';
 import { RegisterService } from 'src/app/services/user/register/register.service';
@@ -16,9 +17,10 @@ export class RegisterPage implements OnInit {
 
   buttonConfig: IRoundedButtonConfig;
   form: FormGroup;
-  entity: RegisterSingleton;
+  entity: Register;
 
   constructor(private formBuilder: FormBuilder,
+    private registerSingleton: RegisterSingleton,
     private registerSrv: RegisterService,
     private shareSrv: ShareService,
     private modalCtrl: ModalController) { }
@@ -29,6 +31,7 @@ export class RegisterPage implements OnInit {
   }
 
   initForm(){
+    this.entity = this.registerSingleton.instance();
     this.form = this.formBuilder.group({
       email: ['', {validators: [Validators.required, Validators.email], updateOn: 'change'}],
       pass: ['', {validators: [Validators.required, Validators.minLength(6)], updateOn: 'change'}]

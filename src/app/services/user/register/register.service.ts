@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Register } from 'src/app/models/user/register/model/register';
 import { RegisterResponse } from 'src/app/models/user/register/model/registerResponse';
 import { HttpHelperService } from '../../http/http-helper.service';
 
@@ -11,7 +12,7 @@ export class RegisterService {
 
   constructor(private httpHelperSrv: HttpHelperService) { }
 
-  register(body: any){
+  register(body: Register){
     return this.httpHelperSrv.post({url: this.registerURL, body: body}).then(response =>{
       let registerResponse: RegisterResponse = null;
       registerResponse = response;
