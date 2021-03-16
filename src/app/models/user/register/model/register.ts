@@ -3,7 +3,7 @@ import { IRegister } from "../interface/register";
 export class Register implements IRegister {
 
     private _email: string;
-    private _password: string;
+    private _pass: string;
     
     constructor(){}
 
@@ -15,11 +15,11 @@ export class Register implements IRegister {
         this._email = email;
     }
 
-    get password(){
-        return this._password;
+    get pass(){
+        return this._pass;
     }
 
-    set password(password: string){
-        this._password = password;
+    set pass(pass: string){
+        this._pass = pass;
     }
 }

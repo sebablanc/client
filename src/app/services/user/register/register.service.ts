@@ -1,16 +1,41 @@
 import { Injectable } from '@angular/core';
-import { Register } from 'src/app/models/user/register/model/register';
+import { RegisterResponse } from 'src/app/models/user/register/model/registerResponse';
+import { HttpHelperService } from '../../http/http-helper.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RegisterService {
 
-  userRegister: Register;
+  private registerURL = 'user/register';
 
-  constructor() { }
+  constructor(private httpHelperSrv: HttpHelperService) { }
 
-  getRegisterInstance(){
-    
+  getErrorMessage(field: any) {
+    if (field.hasError('required')) {
+      return 'Campo requerido';
+    }
+
+    if(field.hasError('email')){
+      return 'Debe ingresar un email válido';
+    }
+   
+    if(field.hasError('min')){
+      return 'Debe ingresar como mínimo ' + field.errors.min.min + ' dígitos';
+    }
+   
+    if(field.hasError('minlength')){
+      return 'Debe ingresar como mínimo ' + field.errors.minlength.requiredLength + ' caracteres';
+    }
+  }
+
+  register(body: any){
+    return this.httpHelperSrv.post({url: this.registerURL, body: body}).then(response =>{
+      let registerResponse: RegisterResponse = null;
+      registerResponse = response;
+      return registerResponse;
+    }).catch(error => {
+      return error.error;
+    })
   }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RegisterSingleton } from 'src/app/models/user/register/model/registerSingleton';
+import { RegisterService } from 'src/app/services/user/register/register.service';
 import { IRoundedButtonConfig } from 'src/app/ui/rounded-button/rounded-button.component';
 
 @Component({
@@ -14,7 +15,7 @@ export class RegisterPage implements OnInit {
   form: FormGroup;
   entity: RegisterSingleton;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private registerSrv: RegisterService) { }
 
   ngOnInit() {
     this.viewComponentsConfiguration();
@@ -23,8 +24,8 @@ export class RegisterPage implements OnInit {
 
   initForm(){
     this.form = this.formBuilder.group({
-      email: ['', {validators: [Validators.required], updateOn: 'change'}],
-      password: ['', {validators: [Validators.required], updateOn: 'change'}]
+      email: ['', {validators: [Validators.required, Validators.email], updateOn: 'change'}],
+      pass: ['', {validators: [Validators.required, Validators.minLength(6)], updateOn: 'change'}]
     });
 
     this.form.valueChanges.subscribe(ob => {
@@ -32,15 +33,22 @@ export class RegisterPage implements OnInit {
     })
   }
 
+  get email() { return this.form.controls.email; }
+  get pass() { return this.form.controls.pass; }
+
   viewComponentsConfiguration() {
     this.buttonConfig = { text: 'Registrar' };
   }
 
-  register(event: boolean) {
-    if(event){
-      // TODO: All about register service
-      console.log(this.entity);
+  getErrorMessage(field: any){
+    return this.registerSrv.getErrorMessage(field);
+  }
 
+  async register(event: boolean) {
+    if(event){
+      let response = await this.registerSrv.register(this.entity);
+      console.log(response);
+      
     }
   }
 

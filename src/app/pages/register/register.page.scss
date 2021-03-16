@@ -13,6 +13,10 @@
     .register-form {
       grid-row: 1 / span 3;
       align-self: center;
+
+      .mat-form-field{
+        margin-bottom: 10px;
+      }
     }
 
     .register-button {
