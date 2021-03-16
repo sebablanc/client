@@ -11,24 +11,6 @@ export class RegisterService {
 
   constructor(private httpHelperSrv: HttpHelperService) { }
 
-  getErrorMessage(field: any) {
-    if (field.hasError('required')) {
-      return 'Campo requerido';
-    }
-
-    if(field.hasError('email')){
-      return 'Debe ingresar un email válido';
-    }
-   
-    if(field.hasError('min')){
-      return 'Debe ingresar como mínimo ' + field.errors.min.min + ' dígitos';
-    }
-   
-    if(field.hasError('minlength')){
-      return 'Debe ingresar como mínimo ' + field.errors.minlength.requiredLength + ' caracteres';
-    }
-  }
-
   register(body: any){
     return this.httpHelperSrv.post({url: this.registerURL, body: body}).then(response =>{
       let registerResponse: RegisterResponse = null;

@@ -1,0 +1,24 @@
+.rrm-container{
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: repeat(5,max-content);
+    text-align: center;
+    .rrm-title {
+        font-size: 50px;
+    }
+
+    .rrm-image {
+        width: 73%;
+        justify-self: center;
+    }
+
+    .rrm-description {
+        font-size: 20px;
+        margin: 12px;
+    }
+
+    .rrm-aceptar-button {
+        width: 250px;
+        justify-self: center;
+    }
+}

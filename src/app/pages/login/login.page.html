@@ -8,12 +8,14 @@
         <mat-form-field class="full-width">
           <mat-label>Correo electrónico</mat-label>
           <input matInput type="email" formControlName="email" required>
+          <mat-error *ngIf="email.invalid">{{getErrorMessage(email)}}</mat-error>
         </mat-form-field>
 
         <!-- PASSWORD -->
         <mat-form-field class="full-width">
           <mat-label>Contraseña</mat-label>
-          <input matInput type="password" formControlName="password" required>
+          <input matInput type="password" formControlName="pass" required>
+          <mat-error *ngIf="pass.invalid">{{getErrorMessage(pass)}}</mat-error>
         </mat-form-field>
 
         <app-rounded-button class="login-button" [config]="buttonConfig" (buttonClicked)="login($event)"></app-rounded-button>

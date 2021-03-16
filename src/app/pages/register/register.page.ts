@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ModalController } from '@ionic/angular';
+import { ResultRegisterModalComponent } from 'src/app/components/common/result-register-modal/result-register-modal.component';
 import { RegisterSingleton } from 'src/app/models/user/register/model/registerSingleton';
+import { ShareService } from 'src/app/services/share-service/share.service';
 import { RegisterService } from 'src/app/services/user/register/register.service';
 import { IRoundedButtonConfig } from 'src/app/ui/rounded-button/rounded-button.component';
 
@@ -15,7 +18,10 @@ export class RegisterPage implements OnInit {
   form: FormGroup;
   entity: RegisterSingleton;
 
-  constructor(private formBuilder: FormBuilder, private registerSrv: RegisterService) { }
+  constructor(private formBuilder: FormBuilder,
+    private registerSrv: RegisterService,
+    private shareSrv: ShareService,
+    private modalCtrl: ModalController) { }
 
   ngOnInit() {
     this.viewComponentsConfiguration();
@@ -41,15 +47,34 @@ export class RegisterPage implements OnInit {
   }
 
   getErrorMessage(field: any){
-    return this.registerSrv.getErrorMessage(field);
+    return this.shareSrv.getErrorMessage(field);
   }
 
   async register(event: boolean) {
+    this.shareSrv.presentLoading();
+    if(!this.form.valid){
+      this.shareSrv.presentToast({message: 'Verifique los datos ingresados en el formulario', cssClass: 'ERROR_TOAST'});
+      return;
+    }
+    
     if(event){
       let response = await this.registerSrv.register(this.entity);
-      console.log(response);
-      
+      this.shareSrv.dismissLoading();
+      if(response && response.exito){
+        this.presentModal();
+      } else{
+        this.shareSrv.presentToast({message: response && response.messages && response.messages.length>0 ? response.messages[0] : 'Error al intentar registrarse', cssClass: 'ERROR_TOAST'});
+      }
     }
+  }
+
+  async presentModal() {
+    const modal = await this.modalCtrl.create({
+      component: ResultRegisterModalComponent,
+      cssClass: 'register-modal-success',
+      backdropDismiss: false
+    });
+    return await modal.present();
   }
 
 }

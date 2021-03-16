@@ -1,7 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -13,6 +11,10 @@ export class HttpHelperService {
 
   post(config: IPostConfig): Promise<any>{
     return this.httpClient.post<any>(environment.serverURL+config.url, config.body).toPromise();
+  }
+
+  get(config: IPostConfig): Promise<any>{
+    return this.httpClient.get<any>(environment.serverURL+config.url).toPromise();
   }
 }
 

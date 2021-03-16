@@ -140,6 +140,21 @@
   width: 100%;
 }
 
+.SUCCESS_TOAST{
+  --background: green;
+}
+
+.ERROR_TOAST{
+  --background: red;
+}
+
+.register-modal-success{
+  .modal-wrapper{
+    height: 395px;
+    border-radius: 15px;
+  }
+}
+
 @media (prefers-color-scheme: dark) {
   /*
    * Dark Colors
