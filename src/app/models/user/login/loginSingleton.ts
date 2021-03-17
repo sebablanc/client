@@ -1,11 +1,11 @@
 import { Injectable } from "@angular/core";
-import { Register } from "./register";
+import { Login } from "./login";
 
 @Injectable({
     providedIn: 'root'
 })
-export class RegisterSingleton {
-    entity: Register;
+export class LoginSingleton {
+    entity: Login;
 
     private constructor() { }
 

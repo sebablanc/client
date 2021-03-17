@@ -9,6 +9,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { MyCommonModule } from './components/common/common.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import { IonicStorageModule } from '@ionic/storage-angular';
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,7 +20,8 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     MyCommonModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    IonicStorageModule
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],

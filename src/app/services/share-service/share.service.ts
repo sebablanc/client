@@ -58,6 +58,8 @@ export class ShareService {
   }
 
   dismissLoading() {
-    this.loading.dismiss();
+    if(this.loading){
+      this.loading.dismiss();
+    }
   }
 }

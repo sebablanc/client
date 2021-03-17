@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NavController } from '@ionic/angular';
-import { LoginSingleton } from 'src/app/models/user/model/loginSingleton';
+import { LoginSingleton } from 'src/app/models/user/login/loginSingleton';
 import { ShareService } from 'src/app/services/share-service/share.service';
 import { LoginService } from 'src/app/services/user/login/login.service';
 import { IRoundedButtonConfig } from 'src/app/ui/rounded-button/rounded-button.component';
@@ -17,6 +17,7 @@ export class LoginPage implements OnInit {
   form: FormGroup;
 
   private entity: LoginSingleton;
+  
   constructor(private formBuilder: FormBuilder,
     private navCtrl: NavController,
     private shareSrv: ShareService,
