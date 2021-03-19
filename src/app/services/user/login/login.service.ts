@@ -17,11 +17,15 @@ export class LoginService {
       console.log(user);
       if(user && user.exito && user.usuarios && user.usuarios.length>0){
         this.storageSrv.set('user', user.usuarios[0]);
-        return user.exito;
       }
+      return user;
     }).catch(error => {
       return false;
     })
+  }
+
+  autoLogin(){
+    return this.storageSrv.get('user');
   }
 
 }

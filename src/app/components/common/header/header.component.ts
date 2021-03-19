@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
+import { User } from 'src/app/models/user/user/user';
+import { UserSingleton } from 'src/app/models/user/user/userSingleton';
 import { IRoundedButtonConfig } from 'src/app/ui/rounded-button/rounded-button.component';
 
 export const NAV_ITEMS = [
@@ -23,12 +25,14 @@ export class HeaderComponent implements OnInit {
   roundedButtonConfig: IRoundedButtonConfig;
   headerNavItems: Array<INavItem> = NAV_ITEMS;
   linkActive = NAV_ITEMS[0].text;
+  user: User;
+  
+  constructor(private navCtrl: NavController, private userSingleton: UserSingleton) { }
 
-  constructor(private navCtrl: NavController) { }
-
-  ngOnInit() {
+  async ngOnInit() {
     this.viewComponentsConfiguration();
     this.linkActive = location.pathname.substring(1, location.pathname.length);
+    this.user = await this.userSingleton.instance();
   }
 
   viewComponentsConfiguration(){

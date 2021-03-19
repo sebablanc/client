@@ -1,4 +1,7 @@
 import { Injectable } from "@angular/core";
+import { Storage } from "@ionic/storage-angular";
+import { StorageService } from "src/app/services/storage/storage.service";
+import { User } from "./user";
 
 @Injectable({
     providedIn: 'root'
@@ -6,9 +9,13 @@ import { Injectable } from "@angular/core";
 export class UserSingleton {
     entity: User;
 
-    private constructor() { }
+    private constructor(private storageSrv: StorageService, private storage: Storage) { }
 
-    instance() {
+    async instance() {
+        if(!this.entity){
+            this.entity = await this.storageSrv.get('user');
+            //this.entity = this.storageSrv.get('user');
+        }
         return this.entity;
     }
 }

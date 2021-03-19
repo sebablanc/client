@@ -10,6 +10,8 @@ import { MyCommonModule } from './components/common/common.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage-angular';
+import { Drivers } from '@ionic/storage';
+import * as CordovaSQLiteDriver from 'localforage-cordovasqlitedriver';
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,7 +23,10 @@ import { IonicStorageModule } from '@ionic/storage-angular';
     MyCommonModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot({
+      name: '__mydb',
+      driverOrder: [CordovaSQLiteDriver._driver, Drivers.IndexedDB]
+    })
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],

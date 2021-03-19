@@ -12,31 +12,30 @@ export class StorageService {
   }
 
   async init() {
-    const storage = await this.storage.create();
-    this._storage = storage;
+    await this.storage.create();
   }
 
   public set(key: string, value: any) {
-    this._storage?.set(key, value);
+    return this.storage.set(key, value);
   }
 
-  public get(key: string) {
-    this._storage?.get(key);
+  public async get(key: string) {
+    return this.storage.get(key)
   }
 
   public remove(key: string) {
-    this._storage?.remove(key);
+    return this.storage.remove(key);
   }
 
   public length() {
-    this._storage?.length;
+    return this.storage.length;
   }
 
   public removeAll(){
-    this._storage?.clear();
+    return this.storage.clear();
   }
 
   public getKeys(){
-    this._storage?.keys();
+    return this.storage.keys();
   }
 }

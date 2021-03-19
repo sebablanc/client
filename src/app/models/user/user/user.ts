@@ -1,6 +1,6 @@
 export class User {
 
-    private _activated: boolean:
+    private _activated: boolean;
     private _email: string;
     private _id: number;
     private _persona: object;
