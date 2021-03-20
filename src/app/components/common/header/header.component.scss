@@ -19,12 +19,18 @@
   }
 
   .login-options {
+    // position: absolute;
+    // top: 10px;
+    // left: calc(100% - 220px);
+    // display: grid;
+    // grid-template-columns: max-content max-content;
+    // align-items: center;
+    width: max-content;
     position: absolute;
-    top: 10px;
-    left: calc(100% - 220px);
-    display: grid;
-    grid-template-columns: max-content max-content;
-    align-items: center;
+    top: 5px;
+    right: 20px;
+    display: flex;
+
     .login-buttons {
       display: inline-flex;
       margin-right: 10px;
@@ -46,7 +52,53 @@
       padding: 10px 30px;
       border-radius: 50px;
     }
+
+    .drop-arrow {
+      display: grid;
+      grid-template-columns: auto auto;
+      color: #fff;
+      justify-items: center;
+      cursor: pointer;
+      font-weight: 700;
+      
+      .drop-arrow-icon {
+        align-self: center;
+        color: #000;
+        font-size: 20px;
+      }
+    }
+    
+    .drop-content {
+      display: none;
+      background-color: #fff;
+      border: 1.5px solid gray;
+      text-align: center;
+
+      .option{
+        padding: 2px 10px;
+        cursor: pointer;
+        color: #000;
+        display: block;
+      }
+
+      .option:hover{
+        background-color: #ddd;
+      }
+
+      .linea {
+        border-bottom: 1px solid gray;
+        margin: 7px 0;
+        width: 100%;
+    }
+    }
   }
+
+  
+  .login-options-logged {
+    display: block !important;
+  }
+
+  .login-options-logged:hover .drop-content {display: block;}
 
   .header-links-container {
     display: inline-flex;

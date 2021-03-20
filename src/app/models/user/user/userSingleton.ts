@@ -14,7 +14,6 @@ export class UserSingleton {
     async instance() {
         if(!this.entity){
             this.entity = await this.storageSrv.get('user');
-            //this.entity = this.storageSrv.get('user');
         }
         return this.entity;
     }

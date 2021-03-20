@@ -58,8 +58,10 @@ export class LoginPage implements OnInit {
     
     let response = await this.loginSrv.login(this.entity);
     console.log(response);
-    
-    
+    debugger;
+    if(response && response['exito']){
+      this.navCtrl.navigateRoot('home');
+    }
   }
 
   goTo(link: string){

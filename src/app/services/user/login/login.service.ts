@@ -14,7 +14,6 @@ export class LoginService {
 
   login(body: LoginSingleton): Promise<boolean>{
     return this.httpHelperSrv.post({url: this.loginURL, body: body}).then(user =>{
-      console.log(user);
       if(user && user.exito && user.usuarios && user.usuarios.length>0){
         this.storageSrv.set('user', user.usuarios[0]);
       }

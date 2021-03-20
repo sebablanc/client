@@ -35,6 +35,10 @@ export class HeaderComponent implements OnInit {
     this.user = await this.userSingleton.instance();
   }
 
+  async ngOnChanges(){
+    this.user = await this.userSingleton.instance();
+  }
+
   viewComponentsConfiguration(){
     this.roundedButtonConfig = { text: 'Registrarme' };
   }
