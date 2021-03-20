@@ -54,6 +54,14 @@ const routes: Routes = [
   {
     path: 'descargas',
     loadChildren: () => import('./pages/descargas/descargas.module').then( m => m.DescargasPageModule)
+  },
+  {
+    path: 'inscripciones',
+    loadChildren: () => import('./pages/inscripciones/inscripciones.module').then( m => m.InscripcionesPageModule)
+  },
+  {
+    path: 'perfil-usuario',
+    loadChildren: () => import('./pages/perfil-usuario/perfil-usuario.module').then( m => m.PerfilUsuarioPageModule)
   }
 ];
 

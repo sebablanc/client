@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { DescargasPageRoutingModule } from './descargas-routing.module';
 
 import { DescargasPage } from './descargas.page';
+import { LayoutModule } from 'src/app/components/layout/layout.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    DescargasPageRoutingModule
+    DescargasPageRoutingModule,
+    LayoutModule
   ],
   declarations: [DescargasPage]
 })

@@ -13,9 +13,9 @@
       <ion-icon class="drop-arrow-icon" name="caret-down-outline"></ion-icon>
     </div>
     <div class="drop-content">
-      <div *ngIf="user.tipo == userTypes.ADMIN" class="option">Alumnos</div>
+      <div *ngIf="user.tipo == userTypes.ADMIN" class="option" (click)="goTo('home')">Alumnos</div>
       <div *ngIf="user.tipo == userTypes.ADMIN" class="option">Gestión</div>
-      <div class="option">Mi perfil</div>
+      <div class="option" (click)="goTo('perfil-usuario')">Mi perfil</div>
       <div class="linea"></div>
       <div class="option dr" (click)="logOut()">Cerrar sesión</div>
     </div>

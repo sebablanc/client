@@ -1,0 +1,13 @@
+<app-layout>
+  <div class="inscripciones-page routerOutlet">
+    <div class="iab-title">Inscripciones</div>
+    <div class="inscripciones-container page-with-card">
+
+      <div [ngSwitch]="conditionExpression">
+        <app-inscripciones-alumnos-inicio *ngSwitchCase="expression"></app-inscripciones-alumnos-inicio>
+      </div>
+
+    </div>
+  </div>
+</app-layout>
+

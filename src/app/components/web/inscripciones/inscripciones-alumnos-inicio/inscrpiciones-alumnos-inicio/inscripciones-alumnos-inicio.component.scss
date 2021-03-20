@@ -1,0 +1,22 @@
+.iai-container {
+    padding: 30px;
+    border-radius: 20px;
+    .iai-title {
+        font-size: 25px;
+        text-align: center;
+        margin: 3vh 0;
+    }
+
+    .iai-text {
+        font-size: 20px;
+    }
+
+    .iai-item{
+        display: grid;
+        grid-template-columns: 8vh auto;
+        grid-gap: 10px;
+        margin: 20px 0;
+        -webkit-box-align: center;
+        align-items: center;
+    }
+}
