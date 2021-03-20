@@ -13,16 +13,18 @@
       <ion-icon class="drop-arrow-icon" name="caret-down-outline"></ion-icon>
     </div>
     <div class="drop-content">
-      <div class="option">Gestión</div>
+      <div *ngIf="user.tipo == userTypes.ADMIN" class="option">Alumnos</div>
+      <div *ngIf="user.tipo == userTypes.ADMIN" class="option">Gestión</div>
       <div class="option">Mi perfil</div>
       <div class="linea"></div>
-      <div class="option dr">Cerrar sesión</div>
+      <div class="option dr" (click)="logOut()">Cerrar sesión</div>
     </div>
   </div>
 
   <div class="header-links-container">
-    <div *ngFor="let navItem of headerNavItems" class="header-links"
-      [ngClass]="{'isActive': linkActive == navItem.link}" (click)="goTo(navItem.link)">{{ navItem.text }}</div>
+    <div *ngFor="let navItem of headerNavItems" >
+      <div *ngIf="!navItem.needLogin || (navItem.needLogin && user)" class="header-links" [ngClass]="{'isActive': linkActive == navItem.link}" (click)="goTo(navItem.link)">{{ navItem.text }}</div>
+    </div>
   </div>
 
 </div>

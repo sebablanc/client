@@ -4,6 +4,7 @@ import { ModalController } from '@ionic/angular';
 import { ResultRegisterModalComponent } from 'src/app/components/common/result-register-modal/result-register-modal.component';
 import { Register } from 'src/app/models/user/register/model/register';
 import { RegisterSingleton } from 'src/app/models/user/register/model/registerSingleton';
+import { UserTypes } from 'src/app/models/user/user/user-types.enum';
 import { ShareService } from 'src/app/services/share-service/share.service';
 import { RegisterService } from 'src/app/services/user/register/register.service';
 import { IRoundedButtonConfig } from 'src/app/ui/rounded-button/rounded-button.component';
@@ -34,7 +35,8 @@ export class RegisterPage implements OnInit {
     this.entity = this.registerSingleton.instance();
     this.form = this.formBuilder.group({
       email: ['', {validators: [Validators.required, Validators.email], updateOn: 'change'}],
-      pass: ['', {validators: [Validators.required, Validators.minLength(6)], updateOn: 'change'}]
+      pass: ['', {validators: [Validators.required, Validators.minLength(6)], updateOn: 'change'}],
+      tipo: [UserTypes.USER]
     });
 
     this.form.valueChanges.subscribe(ob => {

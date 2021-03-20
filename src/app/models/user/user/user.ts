@@ -4,6 +4,7 @@ export class User {
     private _email: string;
     private _id: number;
     private _persona: object;
+    private _tipo: string;
     
     constructor(){}
 
@@ -37,5 +38,13 @@ export class User {
 
     set persona(persona: object){
         this._persona = persona;
+    }
+
+    get tipo(): string {
+        return this._tipo;
+    }
+
+    set tipo(tipo: string){
+        this._tipo = tipo;
     }
 }

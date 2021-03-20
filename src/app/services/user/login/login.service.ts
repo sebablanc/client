@@ -27,4 +27,8 @@ export class LoginService {
     return this.storageSrv.get('user');
   }
 
+  logOut(){
+    return this.storageSrv.remove('user');
+  }
+
 }
