@@ -4,6 +4,7 @@ import { usersTypes, UserTypeInfo } from 'src/app/models/user/user/user-types.en
 import { IInputConfig } from 'src/app/ui/input-dr/input-dr.component';
 import { IRoundedButtonConfig } from 'src/app/ui/rounded-button/rounded-button.component';
 import { ISelectConfig } from 'src/app/ui/select-dr/select-dr.component';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-user-perfil-form',
@@ -185,6 +186,16 @@ export class UserPerfilFormComponent implements OnInit {
       text: 'Cancelar',
       leftIcon: 'close'
     };
+  }
+
+  get edad() { return this.form.controls.edad;}
+
+  calculateAge(event){
+    if(event){
+      let age = moment().diff(event, 'years');
+      debugger;
+      this.edad.patchValue(age);
+    }
   }
 
   saveData(){

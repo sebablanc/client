@@ -1,7 +1,7 @@
 <form *ngIf="config.form" [formGroup]="config.form" class="upf-container card">
   <mat-form-field class="full-width">
     <mat-label *ngIf="config && config.label">{{ config.label }}</mat-label>
-    <input *ngIf="config && config.label" matInput [type]="config.type" [formControlName]="config.formControlName" [readonly]="config.readOnly">
+    <input *ngIf="config && config.label" matInput [type]="config.type" [formControlName]="config.formControlName" [readonly]="config.readOnly" (focusout)="dataEmit.emit(this.field.value)">
     <ion-icon *ngIf="config && config.suffixIcon" matSuffix class="icon-suffix" [name]="config.suffixIcon" (click)="suffixIconClicked.emit(true)"></ion-icon>
     <mat-error *ngIf="config && config.type ">{{getErrorMessage(config.type)}}</mat-error>
   </mat-form-field>

@@ -27,6 +27,7 @@
     "@ionic/storage-angular": "^3.0.2",
     "cordova-sqlite-storage": "^5.1.0",
     "localforage-cordovasqlitedriver": "^1.8.0",
+    "moment": "^2.29.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"

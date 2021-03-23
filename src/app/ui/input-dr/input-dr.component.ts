@@ -11,7 +11,10 @@ export class InputDrComponent implements OnInit {
   
   @Input() config: IInputConfig;
   @Output('suffixIconClicked') suffixIconClicked: EventEmitter<boolean> = new EventEmitter();
+  @Output('dataEmit') dataEmit: EventEmitter<any> = new EventEmitter();
+
   field: AbstractControl;
+  
   constructor(private shareSrv: ShareService) { }
 
   ngOnInit() {
