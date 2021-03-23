@@ -21,14 +21,13 @@ export class UserPerfilFormComponent implements OnInit {
   edadConfig: IInputConfig;
   direccionConfig: IInputConfig;
   codPostalConfig: IInputConfig;
-  // ACA IRIA EL DE LOCALIDAD
+  localidadConfig: ISelectConfig;
   provinciaConfig: IInputConfig;
   telefonoConfig: IInputConfig;
   celularConfig: IInputConfig;
   emailConfig: IInputConfig;
   otroMedioConfig: IInputConfig;
   rolConfig: ISelectConfig;
-  localidadConfig: ISelectConfig;
   
   saveConfig: IRoundedButtonConfig;
   cancelConfig: IRoundedButtonConfig;
@@ -125,7 +124,13 @@ export class UserPerfilFormComponent implements OnInit {
       form: this.form
     };
 
-    // ACA IRIA EL DE LOCALIDAD
+    this.localidadConfig = {
+      form: this.form,
+      formControlName: 'localidad',
+      label: 'Localidad',
+      list: this.usersTypesList,
+      fieldToShow: 'description'
+    }
 
     this.provinciaConfig = {
       formControlName: 'provincia',
@@ -167,14 +172,6 @@ export class UserPerfilFormComponent implements OnInit {
       form: this.form,
       formControlName: 'rol',
       label: 'Rol',
-      list: this.usersTypesList,
-      fieldToShow: 'description'
-    }
-
-    this.localidadConfig = {
-      form: this.form,
-      formControlName: 'localidad',
-      label: 'Localidad',
       list: this.usersTypesList,
       fieldToShow: 'description'
     }
