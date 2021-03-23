@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { usersTypes, UserTypeInfo } from 'src/app/models/user/user/user-types.enum';
 import { IInputConfig } from 'src/app/ui/input-dr/input-dr.component';
 import { IRoundedButtonConfig } from 'src/app/ui/rounded-button/rounded-button.component';
+import { ISelectConfig } from 'src/app/ui/select-dr/select-dr.component';
 
 @Component({
   selector: 'app-user-perfil-form',
@@ -25,9 +27,13 @@ export class UserPerfilFormComponent implements OnInit {
   celularConfig: IInputConfig;
   emailConfig: IInputConfig;
   otroMedioConfig: IInputConfig;
+  rolConfig: ISelectConfig;
+  localidadConfig: ISelectConfig;
   
   saveConfig: IRoundedButtonConfig;
   cancelConfig: IRoundedButtonConfig;
+
+  usersTypesList: Array<UserTypeInfo> = usersTypes;
 
   constructor(private formBuilder: FormBuilder) { }
 
@@ -37,6 +43,9 @@ export class UserPerfilFormComponent implements OnInit {
   }
 
   initForm(){
+    let userType = this.usersTypesList.filter(type =>{
+      return type.value == 'USER';
+    });
     this.form = new FormGroup({
       nroCuenta: new FormControl({value: '1', disabled: true}, Validators.required),
       dni: new FormControl('', { validators: [Validators.required, Validators.maxLength(10), Validators.minLength(7)], updateOn: 'change'}),
@@ -52,6 +61,7 @@ export class UserPerfilFormComponent implements OnInit {
       celular: new FormControl('', { validators: [Validators.required], updateOn: 'change'}),
       email: new FormControl('', { validators: [Validators.required], updateOn: 'change'}),
       otroMedio: new FormControl('', { validators: [Validators.required], updateOn: 'change'}),
+      rol: new FormControl(userType[0], { validators: [Validators.required], updateOn: 'change'})
     });
   }
 
@@ -152,6 +162,22 @@ export class UserPerfilFormComponent implements OnInit {
       type: 'text',
       form: this.form
     };
+
+    this.rolConfig = {
+      form: this.form,
+      formControlName: 'rol',
+      label: 'Rol',
+      list: this.usersTypesList,
+      fieldToShow: 'description'
+    }
+
+    this.localidadConfig = {
+      form: this.form,
+      formControlName: 'localidad',
+      label: 'Localidad',
+      list: this.usersTypesList,
+      fieldToShow: 'description'
+    }
 
     this.saveConfig = {
       text: 'Guardar',

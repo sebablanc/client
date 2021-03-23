@@ -1,0 +1,12 @@
+<form *ngIf="config.form" [formGroup]="config.form" class="upf-container card">
+  <mat-form-field class="full-width">
+    <mat-label *ngIf="config && config.label">{{ config.label }}</mat-label>
+    <mat-select *ngIf="config && config.list" [formControlName]="config.formControlName">
+      <mat-option>-- Seleccione una opción --</mat-option>
+      <mat-option *ngFor="let item of config.list" [value]="item">
+        {{item[config.fieldToShow]}}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="config && config.type ">{{getErrorMessage(config.type)}}</mat-error>
+  </mat-form-field>
+</form>

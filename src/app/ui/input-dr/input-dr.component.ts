@@ -19,9 +19,6 @@ export class InputDrComponent implements OnInit {
   }
 
   getErrorMessage(type: any){
-    if(type == 'email'){
-      debugger;
-    }
     this.shareSrv.getErrorMessage(this.field);
   }
 

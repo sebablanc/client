@@ -4,10 +4,21 @@ import { RoundedButtonComponent } from './rounded-button/rounded-button.componen
 import { SwiperComponent } from './home-swiper/home-swiper.component';
 import { InputDrComponent } from './input-dr/input-dr.component';
 import { AngularMaterialModule } from '../material/material.module';
+import { SelectDrComponent } from './select-dr/select-dr.component';
 
 @NgModule({
-  declarations: [RoundedButtonComponent, SwiperComponent, InputDrComponent],
+  declarations: [
+    RoundedButtonComponent,
+    SwiperComponent,
+    InputDrComponent,
+    SelectDrComponent
+  ],
   imports: [CommonModule, AngularMaterialModule],
-  exports: [RoundedButtonComponent, SwiperComponent, InputDrComponent]
+  exports: [
+    RoundedButtonComponent,
+    SwiperComponent,
+    InputDrComponent,
+    SelectDrComponent
+  ]
 })
 export class uiModule { }
