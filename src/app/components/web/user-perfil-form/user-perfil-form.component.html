@@ -1,24 +1,56 @@
-<form class="upf-container card">
-  <div>Nro Cuenta</div>
+<form *ngIf="form" [formGroup]="form" class="upf-container card">
+  
+  <!-- N Ú M E R O   D E   C U E N T A -->
+  <app-input-dr [config]="nroCuentaConfig"></app-input-dr>
+  
   <div>Rol</div>
+  
   <div class="datos-personales-title entire-row">Datos personales</div>
-  <div>DNI</div>
+  
+  <!-- D N I -->
+  <app-input-dr [config]="dniConfig"></app-input-dr>
+  
   <div class="img-user">imagen</div>
-  <div>Nombre</div>
-  <div>Apellido</div>
-  <div>FechaNacimiento</div>
-  <div>Edad</div>
+  
+  <!-- N O M B R E -->
+  <app-input-dr [config]="nombreConfig"></app-input-dr>
+  
+  <!-- A P E L L I D O -->
+  <app-input-dr [config]="apellidoConfig"></app-input-dr>
+  
+  <!-- F E C H A   D E   N A C I M I E N T O -->
+  <app-input-dr [config]="fechaNacimientoConfig"></app-input-dr>
+
+  <!-- E D A D -->
+  <app-input-dr [config]="edadConfig"></app-input-dr>
+
   <div class="datos-contacto-title entire-row">Datos de contacto</div>
-  <div>Dirección</div>
-  <div>Código Postal</div>
+  
+  <!-- D I R E C C I O N -->
+  <app-input-dr [config]="direccionConfig"></app-input-dr>
+
+  <!-- D I R E C C I O N -->
+  <app-input-dr [config]="codPostalConfig"></app-input-dr>
+
   <div>Localidad</div>
-  <div>Provincia</div>
-  <div>Teléfono</div>
-  <div>Celular</div>
-  <div>Correo Electrónico</div>
-  <div>Otro medio de contacto</div>
+
+  <!-- P R O V I N C I A -->
+  <app-input-dr [config]="provinciaConfig"></app-input-dr>
+  
+  <!-- T E L E F O N O -->
+  <app-input-dr [config]="telefonoConfig"></app-input-dr>
+  
+  <!-- C E L U L A R -->
+  <app-input-dr [config]="celularConfig"></app-input-dr>
+
+  <!-- E M A I L -->
+  <app-input-dr [config]="emailConfig"></app-input-dr>
+
+  <!-- O T R O   M E D I O -->
+  <app-input-dr [config]="otroMedioConfig"></app-input-dr>
+
 </form>
 <div class="botonera">
-  <app-rounded-button></app-rounded-button>
-  <app-rounded-button></app-rounded-button>
+  <app-rounded-button [config]="cancelConfig"></app-rounded-button>
+  <app-rounded-button class="save-btn" [config]="saveConfig" (click)="saveData()"></app-rounded-button>
 </div>

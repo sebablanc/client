@@ -3,7 +3,7 @@
     border-radius: 20px;
     display: grid;
     grid-template-columns: auto auto;
-    grid-gap: 20px;
+    grid-gap: 10px;
 
     .entire-row{
         grid-column: 1 / span 2;
@@ -23,5 +23,15 @@
     .img-user{
         grid-column: 2;
         grid-row: 3 / span 5;
+    }
+}
+
+.botonera {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    margin: 10px;
+
+    .save-btn{
+        grid-column: 6;
     }
 }

@@ -9,6 +9,7 @@ export class RoundedButtonComponent implements OnInit {
 
   @Input() config: IRoundedButtonConfig;
   @Output('buttonClicked') buttonClicked: EventEmitter<boolean> = new EventEmitter;
+  
   constructor() { }
 
   ngOnInit() {}
@@ -18,4 +19,6 @@ export class RoundedButtonComponent implements OnInit {
 
 export interface IRoundedButtonConfig{
   text: string;
+  leftIcon?: string;
+  rightIcon?: string;
 }
