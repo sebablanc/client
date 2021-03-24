@@ -11,6 +11,7 @@ import { ShareService } from 'src/app/services/share-service/share.service';
 import { User } from 'src/app/models/user/user/user';
 import { UserSingleton } from 'src/app/models/user/user/userSingleton';
 import { usersTypes, UserTypeInfo, UserTypes } from 'src/app/models/user/user/user-types.enum';
+import { Localidad } from 'src/app/models/localidad/localidad';
 @Component({
   selector: 'app-user-perfil-form',
   templateUrl: './user-perfil-form.component.html',
@@ -53,6 +54,7 @@ export class UserPerfilFormComponent implements OnInit {
 
   async ngOnInit() {
     this.user = await this.userSingleton.instance();
+    debugger;
     if(!this.persona) this.persona = new Persona();
     await this.initForm();
     this.initConfigs();
@@ -70,7 +72,7 @@ export class UserPerfilFormComponent implements OnInit {
       let lastNroCuentaResponse = await this.personaSrv.getLastNroCuenta();
       nroCuentaParsed = format(new Date(), 'yy')+"-";
       let intNroCuenta = 0;
-      if(!lastNroCuentaResponse.exito || !lastNroCuentaResponse.nroCuenta.nroCuenta){
+      if(!lastNroCuentaResponse.exito || !lastNroCuentaResponse.nroCuenta || !lastNroCuentaResponse.nroCuenta.nroCuenta){
         lastNroCuentaResponse.nroCuenta = {nroCuenta: '0'};
       } else if(lastNroCuentaResponse.exito && lastNroCuentaResponse.nroCuenta.nroCuenta){
         intNroCuenta = parseInt(lastNroCuentaResponse.nroCuenta.nroCuenta.split('-')[1]);
@@ -89,23 +91,28 @@ export class UserPerfilFormComponent implements OnInit {
     this.form = new FormGroup({
       nroCuenta: new FormControl({value: (this.persona && this.persona.getNroCuenta ? this.persona.getNroCuenta : nroCuentaParsed), disabled: true}, Validators.required),
       dni: new FormControl('', { validators: [Validators.required, Validators.maxLength(10), Validators.minLength(7)], updateOn: 'change'}),
-      nombre: new FormControl('',{ validators: [Validators.required], updateOn: 'change'}),
-      apellido: new FormControl('',{ validators: [Validators.required], updateOn: 'change'}),
+      nombre: new FormControl(this.persona && this.persona.getNombre ? this.persona.getNombre : '',{ validators: [Validators.required], updateOn: 'change'}),
+      apellido: new FormControl(this.persona && this.persona.getApellido ? this.persona.getApellido : '',{ validators: [Validators.required], updateOn: 'change'}),
       fechaNacimiento: new FormControl('',{ validators: [Validators.required], updateOn: 'change'}),
       edad: new FormControl('', { validators: [Validators.required], updateOn: 'change'}),
-      direccion: new FormControl('', { validators: [Validators.required], updateOn: 'change'}),
-      codPostal: new FormControl('', { validators: [Validators.required], updateOn: 'change'}),
+      direccion: new FormControl(this.persona && this.persona.getDireccion ? this.persona.getDireccion : '', { validators: [Validators.required], updateOn: 'change'}),
+      codPostal: new FormControl( '', { validators: [Validators.required], updateOn: 'change'}),
       localidad: new FormControl('', { validators: [Validators.required], updateOn: 'change'}),
       provincia: new FormControl('', { validators: [Validators.required], updateOn: 'change'}),
-      telefono: new FormControl('', { validators: [Validators.required], updateOn: 'change'}),
-      celular: new FormControl('', { validators: [Validators.required], updateOn: 'change'}),
-      email: new FormControl('', { validators: [Validators.required], updateOn: 'change'}),
-      otroMedio: new FormControl('', { validators: [Validators.required], updateOn: 'change'}),
+      telefono: new FormControl(this.persona && this.persona.getTelefono ? this.persona.getTelefono : '', { validators: [Validators.required], updateOn: 'change'}),
+      celular: new FormControl(this.persona && this.persona.getCelular ? this.persona.getCelular : '', { validators: [Validators.required], updateOn: 'change'}),
+      email: new FormControl(this.persona && this.persona.getEmail ? this.persona.getEmail : '', { validators: [Validators.required], updateOn: 'change'}),
+      otroMedio: new FormControl(this.persona && this.persona.getOtroMedio ? this.persona.getOtroMedio : '', { validators: [Validators.required], updateOn: 'change'}),
       rol: new FormControl(userType[0], { validators: [Validators.required], updateOn: 'change'})
     });
 
     this.form.valueChanges.subscribe(ob =>{
       Object.assign(this.persona, ob);
+      if(this.localidad && this.localidad.value) {
+        let localidad: Localidad = new Localidad();
+        Object.assign(localidad, this.localidad.value);
+        this.persona.setLocalidad = localidad;
+      }
     })
   }
 

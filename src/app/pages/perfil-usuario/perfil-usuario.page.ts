@@ -12,9 +12,17 @@ import { StorageService } from 'src/app/services/storage/storage.service';
 })
 export class PerfilUsuarioPage implements OnInit {
 
-  constructor(private shareSrv: ShareService, private personaSrv: PersonaService, private storageSrv: StorageService) { }
+  persona: Persona = new Persona();
 
-  ngOnInit() {
+  constructor(
+    private shareSrv: ShareService,
+    private personaSrv: PersonaService,
+    private storageSrv: StorageService) { }
+
+  async ngOnInit() {
+    let fromStorage = await this.storageSrv.get('persona');
+    Object.assign(this.persona, fromStorage);
+    debugger;
   }
 
   async guardarPersona(event: Persona) {
@@ -24,7 +32,6 @@ export class PerfilUsuarioPage implements OnInit {
       if (event.getId) {
         //TODO: modificar
       } else {
-        //TODO: guardar
         await this.savePersona(personaToSend)
       }
     }
@@ -33,11 +40,13 @@ export class PerfilUsuarioPage implements OnInit {
 
   async savePersona(personaToSend: IPersonaSend){
     let response =  await this.personaSrv.guardarPersona(personaToSend);
-    debugger;
+    
     if(response && response.exito && response.personas && response.personas.length>0){
       this.storageSrv.set('persona', response.personas[0]);
     }
+    
     let colorToast = response && response.exito ? 'SUCCESS_TOAST' : 'ERROR_TOAST';
+    
     this.shareSrv.presentToast({message: response.messages[0], cssClass: colorToast})
   }
 }

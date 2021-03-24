@@ -2,7 +2,7 @@
   <div class="perfil-usuario-page routerOutlet">
     <div class="pu-title">Mi perfil</div>
     <div class="perfil-usuario-container page-with-card">
-      <app-user-perfil-form (emitSave)="guardarPersona($event)"></app-user-perfil-form>
+      <app-user-perfil-form (emitSave)="guardarPersona($event)" [persona]="persona"></app-user-perfil-form>
     </div>
   </div>
 </app-layout>
