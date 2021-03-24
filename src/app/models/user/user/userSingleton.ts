@@ -7,7 +7,7 @@ import { User } from "./user";
     providedIn: 'root'
 })
 export class UserSingleton {
-    entity: User;
+    private entity: User;
 
     private constructor(private storageSrv: StorageService, private storage: Storage) { }
 

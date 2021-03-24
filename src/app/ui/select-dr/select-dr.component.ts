@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AbstractControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-select-dr',
@@ -9,10 +9,15 @@ import { FormGroup } from '@angular/forms';
 export class SelectDrComponent implements OnInit {
   
   @Input() config: ISelectConfig;
-  
+  @Output('dataEmit') dataEmit: EventEmitter<any> = new EventEmitter();
+
+  field: AbstractControl;
+
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.field = this.config.form.controls[this.config.formControlName];
+  }
 
 }
 

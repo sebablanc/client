@@ -1,10 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { usersTypes, UserTypeInfo } from 'src/app/models/user/user/user-types.enum';
 import { IInputConfig } from 'src/app/ui/input-dr/input-dr.component';
 import { IRoundedButtonConfig } from 'src/app/ui/rounded-button/rounded-button.component';
 import { ISelectConfig } from 'src/app/ui/select-dr/select-dr.component';
 import * as moment from 'moment';
+import { LocalidadService } from 'src/app/services/localidad/localidad.service';
+import { ShareService } from 'src/app/services/share-service/share.service';
+import { UserSingleton } from 'src/app/models/user/user/userSingleton';
+import { User } from 'src/app/models/user/user/user';
+import { PersonaSingleton } from 'src/app/models/persona/personaSingleton';
+import { Persona } from 'src/app/models/persona/persona';
 
 @Component({
   selector: 'app-user-perfil-form',
@@ -34,17 +40,21 @@ export class UserPerfilFormComponent implements OnInit {
   cancelConfig: IRoundedButtonConfig;
 
   usersTypesList: Array<UserTypeInfo> = usersTypes;
+  user: User;
+  persona: Persona;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private localidadSrv: LocalidadService, private shareSrv: ShareService, private userSingleton: UserSingleton, private personaSingleton: PersonaSingleton) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    this.user = await this.userSingleton.instance();
+    this.persona = await this.personaSingleton.instance();
     this.initForm();
     this.initConfigs();
   }
 
   initForm(){
     let userType = this.usersTypesList.filter(type =>{
-      return type.value == 'USER';
+      return type.value == this.user.tipo;
     });
     this.form = new FormGroup({
       nroCuenta: new FormControl({value: '1', disabled: true}, Validators.required),
@@ -63,6 +73,10 @@ export class UserPerfilFormComponent implements OnInit {
       otroMedio: new FormControl('', { validators: [Validators.required], updateOn: 'change'}),
       rol: new FormControl(userType[0], { validators: [Validators.required], updateOn: 'change'})
     });
+
+    this.form.valueChanges.subscribe(ob =>{
+      this.persona = ob;
+    })
   }
 
   initConfigs(){
@@ -130,7 +144,7 @@ export class UserPerfilFormComponent implements OnInit {
       formControlName: 'localidad',
       label: 'Localidad',
       list: this.usersTypesList,
-      fieldToShow: 'description'
+      fieldToShow: 'ciudad'
     }
 
     this.provinciaConfig = {
@@ -188,18 +202,36 @@ export class UserPerfilFormComponent implements OnInit {
     };
   }
 
-  get edad() { return this.form.controls.edad;}
+  get edad() { return this.form.controls.edad; }
+  get localidad() { return this.form.controls.localidad; }
+  get provincia() { return this.form.controls.provincia; }
 
   calculateAge(event){
     if(event){
       let age = moment().diff(event, 'years');
-      debugger;
       this.edad.patchValue(age);
+    }
+  }
+
+  async getLocalidadList(event) {
+    if(event){
+      let response = await this.localidadSrv.getSomeLocalidadesList({codPostal: event});
+      if(response && response.exito && response.localidades.length > 0){
+        this.localidadConfig.list = response.localidades;
+      } else {
+        this.shareSrv.presentToast({message: response.messages[0], cssClass: 'ERROR_TOAST'})
+      }
+    }
+  }
+
+  setProvinciaField(event){
+    if(event){
+      this.provincia.patchValue(this.localidad.value['provincia']);
     }
   }
 
   saveData(){
     console.log(this.form.value);
-    
+    console.log(this.persona)
   }
 }

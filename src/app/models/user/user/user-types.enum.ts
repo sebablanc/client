@@ -1,6 +1,6 @@
 export enum UserTypes {
-    ADMIN = "Administrador",
-    USER = "Usuario"
+    ADMIN = "ADMIN",
+    USER = "USER"
 }
 
 export type UserTypeInfo = {

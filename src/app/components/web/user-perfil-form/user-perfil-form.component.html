@@ -30,11 +30,11 @@
   <!-- D I R E C C I O N -->
   <app-input-dr [config]="direccionConfig"></app-input-dr>
 
-  <!-- D I R E C C I O N -->
-  <app-input-dr [config]="codPostalConfig"></app-input-dr>
+  <!-- C O D I G O   P O S T A L -->
+  <app-input-dr [config]="codPostalConfig" (dataEmit)="getLocalidadList($event)"></app-input-dr>
 
  <!-- L O C A L I D A D -->
- <app-select-dr [config]="localidadConfig"></app-select-dr>
+ <app-select-dr [config]="localidadConfig" (dataEmit)="setProvinciaField($event)"></app-select-dr>
 
   <!-- P R O V I N C I A -->
   <app-input-dr [config]="provinciaConfig"></app-input-dr>
