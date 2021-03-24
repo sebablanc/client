@@ -9,6 +9,6 @@ export type UserTypeInfo = {
 }
 
 export const usersTypes = [
-    {value: 'ADMIN', description: 'Adminsitrador'},
+    {value: 'ADMIN', description: 'Administrador'},
     {value: 'USER', description: 'Usuario'}
 ]

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { LoadingController, ToastController } from '@ionic/angular';
+import { LoadingController, NavController, ToastController } from '@ionic/angular';
 import { IToast } from './share-interfaces';
 
 @Injectable({
@@ -9,7 +9,7 @@ export class ShareService {
 
   private loading: HTMLIonLoadingElement;
 
-  constructor(private toastCtrl: ToastController, private loadingCtrl: LoadingController) { }
+  constructor(private toastCtrl: ToastController, private loadingCtrl: LoadingController, private navCtrl: NavController) { }
 
   getErrorMessage(field: any) {
     if (field.hasError('required')) {
@@ -61,5 +61,13 @@ export class ShareService {
     if(this.loading){
       this.loading.dismiss();
     }
+  }
+
+  /**
+   * N A V I G A T E
+   */
+
+   goTo(link: string){
+    this.navCtrl.navigateRoot(`/${link}`);
   }
 }

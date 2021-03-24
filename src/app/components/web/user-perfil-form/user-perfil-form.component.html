@@ -4,12 +4,12 @@
   <app-input-dr [config]="nroCuentaConfig"></app-input-dr>
   
   <!-- R O L-->
-  <app-select-dr [config]="rolConfig"></app-select-dr>
+  <app-select-dr *ngIf="user && user.tipo && user.tipo == userTypes.ADMIN" [config]="rolConfig"></app-select-dr>
   
   <div class="datos-personales-title entire-row">Datos personales</div>
   
   <!-- D N I -->
-  <app-input-dr [config]="dniConfig"></app-input-dr>
+  <app-input-dr [config]="dniConfig" (dataEmit)="searchByDNI($event)" (suffixIconClicked)="searchByDNIIcon($event)"></app-input-dr>
   
   <div class="img-user">imagen</div>
   
@@ -31,7 +31,7 @@
   <app-input-dr [config]="direccionConfig"></app-input-dr>
 
   <!-- C O D I G O   P O S T A L -->
-  <app-input-dr [config]="codPostalConfig" (dataEmit)="getLocalidadList($event)"></app-input-dr>
+  <app-input-dr [config]="codPostalConfig" (dataEmit)="getLocalidadList($event)" (suffixIconClicked)="getLocalidadListIcon($event)"></app-input-dr>
 
  <!-- L O C A L I D A D -->
  <app-select-dr [config]="localidadConfig" (dataEmit)="setProvinciaField($event)"></app-select-dr>
@@ -53,6 +53,6 @@
 
 </form>
 <div class="botonera">
-  <app-rounded-button [config]="cancelConfig"></app-rounded-button>
-  <app-rounded-button class="save-btn" [config]="saveConfig" (click)="saveData()"></app-rounded-button>
+  <app-rounded-button [config]="cancelConfig" (click)="emitSave.emit(null)"></app-rounded-button>
+  <app-rounded-button class="save-btn" [config]="saveConfig" (click)="emitSave.emit(persona)"></app-rounded-button>
 </div>

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController } from '@ionic/angular';
 import { User } from 'src/app/models/user/user/user';
 import { UserTypes } from 'src/app/models/user/user/user-types.enum';
 import { UserSingleton } from 'src/app/models/user/user/userSingleton';
+import { ShareService } from 'src/app/services/share-service/share.service';
 import { LoginService } from 'src/app/services/user/login/login.service';
 import { IRoundedButtonConfig } from 'src/app/ui/rounded-button/rounded-button.component';
 
@@ -32,7 +32,7 @@ export class HeaderComponent implements OnInit {
   user: User;
   userTypes = UserTypes;
   
-  constructor(private navCtrl: NavController, private userSingleton: UserSingleton, private loginSrv: LoginService) { }
+  constructor(private shareSrv: ShareService, private userSingleton: UserSingleton, private loginSrv: LoginService) { }
 
   async ngOnInit() {
     this.viewComponentsConfiguration();
@@ -50,7 +50,7 @@ export class HeaderComponent implements OnInit {
 
   goTo(link: string){
     this.linkActive = link;
-    this.navCtrl.navigateRoot(`/${link}`);
+    this.shareSrv.goTo(link);
   }
 
   async logOut(){

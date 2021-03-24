@@ -1,23 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { usersTypes, UserTypeInfo } from 'src/app/models/user/user/user-types.enum';
+import { format, differenceInYears, parseISO } from 'date-fns'
 import { IInputConfig } from 'src/app/ui/input-dr/input-dr.component';
-import { IRoundedButtonConfig } from 'src/app/ui/rounded-button/rounded-button.component';
 import { ISelectConfig } from 'src/app/ui/select-dr/select-dr.component';
-import * as moment from 'moment';
+import { IRoundedButtonConfig } from 'src/app/ui/rounded-button/rounded-button.component';
 import { LocalidadService } from 'src/app/services/localidad/localidad.service';
-import { ShareService } from 'src/app/services/share-service/share.service';
-import { UserSingleton } from 'src/app/models/user/user/userSingleton';
-import { User } from 'src/app/models/user/user/user';
-import { PersonaSingleton } from 'src/app/models/persona/personaSingleton';
 import { Persona } from 'src/app/models/persona/persona';
-
+import { PersonaService } from 'src/app/services/persona/persona.service';
+import { ShareService } from 'src/app/services/share-service/share.service';
+import { User } from 'src/app/models/user/user/user';
+import { UserSingleton } from 'src/app/models/user/user/userSingleton';
+import { usersTypes, UserTypeInfo, UserTypes } from 'src/app/models/user/user/user-types.enum';
 @Component({
   selector: 'app-user-perfil-form',
   templateUrl: './user-perfil-form.component.html',
   styleUrls: ['./user-perfil-form.component.scss'],
 })
 export class UserPerfilFormComponent implements OnInit {
+
+  @Input() persona: Persona;
+  @Output('emitSave') emitSave: EventEmitter<Persona> = new EventEmitter(); 
 
   form: FormGroup;
   nroCuentaConfig: IInputConfig;
@@ -39,25 +41,53 @@ export class UserPerfilFormComponent implements OnInit {
   saveConfig: IRoundedButtonConfig;
   cancelConfig: IRoundedButtonConfig;
 
+  userTypes = UserTypes;
   usersTypesList: Array<UserTypeInfo> = usersTypes;
   user: User;
-  persona: Persona;
 
-  constructor(private localidadSrv: LocalidadService, private shareSrv: ShareService, private userSingleton: UserSingleton, private personaSingleton: PersonaSingleton) { }
+  constructor(
+    private localidadSrv: LocalidadService,
+    private shareSrv: ShareService,
+    private userSingleton: UserSingleton,
+    private personaSrv: PersonaService) { }
 
   async ngOnInit() {
     this.user = await this.userSingleton.instance();
-    this.persona = await this.personaSingleton.instance();
-    this.initForm();
+    if(!this.persona) this.persona = new Persona();
+    await this.initForm();
     this.initConfigs();
   }
 
-  initForm(){
+  async initForm(){
+    //Obtengo el tipo de usuario
     let userType = this.usersTypesList.filter(type =>{
       return type.value == this.user.tipo;
     });
+
+    //Obtengo el número de cuenta
+    let nroCuentaParsed = '';
+    if(!this.persona || !this.persona.getNroCuenta){
+      let lastNroCuentaResponse = await this.personaSrv.getLastNroCuenta();
+      nroCuentaParsed = format(new Date(), 'yy')+"-";
+      let intNroCuenta = 0;
+      if(!lastNroCuentaResponse.exito || !lastNroCuentaResponse.nroCuenta.nroCuenta){
+        lastNroCuentaResponse.nroCuenta = {nroCuenta: '0'};
+      } else if(lastNroCuentaResponse.exito && lastNroCuentaResponse.nroCuenta.nroCuenta){
+        intNroCuenta = parseInt(lastNroCuentaResponse.nroCuenta.nroCuenta.split('-')[1]);
+      }
+
+      //Agregando los ceros necesarios precendentes
+      for(let i=0; i<4-intNroCuenta.toString().length; i++){
+        nroCuentaParsed+='0';
+      }
+     
+      intNroCuenta++;
+      nroCuentaParsed += intNroCuenta;
+      this.persona.setNroCuenta = nroCuentaParsed;
+    }
+
     this.form = new FormGroup({
-      nroCuenta: new FormControl({value: '1', disabled: true}, Validators.required),
+      nroCuenta: new FormControl({value: (this.persona && this.persona.getNroCuenta ? this.persona.getNroCuenta : nroCuentaParsed), disabled: true}, Validators.required),
       dni: new FormControl('', { validators: [Validators.required, Validators.maxLength(10), Validators.minLength(7)], updateOn: 'change'}),
       nombre: new FormControl('',{ validators: [Validators.required], updateOn: 'change'}),
       apellido: new FormControl('',{ validators: [Validators.required], updateOn: 'change'}),
@@ -75,7 +105,7 @@ export class UserPerfilFormComponent implements OnInit {
     });
 
     this.form.valueChanges.subscribe(ob =>{
-      this.persona = ob;
+      Object.assign(this.persona, ob);
     })
   }
 
@@ -136,14 +166,15 @@ export class UserPerfilFormComponent implements OnInit {
       formControlName: 'codPostal',
       label: 'Código Postal',
       type: 'number',
-      form: this.form
+      form: this.form,
+      suffixIcon: 'search-outline'
     };
 
     this.localidadConfig = {
       form: this.form,
       formControlName: 'localidad',
       label: 'Localidad',
-      list: this.usersTypesList,
+      list: [],
       fieldToShow: 'ciudad'
     }
 
@@ -202,15 +233,21 @@ export class UserPerfilFormComponent implements OnInit {
     };
   }
 
+  get dni() { return this.form.controls.dni; }
+  get codPostal() { return this.form.controls.codPostal; }
   get edad() { return this.form.controls.edad; }
   get localidad() { return this.form.controls.localidad; }
   get provincia() { return this.form.controls.provincia; }
 
   calculateAge(event){
     if(event){
-      let age = moment().diff(event, 'years');
+      let age = differenceInYears(new Date(), parseISO(event));
       this.edad.patchValue(age);
     }
+  }
+
+  getLocalidadListIcon(event: boolean){
+    if(event) this.getLocalidadList(this.codPostal.value);
   }
 
   async getLocalidadList(event) {
@@ -219,7 +256,7 @@ export class UserPerfilFormComponent implements OnInit {
       if(response && response.exito && response.localidades.length > 0){
         this.localidadConfig.list = response.localidades;
       } else {
-        this.shareSrv.presentToast({message: response.messages[0], cssClass: 'ERROR_TOAST'})
+        this.shareSrv.presentToast({message: response.messages[0], cssClass: 'ERROR_TOAST'});
       }
     }
   }
@@ -230,8 +267,16 @@ export class UserPerfilFormComponent implements OnInit {
     }
   }
 
-  saveData(){
-    console.log(this.form.value);
-    console.log(this.persona)
+  searchByDNIIcon(event: boolean){
+    if(event) this.searchByDNI(this.dni.value);
   }
+  searchByDNI(event){
+    //TODO: buscar por DNI en focusout y click ícono lupa
+    if(event){
+      console.log('searchByDNI');
+      console.log(event);
+    }
+  }
+
+  
 }
