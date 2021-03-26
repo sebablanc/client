@@ -1,7 +1,7 @@
 <form *ngIf="config.form" [formGroup]="config.form" class="upf-container card">
   <mat-form-field class="full-width">
     <mat-label *ngIf="config && config.label">{{ config.label }}</mat-label>
-    <mat-select *ngIf="config && config.list" [formControlName]="config.formControlName" (selectionChange)="dataEmit.emit(field.value)">
+    <mat-select [compareWith]="compareFn" *ngIf="config && config.list" [formControlName]="config.formControlName" (selectionChange)="dataEmit.emit(field.value)">
       <mat-option>-- Seleccione una opción --</mat-option>
       <mat-option *ngFor="let item of config.list" [value]="item">
         {{item[config.fieldToShow]}}

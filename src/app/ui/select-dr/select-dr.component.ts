@@ -19,6 +19,9 @@ export class SelectDrComponent implements OnInit {
     this.field = this.config.form.controls[this.config.formControlName];
   }
 
+  compareFn(c1: any, c2: any): boolean {
+    return c1.id && c2.id ? c1.id === c2.id : c1 === c2;
+}
 }
 
 export interface ISelectConfig{

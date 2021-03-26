@@ -54,17 +54,45 @@ export class UserPerfilFormComponent implements OnInit {
 
   async ngOnInit() {
     this.user = await this.userSingleton.instance();
-    debugger;
-    if(!this.persona) this.persona = new Persona();
-    await this.initForm();
+    this.initForm();
     this.initConfigs();
   }
 
-  async initForm(){
+  initForm(){
     //Obtengo el tipo de usuario
     let userType = this.usersTypesList.filter(type =>{
       return type.value == this.user.tipo;
     });
+
+    this.form = new FormGroup({
+      nroCuenta: new FormControl({value: this.persona && this.persona.getNroCuenta ? this.persona.getNroCuenta : '', disabled: true}, Validators.required),
+      dni: new FormControl(this.persona && this.persona.getDNI ? this.persona.getDNI : '', { validators: [Validators.required, Validators.maxLength(10), Validators.minLength(7)], updateOn: 'change'}),
+      nombre: new FormControl(this.persona && this.persona.getNombre ? this.persona.getNombre : '',{ validators: [Validators.required], updateOn: 'change'}),
+      apellido: new FormControl(this.persona && this.persona.getApellido ? this.persona.getApellido : '',{ validators: [Validators.required], updateOn: 'change'}),
+      fechaNacimiento: new FormControl(this.persona && this.persona.obtenerFechaNacimiento ? this.persona.obtenerFechaNacimiento : '',{ validators: [Validators.required], updateOn: 'change'}),
+      edad: new FormControl(this.persona && this.persona.obtenerFechaNacimiento ? this.calculateAge(this.persona.obtenerFechaNacimiento) : '', { validators: [Validators.required], updateOn: 'change'}),
+      direccion: new FormControl(this.persona && this.persona.getDireccion ? this.persona.getDireccion : '', { validators: [Validators.required], updateOn: 'change'}),
+      codPostal: new FormControl(this.persona && this.persona.getLocalidad && this.persona.getLocalidad.obtenerCodPostal ? this.persona.getLocalidad.obtenerCodPostal : '', { validators: [Validators.required], updateOn: 'change'}),
+      localidad: new FormControl(this.persona && this.persona.getLocalidad ? this.persona.getLocalidad :'', { validators: [Validators.required], updateOn: 'change'}),
+      provincia: new FormControl(this.persona && this.persona.getLocalidad && this.persona.getLocalidad.obtenerProvincia ? this.persona.getLocalidad.obtenerProvincia :'', { validators: [Validators.required], updateOn: 'change'}),
+      telefono: new FormControl(this.persona && this.persona.getTelefono ? this.persona.getTelefono : '', { validators: [Validators.required], updateOn: 'change'}),
+      celular: new FormControl(this.persona && this.persona.getCelular ? this.persona.getCelular : '', { validators: [Validators.required], updateOn: 'change'}),
+      email: new FormControl(this.persona && this.persona.getEmail ? this.persona.getEmail : '', { validators: [Validators.required], updateOn: 'change'}),
+      otroMedio: new FormControl(this.persona && this.persona.getOtroMedio ? this.persona.getOtroMedio : '', { validators: [Validators.required], updateOn: 'change'}),
+      rol: new FormControl(userType[0], { validators: [Validators.required], updateOn: 'change'})
+    });
+    this.form.valueChanges.subscribe(ob =>{
+      Object.assign(this.persona, ob);
+      if(this.localidad && this.localidad.value) {
+        let localidad: Localidad = new Localidad();
+        Object.assign(localidad, this.localidad.value);
+        this.persona.setLocalidad = localidad;
+      }
+    });
+  }
+
+  async ngOnChanges(){
+    if(!this.persona || !this.persona.getNombre) return;
 
     //Obtengo el número de cuenta
     let nroCuentaParsed = '';
@@ -88,32 +116,12 @@ export class UserPerfilFormComponent implements OnInit {
       this.persona.setNroCuenta = nroCuentaParsed;
     }
 
-    this.form = new FormGroup({
-      nroCuenta: new FormControl({value: (this.persona && this.persona.getNroCuenta ? this.persona.getNroCuenta : nroCuentaParsed), disabled: true}, Validators.required),
-      dni: new FormControl('', { validators: [Validators.required, Validators.maxLength(10), Validators.minLength(7)], updateOn: 'change'}),
-      nombre: new FormControl(this.persona && this.persona.getNombre ? this.persona.getNombre : '',{ validators: [Validators.required], updateOn: 'change'}),
-      apellido: new FormControl(this.persona && this.persona.getApellido ? this.persona.getApellido : '',{ validators: [Validators.required], updateOn: 'change'}),
-      fechaNacimiento: new FormControl('',{ validators: [Validators.required], updateOn: 'change'}),
-      edad: new FormControl('', { validators: [Validators.required], updateOn: 'change'}),
-      direccion: new FormControl(this.persona && this.persona.getDireccion ? this.persona.getDireccion : '', { validators: [Validators.required], updateOn: 'change'}),
-      codPostal: new FormControl( '', { validators: [Validators.required], updateOn: 'change'}),
-      localidad: new FormControl('', { validators: [Validators.required], updateOn: 'change'}),
-      provincia: new FormControl('', { validators: [Validators.required], updateOn: 'change'}),
-      telefono: new FormControl(this.persona && this.persona.getTelefono ? this.persona.getTelefono : '', { validators: [Validators.required], updateOn: 'change'}),
-      celular: new FormControl(this.persona && this.persona.getCelular ? this.persona.getCelular : '', { validators: [Validators.required], updateOn: 'change'}),
-      email: new FormControl(this.persona && this.persona.getEmail ? this.persona.getEmail : '', { validators: [Validators.required], updateOn: 'change'}),
-      otroMedio: new FormControl(this.persona && this.persona.getOtroMedio ? this.persona.getOtroMedio : '', { validators: [Validators.required], updateOn: 'change'}),
-      rol: new FormControl(userType[0], { validators: [Validators.required], updateOn: 'change'})
-    });
-
-    this.form.valueChanges.subscribe(ob =>{
-      Object.assign(this.persona, ob);
-      if(this.localidad && this.localidad.value) {
-        let localidad: Localidad = new Localidad();
-        Object.assign(localidad, this.localidad.value);
-        this.persona.setLocalidad = localidad;
-      }
-    })
+   this.form.patchValue(this.persona);
+   this.codPostal.setValue(this.persona.getLocalidad.obtenerCodPostal);
+   this.getLocalidadList(this.persona.getLocalidad.obtenerCodPostal);
+   this.localidad.patchValue(this.persona.getLocalidad);
+   this.provincia.patchValue(this.persona.getLocalidad.obtenerProvincia);
+   this.changeAge(this.persona.obtenerFechaNacimiento);
   }
 
   initConfigs(){
@@ -240,15 +248,22 @@ export class UserPerfilFormComponent implements OnInit {
     };
   }
 
+  get nroCuenta() { return this.form.controls.nroCuenta; }
   get dni() { return this.form.controls.dni; }
+  get nombre() { return this.form.controls.nombre; }
+  get apellido() { return this.form.controls.apellido; }
   get codPostal() { return this.form.controls.codPostal; }
   get edad() { return this.form.controls.edad; }
   get localidad() { return this.form.controls.localidad; }
   get provincia() { return this.form.controls.provincia; }
 
-  calculateAge(event){
+  calculateAge(date){
+    return differenceInYears(new Date(), parseISO(date))
+  }
+
+  changeAge(event){
     if(event){
-      let age = differenceInYears(new Date(), parseISO(event));
+      let age = this.calculateAge(event);
       this.edad.patchValue(age);
     }
   }

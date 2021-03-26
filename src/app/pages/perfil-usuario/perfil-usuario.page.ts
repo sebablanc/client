@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Persona } from 'src/app/models/persona/persona';
+import { LocalidadService } from 'src/app/services/localidad/localidad.service';
 import { PersonaService } from 'src/app/services/persona/persona.service';
 import { IPersonaSend } from 'src/app/services/persona/personaService.interface';
 import { ShareService } from 'src/app/services/share-service/share.service';
@@ -12,23 +13,27 @@ import { StorageService } from 'src/app/services/storage/storage.service';
 })
 export class PerfilUsuarioPage implements OnInit {
 
-  persona: Persona = new Persona();
+  persona: Persona;
 
   constructor(
     private shareSrv: ShareService,
     private personaSrv: PersonaService,
-    private storageSrv: StorageService) { }
+    private storageSrv: StorageService,
+    private localidadSrv: LocalidadService) {
+     
+    }
 
   async ngOnInit() {
-    let fromStorage = await this.storageSrv.get('persona');
+    let fromStorage = await this.storageSrv.get('persona')
+    let locresp = await this.localidadSrv.getLocalidadByID(fromStorage.localidadId);
+    this.persona = new Persona();
     Object.assign(this.persona, fromStorage);
-    debugger;
+    this.persona.setLocalidad = locresp.localidades[0];
   }
 
   async guardarPersona(event: Persona) {
     if (event) {
       let personaToSend: IPersonaSend = this.personaSrv.parsePersonaToPersonaSend(event);
-
       if (event.getId) {
         //TODO: modificar
       } else {

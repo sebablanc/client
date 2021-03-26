@@ -12,6 +12,8 @@ export class Persona {
     private email: string;
     private otroMedio: string;
     private localidad: Localidad;
+    private dni: number;
+    private fechaNacimiento: Date;
     private createdAt: Date;
     private updatedAt: Date;
 
@@ -95,6 +97,22 @@ export class Persona {
 
     set setLocalidad(localidad: Localidad){
         this.localidad = localidad;
+    }
+
+    get getDNI(): number{
+        return this.dni;
+    }
+
+    set setDNI(dni: number){
+        this.dni = dni;
+    }
+
+    get obtenerFechaNacimiento(){
+        return this.fechaNacimiento;
+    }
+
+    set cambiarFechaNacimiento(fechaNacimiento: Date){
+        this.fechaNacimiento = fechaNacimiento;
     }
 
     get obtenerFechaCreacion(){

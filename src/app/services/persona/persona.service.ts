@@ -22,7 +22,6 @@ export class PersonaService {
     let personaToSend: IPersonaSend = {
       apellido: persona.getApellido,
       celular: persona.getCelular,
-      createdAt: persona.obtenerFechaCreacion ? persona.obtenerFechaCreacion : null,
       direccion: persona.getDireccion,
       email: persona.getEmail,
       id: persona.getId,
@@ -31,6 +30,9 @@ export class PersonaService {
       nroCuenta: persona.getNroCuenta,
       otroMedio: persona.getOtroMedio,
       telefono: persona.getTelefono,
+      dni: persona.getDNI,
+      fechaNacimiento: persona.obtenerFechaNacimiento,
+      createdAt: persona.obtenerFechaCreacion ? persona.obtenerFechaCreacion : null,
       updatedAt: null
     }
 

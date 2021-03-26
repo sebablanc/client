@@ -23,4 +23,11 @@ export class LocalidadService {
       return result;
     })
   }
+
+  getLocalidadByID(id: number): Promise<LocalidadResponse> {
+    let data = {'id': id};
+    return this.httpHelperSrv.post({url: this.urlGet, body: data}).then(result => {
+      return result;
+    })
+  }
 }

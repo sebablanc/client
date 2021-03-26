@@ -9,6 +9,8 @@ export interface IPersonaSend{
     email: string;
     otroMedio: string;
     localidadId: number;
+    dni: number;
+    fechaNacimiento: Date;
     createdAt: Date;
     updatedAt: Date;
 }
