@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Persona } from 'src/app/models/persona/persona';
 import { PersonaResponse } from 'src/app/models/persona/personaResponse';
 import { UserSingleton } from 'src/app/models/user/user/userSingleton';
-import { LocalidadService } from 'src/app/services/localidad/localidad.service';
 import { PersonaService } from 'src/app/services/persona/persona.service';
 import { IPersonaSend } from 'src/app/services/persona/personaService.interface';
 import { ShareService } from 'src/app/services/share-service/share.service';
@@ -16,33 +15,20 @@ import { UserService } from 'src/app/services/user/user/user.service';
 })
 export class PerfilUsuarioPage implements OnInit {
 
-  persona: Persona;
-
+  personaId: number;
+  
   constructor(
     private shareSrv: ShareService,
     private personaSrv: PersonaService,
     private storageSrv: StorageService,
-    private localidadSrv: LocalidadService,
     private userSrv: UserService,
     private userSingleton: UserSingleton) {
      
     }
 
   async ngOnInit() {
-    let fromStorage = await this.storageSrv.get('persona');
-    let locresp = null;
-    if(fromStorage && fromStorage.localidadId){
-      locresp = await this.localidadSrv.getLocalidadByID(fromStorage.localidadId);
-    }
-    this.persona = new Persona();
-    if(fromStorage){
-      Object.assign(this.persona, fromStorage);
-      if(locresp){
-
-        this.persona.setLocalidad = locresp.localidades[0];
-      }
-    }
-
+    let user = this.userSingleton.instance()
+    this.personaId = user.persona['id'];
   }
 
   async guardarPersona(event: Persona) {

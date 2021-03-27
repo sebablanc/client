@@ -36,12 +36,12 @@ export class HeaderComponent implements OnInit {
 
   async ngOnInit() {
     this.viewComponentsConfiguration();
-    this.user = await this.userSingleton.instance();
+    this.user = this.userSingleton.instance();
     this.linkActive = location.pathname.substring(1, location.pathname.length);
   }
 
   async ngOnChanges(){
-    this.user = await this.userSingleton.instance();
+    this.user = this.userSingleton.instance();
   }
 
   viewComponentsConfiguration(){

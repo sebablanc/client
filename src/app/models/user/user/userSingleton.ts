@@ -11,9 +11,12 @@ export class UserSingleton {
 
     private constructor(private storageSrv: StorageService, private storage: Storage) { }
 
-    async instance() {
+    instance() {
         if(!this.entity){
-            this.entity = await this.storageSrv.get('user');
+            this.entity = new User();
+            this.storageSrv.get('user').then(user =>{
+                Object.assign(this.entity, user);
+            });
         }
         return this.entity;
     }

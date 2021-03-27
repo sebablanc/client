@@ -32,7 +32,6 @@ export class UserService {
             body.personaId = body.persona.id;
             delete body.persona;
         };
-        debugger;
         return this.httpHelperSrv.put({ url: this.updateURL, body: body }).then(response => {
             return response;
         }).catch(error => {

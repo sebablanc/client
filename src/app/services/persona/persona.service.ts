@@ -50,7 +50,7 @@ export class PersonaService {
   }
 
   async updatePersona(data: IPersonaSend): Promise<PersonaResponse>{
-    return this.httpHelperSrv.put({url: this.urlUpdatePersona, body: data}).then(response => {
+    return this.httpHelperSrv.put({url: this.urlUpdatePersona, body: data}).then(response => { 
       return response;
     }).catch(error => {
       return error.error;
@@ -59,6 +59,15 @@ export class PersonaService {
 
   async getPersonaByDNI(dni: number): Promise<PersonaResponse>{
     let data = {dni: dni}
+    return this.httpHelperSrv.post({url: this.urlFindPersona, body: data}).then(response =>{
+      return response;
+    }).catch(error => {
+      return error.error;
+    })
+  }
+
+  async getPersonaById(id: number): Promise<PersonaResponse>{
+    let data = {id: id}
     return this.httpHelperSrv.post({url: this.urlFindPersona, body: data}).then(response =>{
       return response;
     }).catch(error => {

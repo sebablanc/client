@@ -19,7 +19,7 @@ export class FooterComponent implements OnInit {
   constructor(private navCtrl: NavController, private userSingleton: UserSingleton) { }
 
   async ngOnInit() {
-    this.user = await this.userSingleton.instance();
+    this.user = this.userSingleton.instance();
   }
 
   goTo(link: string){

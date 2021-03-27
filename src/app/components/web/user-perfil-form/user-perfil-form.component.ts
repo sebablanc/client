@@ -12,6 +12,7 @@ import { User } from 'src/app/models/user/user/user';
 import { UserSingleton } from 'src/app/models/user/user/userSingleton';
 import { usersTypes, UserTypeInfo, UserTypes } from 'src/app/models/user/user/user-types.enum';
 import { Localidad } from 'src/app/models/localidad/localidad';
+
 @Component({
   selector: 'app-user-perfil-form',
   templateUrl: './user-perfil-form.component.html',
@@ -19,9 +20,10 @@ import { Localidad } from 'src/app/models/localidad/localidad';
 })
 export class UserPerfilFormComponent implements OnInit {
 
-  @Input() persona: Persona;
+  @Input() personaId: number;
   @Output('emitSave') emitSave: EventEmitter<Persona> = new EventEmitter(); 
-
+  
+  persona: Persona;
   form: FormGroup;
   nroCuentaConfig: IInputConfig;
   dniConfig: IInputConfig;
@@ -53,7 +55,17 @@ export class UserPerfilFormComponent implements OnInit {
     private personaSrv: PersonaService) { }
 
   async ngOnInit() {
-    this.user = await this.userSingleton.instance();
+    this.user = this.userSingleton.instance();
+    let personaFinded = await this.personaSrv.getPersonaById(this.personaId);
+    this.persona = new Persona();
+    if(personaFinded && personaFinded.exito && personaFinded.personas && personaFinded.personas.length>0 ){
+      let personaToAssign =personaFinded.personas[0];
+      let localidad: Localidad = new Localidad();
+      Object.assign(localidad, personaToAssign['localidad']);
+      personaToAssign.setLocalidad = localidad;
+      Object.assign(this.persona, personaToAssign);
+
+    }
     await this.initForm();
     this.initConfigs();
   }
@@ -103,6 +115,11 @@ export class UserPerfilFormComponent implements OnInit {
       otroMedio: new FormControl(this.persona && this.persona.getOtroMedio ? this.persona.getOtroMedio : '', { validators: [Validators.required], updateOn: 'change'}),
       rol: new FormControl(userType[0], { validators: [Validators.required], updateOn: 'change'})
     });
+
+    if(this.persona && this.persona.getLocalidad && this.persona.getLocalidad.obtenerCodPostal && this.persona.getLocalidad.obtenerCodPostal > 0){
+      this.getLocalidadList(this.persona.getLocalidad.obtenerCodPostal);
+    }
+
     this.form.valueChanges.subscribe(ob =>{
       Object.assign(this.persona, ob);
       if(this.localidad && this.localidad.value) {
