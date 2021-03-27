@@ -1,3 +1,8 @@
-<p>
-  buscador-dr works!
-</p>
+<div class="buscador-container">
+  <form *ngIf="form" class="buscador-form" [formGroup]="form">
+    <app-input-dr *ngIf="label" class="buscador-input" [config]="buscarConfig" (dataEmit)="cambiarTexto($event)"></app-input-dr>
+  </form>
+  <div class="buscar-btn button" (click)="cambiarTexto(textoABuscar)">
+    <ion-icon name="search-sharp"></ion-icon>
+  </div>
+</div>

@@ -3,6 +3,7 @@ import { NavigationExtras } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { Persona } from 'src/app/models/persona/persona';
 import { PersonaService } from 'src/app/services/persona/persona.service';
+import { IPersonaSend } from 'src/app/services/persona/personaService.interface';
 import { ShareService } from 'src/app/services/share-service/share.service';
 
 @Component({
@@ -12,8 +13,8 @@ import { ShareService } from 'src/app/services/share-service/share.service';
 })
 export class AlumnosGestionPage implements OnInit {
   
-  alumnosFilteredList: Array<Persona> = [];
-  alumnosList: Array<Persona> = [];
+  alumnosFilteredList: Array<IPersonaSend> = [];
+  alumnosList: Array<IPersonaSend> = [];
   
   constructor(private personaSrv: PersonaService, private shareSrv: ShareService, private navCtrl: NavController) { }
 
@@ -39,6 +40,13 @@ export class AlumnosGestionPage implements OnInit {
   deletePersona(event: number){
     console.log('borraría la persona con este id: ', event);
     
+  }
+
+  filtrarLista(event: string){
+    if(event.length <= 0) this.alumnosFilteredList = this.alumnosList;
+    this.alumnosFilteredList = this.alumnosList.filter(alumno =>{
+      return alumno.nombre.includes(event) || alumno.apellido.includes(event) || alumno.nroCuenta.includes(event) || alumno.dni.toString().includes(event);
+    });
   }
 
 }

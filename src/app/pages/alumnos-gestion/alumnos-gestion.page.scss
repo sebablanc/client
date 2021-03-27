@@ -1,4 +1,9 @@
 .alumnos-gestion-page {
+    .alumnos-gestion-buscador{
+        ::ng-deep .buscador-container {
+            width: 55%;
+        }
+    }
     .alumnos-gestion-cards {
         padding: 20px;
         display: grid;

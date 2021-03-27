@@ -1,0 +1,18 @@
+.buscador-container {
+  background: #fff;
+  margin: 10px auto 0;
+  border-radius: 35px;
+  padding-left: 22px;
+  display: grid;
+  grid-template-columns: 97% 3%;
+  grid-gap: 5px;
+  .buscar-btn {
+    border-top-right-radius: 35%;
+    border-bottom-right-radius: 35%;
+    display: inline-flex;
+    font-size: 35px;
+    padding: 14px 10px;
+    border: 1px solid gray;
+    width: max-content;
+  }
+}

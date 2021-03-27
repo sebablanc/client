@@ -1,4 +1,4 @@
-<form *ngIf="config && config.form" [formGroup]="config.form" class="upf-container card">
+<form *ngIf="config && config.form" [formGroup]="config.form" class="upf-container">
   <mat-form-field class="full-width">
     <mat-label *ngIf="config && config.label">{{ config.label }}</mat-label>
     <input *ngIf="config && config.label" matInput [type]="config.type" [formControlName]="config.formControlName" [readonly]="config.readOnly" (focusout)="dataEmit.emit(field.value)">

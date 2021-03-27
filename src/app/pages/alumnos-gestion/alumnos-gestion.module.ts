@@ -9,6 +9,8 @@ import { AlumnosGestionPageRoutingModule } from './alumnos-gestion-routing.modul
 import { AlumnosGestionPage } from './alumnos-gestion.page';
 import { LayoutModule } from 'src/app/components/layout/layout.module';
 import { MyCommonModule } from 'src/app/components/common/common.module';
+import { uiModule } from 'src/app/ui/ui.module';
+import { AngularMaterialModule } from 'src/app/material/material.module';
 
 @NgModule({
   imports: [
@@ -17,7 +19,9 @@ import { MyCommonModule } from 'src/app/components/common/common.module';
     IonicModule,
     AlumnosGestionPageRoutingModule,
     LayoutModule,
-    MyCommonModule
+    MyCommonModule,
+    uiModule,
+    AngularMaterialModule
   ],
   declarations: [AlumnosGestionPage]
 })
