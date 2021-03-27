@@ -11,7 +11,9 @@ import { ILastNroCuentaResponse, IPersonaSend } from './personaService.interface
 export class PersonaService {
 
   private urlCreatePersona = 'persona/create';
+  private urlUpdatePersona = 'persona/update';
   private urlLastNroCuenta = 'persona/findLastNroCuenta';
+  private urlFindPersona = 'persona/find';
 
   constructor(private httpHelperSrv: HttpHelperService, private storageSrv: StorageService) { }
 
@@ -42,6 +44,25 @@ export class PersonaService {
   async guardarPersona(data: IPersonaSend): Promise<PersonaResponse>{
     return this.httpHelperSrv.post({url: this.urlCreatePersona, body: data}).then(response =>{
       return response;
+    }).catch(error => {
+      return error.error;
+    })
+  }
+
+  async updatePersona(data: IPersonaSend): Promise<PersonaResponse>{
+    return this.httpHelperSrv.put({url: this.urlUpdatePersona, body: data}).then(response => {
+      return response;
+    }).catch(error => {
+      return error.error;
+    })
+  }
+
+  async getPersonaByDNI(dni: number): Promise<PersonaResponse>{
+    let data = {dni: dni}
+    return this.httpHelperSrv.post({url: this.urlFindPersona, body: data}).then(response =>{
+      return response;
+    }).catch(error => {
+      return error.error;
     })
   }
 

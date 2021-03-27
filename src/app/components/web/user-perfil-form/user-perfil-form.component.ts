@@ -54,15 +54,37 @@ export class UserPerfilFormComponent implements OnInit {
 
   async ngOnInit() {
     this.user = await this.userSingleton.instance();
-    this.initForm();
+    await this.initForm();
     this.initConfigs();
   }
 
-  initForm(){
+ async  initForm(){
     //Obtengo el tipo de usuario
     let userType = this.usersTypesList.filter(type =>{
       return type.value == this.user.tipo;
     });
+
+    let nroCuentaParsed = '';
+    if(!this.persona || !this.persona.getNroCuenta){
+      this.persona = new Persona();
+      let lastNroCuentaResponse = await this.personaSrv.getLastNroCuenta();
+      nroCuentaParsed = format(new Date(), 'yy')+"-";
+      let intNroCuenta = 0;
+      if(!lastNroCuentaResponse.exito || !lastNroCuentaResponse.nroCuenta || !lastNroCuentaResponse.nroCuenta.nroCuenta){
+        lastNroCuentaResponse.nroCuenta = {nroCuenta: '0'};
+      } else if(lastNroCuentaResponse.exito && lastNroCuentaResponse.nroCuenta.nroCuenta){
+        intNroCuenta = parseInt(lastNroCuentaResponse.nroCuenta.nroCuenta.split('-')[1]);
+      }
+
+      //Agregando los ceros necesarios precendentes
+      for(let i=0; i<4-intNroCuenta.toString().length; i++){
+        nroCuentaParsed+='0';
+      }
+     
+      intNroCuenta++;
+      nroCuentaParsed += intNroCuenta;
+      this.persona.setNroCuenta = nroCuentaParsed;
+    }
 
     this.form = new FormGroup({
       nroCuenta: new FormControl({value: this.persona && this.persona.getNroCuenta ? this.persona.getNroCuenta : '', disabled: true}, Validators.required),
@@ -92,6 +114,10 @@ export class UserPerfilFormComponent implements OnInit {
   }
 
   async ngOnChanges(){
+    await this.fillForm();
+  }
+
+  async fillForm(){
     if(!this.persona || !this.persona.getNombre) return;
 
     //Obtengo el número de cuenta
@@ -292,11 +318,12 @@ export class UserPerfilFormComponent implements OnInit {
   searchByDNIIcon(event: boolean){
     if(event) this.searchByDNI(this.dni.value);
   }
-  searchByDNI(event){
-    //TODO: buscar por DNI en focusout y click ícono lupa
+  
+  async searchByDNI(event){
     if(event){
-      console.log('searchByDNI');
-      console.log(event);
+      let resp = await this.personaSrv.getPersonaByDNI(event);
+      Object.assign(this.persona, resp.personas[0]);
+      this.fillForm();
     }
   }
 

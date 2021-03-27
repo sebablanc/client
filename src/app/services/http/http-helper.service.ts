@@ -16,6 +16,10 @@ export class HttpHelperService {
   get(config: IPostConfig): Promise<any>{
     return this.httpClient.get<any>(environment.serverURL+config.url).toPromise();
   }
+
+  put(config: IPostConfig): Promise<any>{
+    return this.httpClient.put(environment.serverURL+config.url, config.body).toPromise();
+  }
 }
 
 

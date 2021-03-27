@@ -15,7 +15,9 @@ export class LoginService {
   login(body: LoginSingleton): Promise<boolean>{
     return this.httpHelperSrv.post({url: this.loginURL, body: body}).then(user =>{
       if(user && user.exito && user.usuarios && user.usuarios.length>0){
-        this.storageSrv.set('user', user.usuarios[0]);
+        let userFinded = user.usuarios[0];
+        this.storageSrv.set('user', userFinded);
+        if(userFinded && userFinded.persona && userFinded.persona['id']) this.storageSrv.set('persona', userFinded.persona);
       }
       return user;
     }).catch(error => {
@@ -28,7 +30,7 @@ export class LoginService {
   }
 
   logOut(){
-    return this.storageSrv.remove('user');
+    return this.storageSrv.removeAll();
   }
 
 }
