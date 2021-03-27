@@ -8,6 +8,7 @@ import { CursoDataGestionPageRoutingModule } from './curso-data-gestion-routing.
 
 import { CursoDataGestionPage } from './curso-data-gestion.page';
 import { LayoutModule } from 'src/app/components/layout/layout.module';
+import { WebComponentsModule } from 'src/app/components/web/webComponents.module';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { LayoutModule } from 'src/app/components/layout/layout.module';
     FormsModule,
     IonicModule,
     CursoDataGestionPageRoutingModule,
-    LayoutModule
+    LayoutModule,
+    WebComponentsModule
   ],
   declarations: [CursoDataGestionPage]
 })

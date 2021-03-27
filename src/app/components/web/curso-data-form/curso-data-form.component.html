@@ -1,0 +1,19 @@
+<form *ngIf="form" [formGroup]="form" class="cdf-container card">
+  
+  <!-- N O M B R E -->
+  <app-input-dr class="cdf-nombre-cell" [config]="nombreConfig"></app-input-dr>
+  
+  <div class="img-user">imagen</div>
+  <div class="img-user">programa</div>
+ 
+  <!-- V A L O R -->
+  <app-input-dr class="cdf-edad-cell" [config]="edadConfig"></app-input-dr>
+  
+  <!-- D E S C R I P C I O N -->
+  <app-input-dr class="cdf-apellido-cell" [config]="apellidoConfig"></app-input-dr>
+
+</form>
+<div class="botonera">
+  <app-rounded-button [config]="cancelConfig" (click)="emitSave.emit(null)"></app-rounded-button>
+  <app-rounded-button class="save-btn" [config]="saveConfig" (click)="emitSave.emit(persona)"></app-rounded-button>
+</div>
