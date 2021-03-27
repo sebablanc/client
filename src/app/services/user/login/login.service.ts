@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { LoginSingleton } from 'src/app/models/user/login/loginSingleton';
+import { UserSingleton } from 'src/app/models/user/user/userSingleton';
 import { HttpHelperService } from '../../http/http-helper.service';
 import { StorageService } from '../../storage/storage.service';
 
@@ -10,7 +11,7 @@ export class LoginService {
   
   private loginURL = 'user/login';
 
-  constructor(private httpHelperSrv: HttpHelperService, private storageSrv: StorageService) { }
+  constructor(private httpHelperSrv: HttpHelperService, private storageSrv: StorageService, private userSingleton: UserSingleton) { }
 
   login(body: LoginSingleton): Promise<boolean>{
     return this.httpHelperSrv.post({url: this.loginURL, body: body}).then(user =>{
@@ -30,6 +31,7 @@ export class LoginService {
   }
 
   logOut(){
+    this.userSingleton.instance(true);
     return this.storageSrv.removeAll();
   }
 

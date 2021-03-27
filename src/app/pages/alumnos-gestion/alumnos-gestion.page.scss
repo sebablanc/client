@@ -1,0 +1,13 @@
+.alumnos-gestion-page {
+    .alumnos-gestion-cards {
+        padding: 20px;
+        display: grid;
+        grid-template-columns: repeat(4, 25%);
+        @media screen and (max-width: 1485px) {
+            grid-template-columns: repeat(3, auto);
+        }
+        @media screen and (max-width: 1485px) {
+            grid-template-columns: repeat(2, auto);
+        }
+    }
+}

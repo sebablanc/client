@@ -14,6 +14,7 @@ export class PersonaService {
   private urlUpdatePersona = 'persona/update';
   private urlLastNroCuenta = 'persona/findLastNroCuenta';
   private urlFindPersona = 'persona/find';
+  private urlFindAllPersonas = 'persona/all';
 
   constructor(private httpHelperSrv: HttpHelperService, private storageSrv: StorageService) { }
 
@@ -54,6 +55,12 @@ export class PersonaService {
       return response;
     }).catch(error => {
       return error.error;
+    })
+  }
+
+  async getPersonasList(): Promise<PersonaResponse>{
+    return this.httpHelperSrv.get({url: this.urlFindAllPersonas, body: null}).then(result => {
+      return result;
     })
   }
 

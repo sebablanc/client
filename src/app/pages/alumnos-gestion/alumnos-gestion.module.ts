@@ -8,6 +8,7 @@ import { AlumnosGestionPageRoutingModule } from './alumnos-gestion-routing.modul
 
 import { AlumnosGestionPage } from './alumnos-gestion.page';
 import { LayoutModule } from 'src/app/components/layout/layout.module';
+import { MyCommonModule } from 'src/app/components/common/common.module';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { LayoutModule } from 'src/app/components/layout/layout.module';
     FormsModule,
     IonicModule,
     AlumnosGestionPageRoutingModule,
-    LayoutModule
+    LayoutModule,
+    MyCommonModule
   ],
   declarations: [AlumnosGestionPage]
 })

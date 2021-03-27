@@ -27,8 +27,6 @@ export const NAV_ITEMS = [
 })
 export class HeaderComponent implements OnInit {
   
-  @Input() userName: string;
-  
   roundedButtonConfig: IRoundedButtonConfig;
   headerNavItems: Array<INavItem> = NAV_ITEMS;
   linkActive = NAV_ITEMS[0].text;
@@ -41,15 +39,13 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     this.viewComponentsConfiguration();
     this.user = this.userSingleton.instance();
-    if(this.user && this.user.email){
-      this.userName = this.user.persona && this.user.persona['nombre'] ? this.user.persona['nombre'] + ' ' + this.user.persona['apellido'] : this.user.email.split('@')[0];
-    }
+    console.log(this.user);
     this.linkActive = location.pathname.substring(1, location.pathname.length);
   }
 
   viewComponentsConfiguration(){
     this.roundedButtonConfig = { text: 'Registrarme' };
-    
+    this.user = this.userSingleton.instance();
   }
 
   goTo(link: string){
