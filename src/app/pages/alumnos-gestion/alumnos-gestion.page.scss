@@ -1,4 +1,10 @@
 .alumnos-gestion-page {
+    .agp-round-button{
+        position: absolute;
+        left: calc(100% - 75px);
+        top: 10px;
+    }
+
     .alumnos-gestion-buscador{
         ::ng-deep .buscador-container {
             width: 55%;

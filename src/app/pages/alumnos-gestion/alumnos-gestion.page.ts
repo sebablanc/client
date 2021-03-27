@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationExtras } from '@angular/router';
 import { NavController } from '@ionic/angular';
-import { Persona } from 'src/app/models/persona/persona';
 import { PersonaService } from 'src/app/services/persona/persona.service';
 import { IPersonaSend } from 'src/app/services/persona/personaService.interface';
 import { ShareService } from 'src/app/services/share-service/share.service';
@@ -29,12 +28,7 @@ export class AlumnosGestionPage implements OnInit {
   }
 
   goToModify(event: number){
-    let navigationExtras: NavigationExtras = {
-      queryParams: {
-          id: event
-      }
-    };
-    this.navCtrl.navigateRoot(['alumno-data-gestion'], navigationExtras);
+    this.changePage(event);
   }
 
   deletePersona(event: number){
@@ -47,6 +41,21 @@ export class AlumnosGestionPage implements OnInit {
     this.alumnosFilteredList = this.alumnosList.filter(alumno =>{
       return alumno.nombre.includes(event) || alumno.apellido.includes(event) || alumno.nroCuenta.includes(event) || alumno.dni.toString().includes(event);
     });
+  }
+
+  goToNuevoAlumno(event: boolean){
+    if(event){
+      this.changePage(null);
+    }
+  }
+
+  changePage(id: number){
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+          id: id
+      }
+    };
+    this.navCtrl.navigateRoot(['alumno-data-gestion'], navigationExtras);
   }
 
 }
