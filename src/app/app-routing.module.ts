@@ -74,6 +74,10 @@ const routes: Routes = [
   {
     path: 'cursos-gestion',
     loadChildren: () => import('./pages/cursos-gestion/cursos-gestion.module').then( m => m.CursosGestionPageModule)
+  },
+  {
+    path: 'curso-data-gestion',
+    loadChildren: () => import('./pages/curso-data-gestion/curso-data-gestion.module').then( m => m.CursoDataGestionPageModule)
   }
 ];
 

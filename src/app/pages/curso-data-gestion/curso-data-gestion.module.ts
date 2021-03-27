@@ -4,21 +4,19 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { CursosGestionPageRoutingModule } from './cursos-gestion-routing.module';
+import { CursoDataGestionPageRoutingModule } from './curso-data-gestion-routing.module';
 
-import { CursosGestionPage } from './cursos-gestion.page';
+import { CursoDataGestionPage } from './curso-data-gestion.page';
 import { LayoutModule } from 'src/app/components/layout/layout.module';
-import { uiModule } from 'src/app/ui/ui.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    CursosGestionPageRoutingModule,
-    LayoutModule,
-    uiModule
+    CursoDataGestionPageRoutingModule,
+    LayoutModule
   ],
-  declarations: [CursosGestionPage]
+  declarations: [CursoDataGestionPage]
 })
-export class CursosGestionPageModule {}
+export class CursoDataGestionPageModule {}

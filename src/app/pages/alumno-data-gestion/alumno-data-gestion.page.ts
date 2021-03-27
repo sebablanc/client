@@ -14,14 +14,14 @@ import { ShareService } from 'src/app/services/share-service/share.service';
 export class AlumnoDataGestionPage implements OnInit {
 
   personaId: number;
-  title: string = 'Agregando Alumno';
+  title: string = 'Agregando alumno';
   constructor(private route: ActivatedRoute, private shareSrv: ShareService, private personaSrv: PersonaService) { }
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
       this.personaId = params['id'] != 'null' ? params['id'] : null;
       if(this.personaId){
-        this.title = 'Modificando Alumno';
+        this.title = 'Modificando alumno';
       }
     });
   }

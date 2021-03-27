@@ -1,0 +1,13 @@
+.cursos-gestion-page {
+    .cgp-round-button{
+        position: absolute;
+        left: calc(100% - 75px);
+        top: 10px;
+    }
+
+    .cursos-gestion-buscador{
+        ::ng-deep .buscador-container {
+            width: 55%;
+        }
+    }
+}
