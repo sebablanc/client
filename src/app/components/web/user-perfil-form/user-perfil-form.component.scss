@@ -5,24 +5,172 @@
     grid-template-columns: auto auto;
     grid-gap: 10px;
 
+    @media screen and (max-width: 970px){
+        grid-template-columns: auto;
+    }
+
     .entire-row{
         grid-column: 1 / span 2;
+        @media screen and (max-width: 970px){
+            grid-column: 1;
+        }
         font-size: 25px;
         text-align: center;
         margin: 10px 0;
     }
 
-    .datos-personales-title{
-        grid-row: 2;
+    .upf-nroCuenta-cell{
+        grid-column: 1;
+        grid-row: 1;
+    }
+    
+    .upf-rol-cell{
+        grid-column: 2;
+        grid-row: 1;
+        @media screen and (max-width: 970px){
+            grid-column: 1;
+            grid-row: 2;
+        }
     }
 
-    .datos-contactos-title{
-        grid-row: 8;
+    .datos-personales-title{
+        grid-row: 2;
+        @media screen and (max-width: 970px){
+            grid-row: 3;
+        }
+    }
+
+    .upf-dni-cell{
+        grid-column: 1;
+        grid-row: 3;
+        @media screen and (max-width: 970px){
+            grid-column: 1;
+            grid-row: 4;
+        }
+    }
+
+    .upf-nombre-cell{
+        grid-column: 1;
+        grid-row: 4;
+        @media screen and (max-width: 970px){
+            grid-column: 1;
+            grid-row: 5;
+        }
+    }
+
+    .upf-apellido-cell{
+        grid-column: 1;
+        grid-row: 5;
+        @media screen and (max-width: 970px){
+            grid-column: 1;
+            grid-row: 6;
+        }
+    }
+
+    .upf-fechaNacimiento-cell{
+        grid-column: 1;
+        grid-row: 6;
+        @media screen and (max-width: 970px){
+            grid-column: 1;
+            grid-row: 7;
+        }
+    }
+
+    .upf-edad-cell{
+        grid-column: 1;
+        grid-row: 7;
+        @media screen and (max-width: 970px){
+            grid-column: 1;
+            grid-row: 8;
+        }
     }
 
     .img-user{
         grid-column: 2;
         grid-row: 3 / span 5;
+        @media screen and (max-width: 970px){
+            grid-column: 1;
+            grid-row: 9 / span 3;
+        }
+    }
+
+    .datos-contacto-title{
+        grid-row: 8;
+        @media screen and (max-width: 970px){
+            grid-row: 12;
+        }
+    }
+
+    .upf-direccion-cell{
+        grid-column: 1;
+        grid-row: 9;
+        @media screen and (max-width: 970px){
+            grid-column: 1;
+            grid-row: 13;
+        }
+    }
+
+    .upf-codPostal-cell{
+        grid-column: 2;
+        grid-row: 9;
+        @media screen and (max-width: 970px){
+            grid-column: 1;
+            grid-row: 14;
+        }
+    }
+
+    .upf-localidad-cell{
+        grid-column: 1;
+        grid-row: 10;
+        @media screen and (max-width: 970px){
+            grid-column: 1;
+            grid-row: 15;
+        }
+    }
+
+    .upf-provincia-cell{
+        grid-column: 2;
+        grid-row: 10;
+        @media screen and (max-width: 970px){
+            grid-column: 1;
+            grid-row: 16;
+        }
+    }
+
+    .upf-telefono-cell{
+        grid-column: 1;
+        grid-row: 11;
+        @media screen and (max-width: 970px){
+            grid-column: 1;
+            grid-row: 17;
+        }
+    }
+
+    .upf-celular-cell{
+        grid-column: 2;
+        grid-row: 11;
+        @media screen and (max-width: 970px){
+            grid-column: 1;
+            grid-row: 18;
+        }
+    }
+
+    .upf-email-cell{
+        grid-column: 1;
+        grid-row: 12;
+        @media screen and (max-width: 970px){
+            grid-column: 1;
+            grid-row: 19;
+        }
+    }
+
+    .upf-otroMedio-cell{
+        grid-column: 2;
+        grid-row: 12;
+        @media screen and (max-width: 970px){
+            grid-column: 1;
+            grid-row: 20;
+        }
     }
 }
 

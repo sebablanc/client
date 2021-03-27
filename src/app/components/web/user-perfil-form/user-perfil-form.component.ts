@@ -21,6 +21,7 @@ import { Localidad } from 'src/app/models/localidad/localidad';
 export class UserPerfilFormComponent implements OnInit {
 
   @Input() personaId: number;
+  @Input() userTipo: string;
   @Output('emitSave') emitSave: EventEmitter<Persona> = new EventEmitter(); 
   
   persona: Persona;
@@ -51,11 +52,9 @@ export class UserPerfilFormComponent implements OnInit {
   constructor(
     private localidadSrv: LocalidadService,
     private shareSrv: ShareService,
-    private userSingleton: UserSingleton,
     private personaSrv: PersonaService) { }
 
   async ngOnInit() {
-    this.user = this.userSingleton.instance();
     let personaFinded = await this.personaSrv.getPersonaById(this.personaId);
     this.persona = new Persona();
     if(personaFinded && personaFinded.exito && personaFinded.personas && personaFinded.personas.length>0 ){
@@ -73,7 +72,7 @@ export class UserPerfilFormComponent implements OnInit {
  async  initForm(){
     //Obtengo el tipo de usuario
     let userType = this.usersTypesList.filter(type =>{
-      return type.value == this.user.tipo;
+      return type.value == this.userTipo;
     });
 
     let nroCuentaParsed = '';

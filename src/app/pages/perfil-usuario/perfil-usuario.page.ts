@@ -16,6 +16,7 @@ import { UserService } from 'src/app/services/user/user/user.service';
 export class PerfilUsuarioPage implements OnInit {
 
   personaId: number;
+  userTipo: string;
   
   constructor(
     private shareSrv: ShareService,
@@ -27,7 +28,8 @@ export class PerfilUsuarioPage implements OnInit {
     }
 
   async ngOnInit() {
-    let user = this.userSingleton.instance()
+    let user = this.userSingleton.instance();
+    this.userTipo = user.tipo;
     this.personaId = user.persona['id'];
   }
 
