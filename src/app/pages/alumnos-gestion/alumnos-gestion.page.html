@@ -1,7 +1,7 @@
 <app-layout>
     <div class="alumnos-gestion-page routerOutlet routerOutlet-gestion">
         <div *ngIf="alumnosFilteredList.length > 0" class="alumnos-gestion-cards">
-            <app-alumno-card *ngFor="let alumno of alumnosFilteredList" [persona]="alumno"></app-alumno-card>
+            <app-alumno-card *ngFor="let alumno of alumnosFilteredList" [persona]="alumno" (modifyPersona)="goToModify($event)" (deletePersona)="deletePersona($event)"></app-alumno-card>
         </div>
     </div>
 </app-layout>

@@ -1,9 +1,9 @@
 <div class="botonera-small">
-  <div class="left-btn button">
+  <div class="left-btn button" (click)="leftButtonClicked.emit(true)">
     <ion-icon name="pencil"></ion-icon>
   </div>
   
-  <div class="right-btn button">
+  <div class="right-btn button" (click)="rightButtonClicked.emit(true)">
     <ion-icon name="trash"></ion-icon>
   </div>
 </div>

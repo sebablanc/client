@@ -7,6 +7,6 @@
     <div class="persona-card-telefono"><span class="weight-text">Tel.: </span>{{persona.telefono}}</div>
     
     <!-- En Realidad compoentne -->
-    <app-small-botonera></app-small-botonera> 
+    <app-small-botonera class="persona-card-botonera" (leftButtonClicked)="goToModify()" (rightButtonClicked)="delete()"></app-small-botonera> 
   </div>
 </div>

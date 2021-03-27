@@ -39,7 +39,6 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     this.viewComponentsConfiguration();
     this.user = this.userSingleton.instance();
-    console.log(this.user);
     this.linkActive = location.pathname.substring(1, location.pathname.length);
   }
 

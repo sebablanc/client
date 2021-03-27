@@ -1,0 +1,8 @@
+<app-layout>
+  <div class="alumno-data-page routerOutlet routerOutlet-gestion">
+    <div class="adp-title">{{title}}</div>
+    <div class="alumno-data-container page-with-card">
+      <app-user-perfil-form (emitSave)="guardarPersona($event)" [personaId]="personaId" [userTipo]="userTipo"></app-user-perfil-form>
+    </div>
+  </div>
+</app-layout>

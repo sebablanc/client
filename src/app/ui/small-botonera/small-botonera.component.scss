@@ -2,12 +2,18 @@
     .left-btn{
         border-top-left-radius: 50%;
         border-bottom-left-radius: 50%;
-        display: inline;
+        display: inline-flex;
+        font-size: 20px;
+        padding: 10px;
+        border: 1px solid gray;
     }
     
     .right-btn {
         border-top-right-radius: 50%;
         border-bottom-right-radius: 50%;
-        display: inline;
+        display: inline-flex;
+        font-size: 20px;
+        padding: 10px;
+        border: 1px solid gray;
     }
 }

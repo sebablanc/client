@@ -180,6 +180,12 @@
   border: none;
 }
 
+.button:active{
+  background-color: #ce2a2a;
+  box-shadow: 0 5px #666;
+  transform: translateY(2px);
+}
+
 @media (prefers-color-scheme: dark) {
   /*
    * Dark Colors

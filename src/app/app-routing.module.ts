@@ -66,6 +66,10 @@ const routes: Routes = [
   {
     path: 'alumnos-gestion',
     loadChildren: () => import('./pages/alumnos-gestion/alumnos-gestion.module').then( m => m.AlumnosGestionPageModule)
+  },
+  {
+    path: 'alumno-data-gestion',
+    loadChildren: () => import('./pages/alumno-data-gestion/alumno-data-gestion.module').then( m => m.AlumnoDataGestionPageModule)
   }
 ];
 

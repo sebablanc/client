@@ -1,5 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Persona } from 'src/app/models/persona/persona';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { IPersonaSend } from 'src/app/services/persona/personaService.interface';
 
 @Component({
@@ -10,10 +9,19 @@ import { IPersonaSend } from 'src/app/services/persona/personaService.interface'
 export class AlumnoCardComponent implements OnInit {
 
   @Input() persona: IPersonaSend;
+  @Output() modifyPersona: EventEmitter<number> = new EventEmitter();
+  @Output() deletePersona: EventEmitter<number> = new EventEmitter();
 
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  goToModify(){
+    this.modifyPersona.emit(this.persona.id);
+  }
+
+  delete(){
+    this.deletePersona.emit(this.persona.id);
   }
 
 }

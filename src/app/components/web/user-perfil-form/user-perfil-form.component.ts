@@ -55,7 +55,10 @@ export class UserPerfilFormComponent implements OnInit {
     private personaSrv: PersonaService) { }
 
   async ngOnInit() {
-    let personaFinded = await this.personaSrv.getPersonaById(this.personaId);
+    let personaFinded = null;
+    if(this.personaId){
+      personaFinded = await this.personaSrv.getPersonaById(this.personaId);
+    }
     this.persona = new Persona();
     if(personaFinded && personaFinded.exito && personaFinded.personas && personaFinded.personas.length>0 ){
       let personaToAssign =personaFinded.personas[0];
