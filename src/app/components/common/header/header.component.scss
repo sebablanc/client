@@ -103,7 +103,8 @@
   .header-links-container {
     display: inline-flex;
     margin-left: 1vw;
-
+    bottom: 0px;
+    position: absolute;
     .header-links {
       padding: 4px 15px;
       font-size: 17px;
@@ -121,4 +122,9 @@
 
 .header-container-kids {
   background: linear-gradient(90deg, #ff8000, #44ff17);
+}
+
+.header-container-gestion{
+  background: #000;
+  color: #fff;
 }

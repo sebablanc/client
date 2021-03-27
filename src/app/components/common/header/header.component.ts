@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user/user/user';
 import { UserTypes } from 'src/app/models/user/user/user-types.enum';
 import { UserSingleton } from 'src/app/models/user/user/userSingleton';
@@ -7,16 +7,17 @@ import { LoginService } from 'src/app/services/user/login/login.service';
 import { IRoundedButtonConfig } from 'src/app/ui/rounded-button/rounded-button.component';
 
 export const NAV_ITEMS = [
-  {text: 'Home', link: 'home', needLogin: false},
-  {text: 'Quiénes somos', link: 'about-us', needLogin: false},
-  {text: 'DR Computers', link: 'dr-computers', needLogin: false},
-  {text: 'DR Kids', link: 'dr-kids', needLogin: false},
-  {text: 'Descargas', link: 'descargas', needLogin: true},
-  {text: 'Promociones', link: 'promociones', needLogin: false},
-  {text: 'Boletín informativo', link: 'boletin-informativo', needLogin: false},
-  {text: 'Consultas', link: 'consultas', needLogin: false},
-  {text: 'Inscripciones', link: 'inscripciones', needLogin: true},
-  {text: 'Premios', link: 'premios', needLogin: false},
+  {text: 'Home', link: 'home', needLogin: false, isGestion: false},
+  {text: 'Quiénes somos', link: 'about-us', needLogin: false, isGestion: false},
+  {text: 'DR Computers', link: 'dr-computers', needLogin: false, isGestion: false},
+  {text: 'DR Kids', link: 'dr-kids', needLogin: false, isGestion: false},
+  {text: 'Descargas', link: 'descargas', needLogin: true, isGestion: false},
+  {text: 'Promociones', link: 'promociones', needLogin: false, isGestion: false},
+  {text: 'Boletín informativo', link: 'boletin-informativo', needLogin: false, isGestion: false},
+  {text: 'Consultas', link: 'consultas', needLogin: false, isGestion: false},
+  {text: 'Inscripciones', link: 'inscripciones', needLogin: true, isGestion: false},
+  {text: 'Premios', link: 'premios', needLogin: false, isGestion: false},
+  {text: 'Alumnos', link: 'alumnos-gestion', needLogin: true, isGestion: true},
 ]
 
 @Component({
@@ -26,26 +27,29 @@ export const NAV_ITEMS = [
 })
 export class HeaderComponent implements OnInit {
   
+  @Input() userName: string;
+  
   roundedButtonConfig: IRoundedButtonConfig;
   headerNavItems: Array<INavItem> = NAV_ITEMS;
   linkActive = NAV_ITEMS[0].text;
   user: User;
   userTypes = UserTypes;
   
-  constructor(private shareSrv: ShareService, private userSingleton: UserSingleton, private loginSrv: LoginService) { }
-
-  async ngOnInit() {
+  constructor(private shareSrv: ShareService, private userSingleton: UserSingleton, private loginSrv: LoginService) {
+  }
+  
+  ngOnInit() {
     this.viewComponentsConfiguration();
     this.user = this.userSingleton.instance();
+    if(this.user && this.user.email){
+      this.userName = this.user.persona && this.user.persona['nombre'] ? this.user.persona['nombre'] + ' ' + this.user.persona['apellido'] : this.user.email.split('@')[0];
+    }
     this.linkActive = location.pathname.substring(1, location.pathname.length);
-  }
-
-  async ngOnChanges(){
-    this.user = this.userSingleton.instance();
   }
 
   viewComponentsConfiguration(){
     this.roundedButtonConfig = { text: 'Registrarme' };
+    
   }
 
   goTo(link: string){
@@ -64,5 +68,6 @@ export class HeaderComponent implements OnInit {
 export interface INavItem {
   text: string,
   link: string,
-  needLogin: boolean
+  needLogin: boolean,
+  isGestion: boolean
 }

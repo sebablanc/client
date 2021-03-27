@@ -1,6 +1,6 @@
-<div class="header-container" [ngClass]="{'header-container-kids': linkActive.includes('kids')}">
+<div class="header-container" [ngClass]="{'header-container-kids': linkActive.includes('kids'), 'header-container-gestion': linkActive.includes('gestion')}">
   <img class="header-logo" src="../../../../assets/images/logos/logoDR.png" alt="">
-  <div class="name-dr dr-font"><span class="dr">DR</span> Computers</div>
+  <div class="name-dr dr-font"><span class="dr">DR</span> Computers<span *ngIf="linkActive.includes('gestion')"> - Gestión</span></div>
 
   <div *ngIf="!user" class="login-options">
     <div class="login-buttons ingresar-button" (click)="goTo('login')">Ingresar</div>
@@ -9,21 +9,27 @@
 
   <div *ngIf="user" class="login-options login-options-logged">
     <div class="drop-arrow">
-      <span>SEBASTIÁN BLANC</span>
+      <span>Menú de usuario</span>
       <ion-icon class="drop-arrow-icon" name="caret-down-outline"></ion-icon>
     </div>
     <div class="drop-content">
       <div *ngIf="user.tipo == userTypes.ADMIN" class="option" (click)="goTo('home')">Alumnos</div>
-      <div *ngIf="user.tipo == userTypes.ADMIN" class="option">Gestión</div>
+      <div *ngIf="user.tipo == userTypes.ADMIN" class="option" (click)="goTo('alumnos-gestion')">Gestión</div>
       <div class="option" (click)="goTo('perfil-usuario')">Mi perfil</div>
       <div class="linea"></div>
       <div class="option dr" (click)="logOut()">Cerrar sesión</div>
     </div>
   </div>
 
-  <div class="header-links-container">
+  <div *ngIf="!linkActive.includes('gestion')" class="header-links-container">
     <div *ngFor="let navItem of headerNavItems" >
-      <div *ngIf="!navItem.needLogin || (navItem.needLogin && user)" class="header-links" [ngClass]="{'isActive': linkActive == navItem.link}" (click)="goTo(navItem.link)">{{ navItem.text }}</div>
+      <div *ngIf="!navItem.needLogin || (navItem.needLogin && user) && !navItem.isGestion" class="header-links" [ngClass]="{'isActive': linkActive == navItem.link}" (click)="goTo(navItem.link)">{{ navItem.text }}</div>
+    </div>
+  </div>
+
+  <div *ngIf="linkActive.includes('gestion')" class="header-links-container">
+    <div *ngFor="let navItem of headerNavItems" >
+      <div *ngIf="navItem.needLogin && user && navItem.isGestion" class="header-links" [ngClass]="{'isActive': linkActive == navItem.link}" (click)="goTo(navItem.link)">{{ navItem.text }}</div>
     </div>
   </div>
 
