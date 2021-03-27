@@ -70,6 +70,10 @@ const routes: Routes = [
   {
     path: 'alumno-data-gestion',
     loadChildren: () => import('./pages/alumno-data-gestion/alumno-data-gestion.module').then( m => m.AlumnoDataGestionPageModule)
+  },
+  {
+    path: 'cursos-gestion',
+    loadChildren: () => import('./pages/cursos-gestion/cursos-gestion.module').then( m => m.CursosGestionPageModule)
   }
 ];
 

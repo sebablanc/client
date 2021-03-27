@@ -17,7 +17,11 @@ export class AlumnosGestionPage implements OnInit {
   
   constructor(private personaSrv: PersonaService, private shareSrv: ShareService, private navCtrl: NavController) { }
 
-  async ngOnInit() {
+  ngOnInit() {
+    this.getPersonasList();  
+  }
+
+  async getPersonasList(){
     let response = await this.personaSrv.getPersonasList();
     if(response.exito){
       this.alumnosFilteredList = this.alumnosList = response.personas;
@@ -31,9 +35,12 @@ export class AlumnosGestionPage implements OnInit {
     this.changePage(event);
   }
 
-  deletePersona(event: number){
-    console.log('borraría la persona con este id: ', event);
+  async deletePersona(event: number){
+    let response = await this.personaSrv.deletePersona(event);
+    let colorToast = response && response.exito ? 'SUCCESS_TOAST' : 'ERROR_TOAST';
     
+    this.shareSrv.presentToast({message: response.messages[0], cssClass: colorToast});
+    this.getPersonasList();
   }
 
   filtrarLista(event: string){

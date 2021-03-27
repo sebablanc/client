@@ -33,11 +33,19 @@ export class AlumnoDataGestionPage implements OnInit {
         this.modifyPersona(personaToSend);
       } else{
         console.log('guarda');
+        this.savePersona(personaToSend);
       }
     } else {
       this.shareSrv.goTo('alumnos-gestion');
     }
   }
+
+  async savePersona(personaToSend: IPersonaSend){
+    let response =  await this.personaSrv.guardarPersona(personaToSend);
+    
+    this.finishTransactions(response);
+  }
+
 
   async modifyPersona(persona: IPersonaSend){
     let response =  await this.personaSrv.updatePersona(persona);
