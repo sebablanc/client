@@ -8,6 +8,7 @@ import { SelectDrComponent } from './select-dr/select-dr.component';
 import { SmallBotoneraComponent } from './small-botonera/small-botonera.component';
 import { BuscadorDrComponent } from './buscador-dr/buscador-dr.component';
 import { RoundButtonComponent } from './round-button/round-button.component';
+import { TextAreaDrComponent } from './text-area-dr/text-area-dr.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { RoundButtonComponent } from './round-button/round-button.component';
     SelectDrComponent,
     SmallBotoneraComponent,
     BuscadorDrComponent,
-    RoundButtonComponent
+    RoundButtonComponent,
+    TextAreaDrComponent
   ],
   imports: [CommonModule, AngularMaterialModule],
   exports: [
@@ -27,7 +29,8 @@ import { RoundButtonComponent } from './round-button/round-button.component';
     SelectDrComponent,
     SmallBotoneraComponent,
     BuscadorDrComponent,
-    RoundButtonComponent
+    RoundButtonComponent,
+    TextAreaDrComponent
   ]
 })
 export class uiModule { }

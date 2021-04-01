@@ -1,17 +1,14 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormGroup } from '@angular/forms';
 import { ShareService } from 'src/app/services/share-service/share.service';
 
 @Component({
-  selector: 'app-input-dr',
-  templateUrl: './input-dr.component.html',
-  styleUrls: ['./input-dr.component.scss'],
+  selector: 'app-text-area-dr',
+  templateUrl: './text-area-dr.component.html',
+  styleUrls: ['./text-area-dr.component.scss'],
 })
-export class InputDrComponent implements OnInit {
-  
-  @Input() config: IInputConfig;
-  @Output('suffixIconClicked') suffixIconClicked: EventEmitter<boolean> = new EventEmitter();
-  @Output('prefixIconClicked') prefixIconClicked: EventEmitter<boolean> = new EventEmitter();
+export class TextAreaDrComponent implements OnInit {
+  @Input() config: ITextAreaConfig;
   @Output('dataEmit') dataEmit: EventEmitter<any> = new EventEmitter();
 
   field: AbstractControl;
@@ -25,15 +22,12 @@ export class InputDrComponent implements OnInit {
   getErrorMessage(type: any){
     this.shareSrv.getErrorMessage(this.field);
   }
-
 }
 
-export interface IInputConfig {
+export interface ITextAreaConfig {
   form: FormGroup;
   formControlName: string;
   label: string;
   type: string;
-  prefixIcon?: string;
-  suffixIcon?: string;
   readOnly?: boolean;
 }
