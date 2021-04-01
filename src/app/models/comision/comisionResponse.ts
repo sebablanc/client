@@ -5,3 +5,9 @@ export interface ComisionResponse {
     messages: Array<string>;
     comisiones: Array<IComisionSend>;
 }
+
+export interface ILastIdResponse{
+    exito: boolean;
+    messages: Array<string>;
+    id: number;
+}

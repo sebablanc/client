@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Comision } from 'src/app/models/comision/comision';
-import { ComisionResponse } from 'src/app/models/comision/comisionResponse';
+import { ComisionResponse, ILastIdResponse } from 'src/app/models/comision/comisionResponse';
 import { HttpHelperService } from '../http/http-helper.service';
 import { IComisionSend } from './comisionService.interface';
 
@@ -12,6 +12,7 @@ export class ComisionService {
   private urlCreateComision = 'comision/create';
   private urlUpdateComision = 'comision/update';
   private urlFindAllComisiones = 'comision/all';
+  private urlLastId = 'comision/lastId';
 
   constructor(private httpHelperSrv: HttpHelperService) { }
 

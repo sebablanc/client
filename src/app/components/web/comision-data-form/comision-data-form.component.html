@@ -1,0 +1,25 @@
+<form *ngIf="form" [formGroup]="form" class="comdf-container card">
+  
+  <!-- N O M B R E   C U R S O -->
+  <app-select-dr class="comdf-curso-cell" [config]="cursoConfig"></app-select-dr>
+
+  <!-- D I A S   C U R S A D O -->
+  <div class="comdf-dias-cell">Acá iría los días de cursado</div>
+
+  <!-- H O R A   C O M I E N Z O -->
+  <app-input-dr class="comdf-hora-comienzo-cell" [config]="horaComienzoConfig"></app-input-dr>
+
+  <!-- H O R A   F I N -->
+  <app-input-dr class="comdf-hora-fin-cell" [config]="horaFinConfig"></app-input-dr>
+  
+   <!-- F E C H A   C O M I E N Z O -->
+   <app-input-dr class="comdf-fecha-comienzo-cell" [config]="fechaComienzoConfig"></app-input-dr>
+
+   <!-- F E C H A   F I N -->
+   <app-input-dr class="comdf-fecha-fin-cell" [config]="fechaFinConfig"></app-input-dr>
+
+</form>
+<div class="botonera">
+  <app-rounded-button [config]="cancelConfig" (click)="emitSave.emit(null)"></app-rounded-button>
+  <app-rounded-button class="save-btn" [config]="saveConfig" (click)="emitSave.emit(comision)"></app-rounded-button>
+</div>

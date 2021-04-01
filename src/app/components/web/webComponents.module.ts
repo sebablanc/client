@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { AngularMaterialModule } from 'src/app/material/material.module';
 import { uiModule } from 'src/app/ui/ui.module';
 import { AlumnoCardComponent } from './alumno-card/alumno-card.component';
+import { ComisionDataFormComponent } from './comision-data-form/comision-data-form.component';
 import { CursoCardComponent } from './curso-card/curso-card.component';
 import { CursoDataFormComponent } from './curso-data-form/curso-data-form.component';
 import { InscripcionesAlumnosInicioComponent } from './inscripciones/inscripciones-alumnos-inicio/inscrpiciones-alumnos-inicio/inscripciones-alumnos-inicio.component';
@@ -16,7 +17,8 @@ import { UserPerfilFormComponent } from './user-perfil-form/user-perfil-form.com
       CursoDataFormComponent,
       AlumnoCardComponent,
       ResultRegisterModalComponent,
-      CursoCardComponent
+      CursoCardComponent,
+      ComisionDataFormComponent
   ],
   imports: [
     CommonModule,
@@ -29,7 +31,8 @@ import { UserPerfilFormComponent } from './user-perfil-form/user-perfil-form.com
     CursoDataFormComponent,
     AlumnoCardComponent,
     ResultRegisterModalComponent,
-    CursoCardComponent
+    CursoCardComponent,
+    ComisionDataFormComponent
   ]
 })
 export class WebComponentsModule {}

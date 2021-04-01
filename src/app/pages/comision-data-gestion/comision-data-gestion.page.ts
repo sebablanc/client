@@ -29,12 +29,15 @@ export class ComisionDataGestionPage implements OnInit {
 
   async guardarComision(event: Comision) {
     if (event) {
-      let comisionToSend: IComisionSend = this.comisionSrv.parseComisionToComisionSend(event);
-      if(this.comisionId){
-        this.modifyComision(comisionToSend);
-      } else{
-        this.saveComision(comisionToSend);
-      }
+      console.log('Comision');
+      console.log(event);
+      
+      // let comisionToSend: IComisionSend = this.comisionSrv.parseComisionToComisionSend(event);
+      // if(this.comisionId){
+      //   this.modifyComision(comisionToSend);
+      // } else{
+      //   this.saveComision(comisionToSend);
+      // }
     } else {
       this.returnToComision();
     }
@@ -61,7 +64,7 @@ export class ComisionDataGestionPage implements OnInit {
   }
 
   private returnToComision(){
-    this.shareSrv.goTo('comision-gestion');
+    this.shareSrv.goTo('comisiones-gestion');
   }
 
 }
