@@ -9,7 +9,6 @@ import { Persona } from 'src/app/models/persona/persona';
 import { PersonaService } from 'src/app/services/persona/persona.service';
 import { ShareService } from 'src/app/services/share-service/share.service';
 import { User } from 'src/app/models/user/user/user';
-import { UserSingleton } from 'src/app/models/user/user/userSingleton';
 import { usersTypes, UserTypeInfo, UserTypes } from 'src/app/models/user/user/user-types.enum';
 import { Localidad } from 'src/app/models/localidad/localidad';
 

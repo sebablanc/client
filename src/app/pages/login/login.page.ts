@@ -58,7 +58,7 @@ export class LoginPage implements OnInit {
     
     let response = await this.loginSrv.login(this.entity);
     if(response && response['exito']){
-      this.navCtrl.navigateRoot('home');
+      this.goTo('home');
     } else {
       this.shareSrv.presentToast({message: response['messages'], cssClass: 'ERROR_TOAST'});
     }

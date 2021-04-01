@@ -1,19 +1,25 @@
 <form *ngIf="form" [formGroup]="form" class="cdf-container card">
   
   <!-- N O M B R E -->
-  <app-input-dr class="cdf-nombre-cell" [config]="nombreConfig"></app-input-dr>
+  <app-input-dr class="cdf-nombre-cell entire-row" [config]="nombreConfig"></app-input-dr>
   
-  <div class="img-user">imagen</div>
-  <div class="img-user">programa</div>
+  <!-- P R O G R A M A -->
+  <div class="cdf-programa-cell">programa</div>
+
+  <!-- I M A G E N -->
+  <div class="cdf-iamgen-cell">imagen</div>
  
+  <!-- C A T E G O R I A -->
+  <app-select-dr class="cdf-categoria-cell" [config]="categoriaConfig"></app-select-dr>
+
   <!-- V A L O R -->
-  <app-input-dr class="cdf-edad-cell" [config]="edadConfig"></app-input-dr>
+  <app-input-dr class="cdf-valor-cell" [config]="valorConfig"></app-input-dr>
   
   <!-- D E S C R I P C I O N -->
-  <app-input-dr class="cdf-apellido-cell" [config]="apellidoConfig"></app-input-dr>
+  <app-text-area-dr class="cdf-descripcion-cell entire-row" [config]="descripcionConfig"></app-text-area-dr>
 
 </form>
 <div class="botonera">
   <app-rounded-button [config]="cancelConfig" (click)="emitSave.emit(null)"></app-rounded-button>
-  <app-rounded-button class="save-btn" [config]="saveConfig" (click)="emitSave.emit(persona)"></app-rounded-button>
+  <app-rounded-button class="save-btn" [config]="saveConfig" (click)="emitSave.emit(curso)"></app-rounded-button>
 </div>

@@ -1,0 +1,52 @@
+.cdf-container{
+    padding: 30px;
+    border-radius: 20px;
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 10px;
+    align-items: center;
+    @media screen and (max-width: 970px){
+        grid-template-columns: auto;
+    }
+
+    .entire-row{
+        grid-column: 1 / span 2;
+        @media screen and (max-width: 970px){
+            grid-column: 1;
+        }
+    }
+
+    .cdf-programa-cell{
+        grid-column: 1;
+        grid-row: 2;
+    }
+
+    .cdf-imagen-cell{
+        grid-column: 1;
+        grid-row: 3 / span 3;
+    }
+
+    .cdf-categoria-cell{
+        grid-column: 2;
+        grid-row: 2;
+    }
+
+    .cdf-valor-cell{
+        grid-column: 2;
+        grid-row: 3 / span 3;
+    }
+
+    .cdf-descripcion-cell{
+        grid-row: 6;
+    }
+}
+
+.botonera {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    margin: 10px;
+
+    .save-btn{
+        grid-column: 6;
+    }
+}
