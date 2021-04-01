@@ -34,7 +34,7 @@ export class CursosGestionPage implements OnInit {
     this.changePage(event);
   }
 
-  async deletePersona(event: number){
+  async deleteCurso(event: number){
     let response = await this.cursoSrv.deleteCurso(event);
     let colorToast = response && response.exito ? 'SUCCESS_TOAST' : 'ERROR_TOAST';
     
