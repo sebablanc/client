@@ -19,6 +19,7 @@ export const NAV_ITEMS = [
   {text: 'Premios', link: 'premios', needLogin: false, isGestion: false},
   {text: 'Alumnos', link: 'alumnos-gestion', needLogin: true, isGestion: true},
   {text: 'Cursos', link: 'cursos-gestion', needLogin: true, isGestion: true},
+  {text: 'Comisiones', link: 'comisiones-gestion', needLogin: true, isGestion: true},
 ]
 
 @Component({
