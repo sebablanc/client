@@ -12,19 +12,28 @@ export class ComisionService {
   private urlCreateComision = 'comision/create';
   private urlUpdateComision = 'comision/update';
   private urlFindAllComisiones = 'comision/all';
-  private urlLastId = 'comision/lastId';
 
   constructor(private httpHelperSrv: HttpHelperService) { }
 
   parseComisionToComisionSend(comision: Comision): IComisionSend{
     if(!comision) return;
-
+    
     // Formatear dias a string
+    let diasString = '';
+
+    if(comision.obtenerDias.length>0){
+      comision.obtenerDias.forEach((dia, index) =>{
+        diasString += dia.value;
+        if(index < comision.obtenerDias.length-1){
+          diasString += '/';
+        }
+      });
+    }
 
     let comisionToSend: IComisionSend = {
       id: comision.obtenerId,
       cursoId: comision.obtenerCurso.obtenerId,
-      dias: '',
+      dias: diasString,
       fechaFin: comision.obtenerFechaFin,
       fechaInicio: comision.obtenerFechaInicio,
       horaDesde: comision.obtenerHoraDesde,

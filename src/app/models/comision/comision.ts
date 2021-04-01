@@ -1,4 +1,5 @@
 import { Curso } from "../curso/curso";
+import { diaTypeInfo } from "../dias/dias.types";
 
 export class Comision {
     
@@ -6,7 +7,7 @@ export class Comision {
     private curso: Curso;
 
     // Revisar Tipo de dato
-    private dias: object;
+    private dias: Array<diaTypeInfo>;
     private horaDesde: Date;
     private horaHasta: Date;
     
@@ -37,7 +38,7 @@ export class Comision {
         return this.dias;
     }
 
-    set cambiarDias(dias: object){
+    set cambiarDias(dias: Array<diaTypeInfo>){
         this.dias = dias;
     }
 

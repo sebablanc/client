@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Comision } from 'src/app/models/comision/comision';
+import { Curso } from 'src/app/models/curso/curso';
 import { diaTypeInfo } from 'src/app/models/dias/dias.types';
 import { ComisionService } from 'src/app/services/comision/comision.service';
 import { CursoService } from 'src/app/services/curso/curso.service';
@@ -71,6 +72,9 @@ export class ComisionDataFormComponent implements OnInit {
 
     this.form.valueChanges.subscribe(ob =>{
       Object.assign(this.comision, ob);
+      let curso: Curso = new Curso();
+      Object.assign(curso, ob.curso);
+      this.comision.cambiarCurso = curso;
     });
   }
 

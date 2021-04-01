@@ -29,15 +29,12 @@ export class ComisionDataGestionPage implements OnInit {
 
   async guardarComision(event: Comision) {
     if (event) {
-      console.log('Comision');
-      console.log(event);
-      
-      // let comisionToSend: IComisionSend = this.comisionSrv.parseComisionToComisionSend(event);
-      // if(this.comisionId){
-      //   this.modifyComision(comisionToSend);
-      // } else{
-      //   this.saveComision(comisionToSend);
-      // }
+      let comisionToSend: IComisionSend = this.comisionSrv.parseComisionToComisionSend(event);
+      if(this.comisionId){
+        this.modifyComision(comisionToSend);
+      } else{
+        this.saveComision(comisionToSend);
+      }
     } else {
       this.returnToComision();
     }
