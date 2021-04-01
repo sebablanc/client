@@ -9,6 +9,7 @@ import { SmallBotoneraComponent } from './small-botonera/small-botonera.componen
 import { BuscadorDrComponent } from './buscador-dr/buscador-dr.component';
 import { RoundButtonComponent } from './round-button/round-button.component';
 import { TextAreaDrComponent } from './text-area-dr/text-area-dr.component';
+import { CheckboxDiasDrComponent } from './checkbox-dias-dr/checkbox-dias-dr.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { TextAreaDrComponent } from './text-area-dr/text-area-dr.component';
     SmallBotoneraComponent,
     BuscadorDrComponent,
     RoundButtonComponent,
-    TextAreaDrComponent
+    TextAreaDrComponent,
+    CheckboxDiasDrComponent
   ],
   imports: [CommonModule, AngularMaterialModule],
   exports: [
@@ -30,7 +32,8 @@ import { TextAreaDrComponent } from './text-area-dr/text-area-dr.component';
     SmallBotoneraComponent,
     BuscadorDrComponent,
     RoundButtonComponent,
-    TextAreaDrComponent
+    TextAreaDrComponent,
+    CheckboxDiasDrComponent
   ]
 })
 export class uiModule { }

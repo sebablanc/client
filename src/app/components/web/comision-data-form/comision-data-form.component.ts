@@ -1,10 +1,12 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Comision } from 'src/app/models/comision/comision';
+import { diaTypeInfo } from 'src/app/models/dias/dias.types';
 import { ComisionService } from 'src/app/services/comision/comision.service';
 import { CursoService } from 'src/app/services/curso/curso.service';
 import { ICursoSend } from 'src/app/services/curso/cursoService.interface';
 import { ShareService } from 'src/app/services/share-service/share.service';
+import { IDaysCheckboxConfig } from 'src/app/ui/checkbox-dias-dr/checkbox-dias-dr.component';
 import { IInputConfig } from 'src/app/ui/input-dr/input-dr.component';
 import { IRoundedButtonConfig } from 'src/app/ui/rounded-button/rounded-button.component';
 import { ISelectConfig } from 'src/app/ui/select-dr/select-dr.component';
@@ -28,6 +30,7 @@ export class ComisionDataFormComponent implements OnInit {
   fechaFinConfig: IInputConfig;
   saveConfig: IRoundedButtonConfig;
   cancelConfig: IRoundedButtonConfig;
+  daysCheckboxConfig: IDaysCheckboxConfig;
 
   cursosList: Array<ICursoSend>;
 
@@ -81,6 +84,11 @@ export class ComisionDataFormComponent implements OnInit {
       list: this.cursosList
     };
 
+    this.daysCheckboxConfig = {
+      form: this.form,
+      formControlName: 'dias'
+    }
+
     this.horaComienzoConfig = {
       form: this.form,
       formControlName: 'horaDesde',
@@ -118,6 +126,12 @@ export class ComisionDataFormComponent implements OnInit {
       text: 'Cancelar',
       leftIcon: 'close'
     };
+  }
+
+  get dias() { return this.form.controls.dias; }
+
+  addDiasList(event: Array<diaTypeInfo>){
+    this.dias.patchValue(event);
   }
 
 }

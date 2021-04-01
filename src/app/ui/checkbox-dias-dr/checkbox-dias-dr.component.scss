@@ -1,0 +1,23 @@
+.dias-title{
+    position: relative;
+    font-size: 11px;
+    line-height: 100%;
+    text-align: left;
+    top: 6px;
+    margin-left: 10px;
+    background-color: #fff;
+    width: max-content;
+    padding: 0 10px;
+}
+.dias-checkbox-container{
+    border: 1px solid #000;
+    @media screen and (min-width: 1090px){
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .dias-checkbox-item {
+        display: inline-flex;
+        margin: 10px;
+    }
+}

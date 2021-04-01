@@ -5,13 +5,13 @@
     grid-template-columns: auto auto;
     grid-gap: 10px;
     align-items: center;
-    @media screen and (max-width: 970px){
+    @media screen and (max-width: 1450px){
         grid-template-columns: auto;
     }
 
     .entire-row{
         grid-column: 1 / span 2;
-        @media screen and (max-width: 970px){
+        @media screen and (max-width: 1450px){
             grid-column: 1;
         }
     }
@@ -24,26 +24,46 @@
     .comdf-dias-cell{
         grid-column: 2;
         grid-row: 1;
+        @media screen and (max-width: 1450px){
+            grid-column: 1;
+            grid-row: 2;
+        }
     }
 
     .comdf-hora-comienzo-cell{
         grid-column: 1;
         grid-row: 2;
+        @media screen and (max-width: 1450px){
+            grid-column: 1;
+            grid-row: 3;
+        }
     }
 
     .comdf-hora-fin-cell{
         grid-column: 2;
         grid-row: 2;
+        @media screen and (max-width: 1450px){
+            grid-column: 1;
+            grid-row: 4;
+        }
     }
 
     .comdf-fecha-comienzo-cell{
         grid-column: 1;
         grid-row: 3;
+        @media screen and (max-width: 1450px){
+            grid-column: 1;
+            grid-row: 5;
+        }
     }
 
     .comdf-fecha-fin-cell{
         grid-column: 2;
         grid-row: 3;
+        @media screen and (max-width: 1450px){
+            grid-column: 1;
+            grid-row: 6;
+        }
     }
 }
 

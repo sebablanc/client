@@ -4,7 +4,8 @@
   <app-select-dr class="comdf-curso-cell" [config]="cursoConfig"></app-select-dr>
 
   <!-- D I A S   C U R S A D O -->
-  <div class="comdf-dias-cell">Acá iría los días de cursado</div>
+  <!-- <div class="comdf-dias-cell">Acá iría los días de cursado</div> -->
+  <app-checkbox-dias-dr class="comdf-dias-cell" [config]="daysCheckboxConfig" (dataEmit)="addDiasList($event)"></app-checkbox-dias-dr>
 
   <!-- H O R A   C O M I E N Z O -->
   <app-input-dr class="comdf-hora-comienzo-cell" [config]="horaComienzoConfig"></app-input-dr>
