@@ -82,6 +82,10 @@ const routes: Routes = [
   {
     path: 'comisiones-gestion',
     loadChildren: () => import('./pages/comisiones-gestion/comisiones-gestion.module').then( m => m.ComisionesGestionPageModule)
+  },
+  {
+    path: 'comision-data-gestion',
+    loadChildren: () => import('./pages/comision-data-gestion/comision-data-gestion.module').then( m => m.ComisionDataGestionPageModule)
   }
 ];
 

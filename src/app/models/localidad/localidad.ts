@@ -52,7 +52,7 @@ export class Localidad {
         return this.updatedAt;
     }
 
-    set cambiarFechaModificación(updatedAt: Date){
+    set cambiarFechaModificacion(updatedAt: Date){
         this.updatedAt = updatedAt;
     }
 }
