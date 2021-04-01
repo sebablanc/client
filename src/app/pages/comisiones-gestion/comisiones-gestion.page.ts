@@ -48,6 +48,14 @@ export class ComisionesGestionPage implements OnInit {
     this.changePage(event);
   }
   
+  async deleteComision(event: number){
+    let response = await this.comisionSrv.deleteComision(event);
+    let colorToast = response && response.exito ? 'SUCCESS_TOAST' : 'ERROR_TOAST';
+    
+    this.shareSrv.presentToast({message: response.messages[0], cssClass: colorToast});
+    this.getComisionesList();
+  }
+
   changePage(id: number){
     let navigationExtras: NavigationExtras = {
       queryParams: {

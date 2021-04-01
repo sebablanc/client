@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Comision } from 'src/app/models/comision/comision';
+import { ComisionResponse } from 'src/app/models/comision/comisionResponse';
 import { Curso } from 'src/app/models/curso/curso';
 import { diaTypeInfo } from 'src/app/models/dias/dias.types';
 import { ComisionService } from 'src/app/services/comision/comision.service';
@@ -34,16 +35,24 @@ export class ComisionDataFormComponent implements OnInit {
   daysCheckboxConfig: IDaysCheckboxConfig;
 
   cursosList: Array<ICursoSend>;
+  daysForPresetList: string = '';
 
   constructor(private comisionSrv: ComisionService, private cursosSrv: CursoService, private shareSrv: ShareService) { }
 
   async ngOnInit() {
-    // Creo un objeto curso para manipular la información
+    // Creo un objeto comisión para manipular la información
     this.comision = new Comision();
 
     //Verifico que exista ID de comisión y lo busco en la BBDD
     if(this.comisionId){
+      let comsionFinded: ComisionResponse = null;
       // TODO: buscar Comision
+      comsionFinded = await this.comisionSrv.getComisionById(this.comisionId);
+      if(comsionFinded && comsionFinded.exito && comsionFinded.comisiones && comsionFinded.comisiones.length>0 ){
+        let comisionToAssign =comsionFinded.comisiones[0];
+        this.daysForPresetList = comisionToAssign.dias;
+        Object.assign(this.comision, comisionToAssign);
+      }
     }
 
     //Obtengo listado de cursos
@@ -89,8 +98,7 @@ export class ComisionDataFormComponent implements OnInit {
     };
 
     this.daysCheckboxConfig = {
-      form: this.form,
-      formControlName: 'dias'
+      stringForPresetList: this.daysForPresetList
     }
 
     this.horaComienzoConfig = {

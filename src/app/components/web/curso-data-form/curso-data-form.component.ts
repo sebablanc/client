@@ -56,6 +56,7 @@ export class CursoDataFormComponent implements OnInit {
 
   initForm(){
     this.form = new FormGroup({
+      id: new FormControl(this.curso && this.curso.obtenerId ? this.curso.obtenerId : null,{ validators: [Validators.required], updateOn: 'change'}),
       nombre: new FormControl(this.curso && this.curso.obtenerNombre ? this.curso.obtenerNombre : '',{ validators: [Validators.required], updateOn: 'change'}),
       imagen: new FormControl(this.curso && this.curso.obtenerImagen ? this.curso.obtenerImagen : '',{ validators: [Validators.required], updateOn: 'change'}),
       programa: new FormControl(this.curso && this.curso.obtenerPrograma ? this.curso.obtenerPrograma : '',{ validators: [Validators.required], updateOn: 'change'}),

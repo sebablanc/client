@@ -1,6 +1,6 @@
 <div class="dias-title">Días de cursado</div>
 <div class="dias-checkbox-container">
-  <div  class="dias-checkbox-item" *ngFor="let day of daysList">
-    <mat-checkbox (change)="selected($event, day)">{{day.name}}</mat-checkbox>
+  <div class="dias-checkbox-item" *ngFor="let day of daysList">
+    <mat-checkbox [checked]="isSelected(day)" (change)="selected($event, day)">{{day.name}}</mat-checkbox>
   </div>
 </div>

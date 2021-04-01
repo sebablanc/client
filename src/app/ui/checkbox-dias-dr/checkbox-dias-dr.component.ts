@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormGroup } from '@angular/forms';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 import { diasList, diaTypeInfo } from 'src/app/models/dias/dias.types';
 
@@ -17,7 +16,25 @@ export class CheckboxDiasDrComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    let dias = this.config.stringForPresetList.split('/');
+    this.daysList.forEach(day => {
+      dias.forEach(dia => {
+        if(dia == day.value){
+          this.listToEmit.push(day);
+        }
+      })
+    });
+    
+    this.dataEmit.emit(this.listToEmit);
+  }
+
+  isSelected(day: diaTypeInfo){
+    let finded = this.listToEmit.find(item => {
+      return item === day;
+    })
+    return finded === day;
+  }
 
   selected(event: MatCheckboxChange, day: diaTypeInfo){
     if(event.checked){
@@ -37,6 +54,5 @@ export class CheckboxDiasDrComponent implements OnInit {
 }
 
 export interface IDaysCheckboxConfig {
-  form: FormGroup;
-  formControlName: string;
+  stringForPresetList: string;
 }

@@ -11,7 +11,9 @@ export class ComisionService {
 
   private urlCreateComision = 'comision/create';
   private urlUpdateComision = 'comision/update';
+  private urlDeleteComision = 'comision/delete';
   private urlFindAllComisiones = 'comision/all';
+  private urlFindComision = 'comision/find';
 
   constructor(private httpHelperSrv: HttpHelperService) { }
 
@@ -61,9 +63,27 @@ export class ComisionService {
     })
   }
 
+  async deleteComision(id: number): Promise<ComisionResponse>{
+    let data = {id: id}
+    return this.httpHelperSrv.post({url: this.urlDeleteComision, body: data}).then(response => { 
+      return response;
+    }).catch(error => {
+      return error.error;
+    })
+  }
+
   async getComisionesList(): Promise<ComisionResponse>{
     return this.httpHelperSrv.get({url: this.urlFindAllComisiones, body: null}).then(result => {
       return result;
+    });
+  }
+
+  async getComisionById(id: number): Promise<ComisionResponse>{
+    let data = {id: id}
+    return this.httpHelperSrv.post({url: this.urlFindComision, body: data}).then(response =>{
+      return response;
+    }).catch(error => {
+      return error.error;
     })
   }
 }

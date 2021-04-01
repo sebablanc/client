@@ -18,7 +18,6 @@ export class ComisionCardComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-
     //Obtengo el string de días con los nombres completos
     let days = this.comision.dias.split('/');
     diasList.forEach(dia => {
