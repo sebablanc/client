@@ -10,6 +10,9 @@ import { ICursoSend } from './cursoService.interface';
 export class CursoService {
 
   private urlCreateCurso = 'curso/create';
+  private urlFindAllCursos = 'curso/all';
+  private urlDeleteCurso = 'curso/delete';
+  private urlFindCurso = 'curso/find';
 
   constructor(private httpHelperSrv: HttpHelperService) { }
 
@@ -33,6 +36,30 @@ export class CursoService {
 
   async guardarCurso(data: ICursoSend): Promise<CursoResponse>{
     return this.httpHelperSrv.post({url: this.urlCreateCurso, body: data}).then(response =>{
+      return response;
+    }).catch(error => {
+      return error.error;
+    })
+  }
+
+  async getCursosList(): Promise<CursoResponse>{
+    return this.httpHelperSrv.get({url: this.urlFindAllCursos, body: null}).then(result => {
+      return result;
+    })
+  }
+
+  async deleteCurso(id: number): Promise<CursoResponse>{
+    let data = {id: id}
+    return this.httpHelperSrv.post({url: this.urlDeleteCurso, body: data}).then(response => { 
+      return response;
+    }).catch(error => {
+      return error.error;
+    })
+  }
+
+  async getCursoById(id: number): Promise<CursoResponse>{
+    let data = {id: id}
+    return this.httpHelperSrv.post({url: this.urlFindCurso, body: data}).then(response =>{
       return response;
     }).catch(error => {
       return error.error;

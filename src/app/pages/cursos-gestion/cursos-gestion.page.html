@@ -3,7 +3,7 @@
     <app-round-button class="cgp-round-button" (roundButtonClicked)="goToNuevoCurso($event)"></app-round-button>
     <app-buscador-dr class="cursos-gestion-buscador" [label]="'Buscar cursos por nombre o Nro de curso'" (textoBuscado)="filtrarLista($event)"></app-buscador-dr>
     <div *ngIf="cursosFilteredList && cursosFilteredList.length > 0" class="cursos-gestion-cards">
-      <!-- <app-alumno-card *ngFor="let alumno of alumnosFilteredList" [persona]="alumno" (modifyPersona)="goToModify($event)" (deletePersona)="deletePersona($event)"></app-alumno-card> -->
+      <app-curso-card *ngFor="let curso of cursosFilteredList" [curso]="curso" (modifyCurso)="goToModify($event)" (deleteCurso)="deleteCurso($event)"></app-curso-card>
     </div>
   </div>
 </app-layout>

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
-import { ResultRegisterModalComponent } from 'src/app/components/common/result-register-modal/result-register-modal.component';
+import { ResultRegisterModalComponent } from 'src/app/components/web/result-register-modal/result-register-modal.component';
 import { Register } from 'src/app/models/user/register/model/register';
 import { RegisterSingleton } from 'src/app/models/user/register/model/registerSingleton';
 import { UserTypes } from 'src/app/models/user/user/user-types.enum';

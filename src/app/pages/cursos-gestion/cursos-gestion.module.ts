@@ -9,6 +9,7 @@ import { CursosGestionPageRoutingModule } from './cursos-gestion-routing.module'
 import { CursosGestionPage } from './cursos-gestion.page';
 import { LayoutModule } from 'src/app/components/layout/layout.module';
 import { uiModule } from 'src/app/ui/ui.module';
+import { WebComponentsModule } from 'src/app/components/web/webComponents.module';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { uiModule } from 'src/app/ui/ui.module';
     IonicModule,
     CursosGestionPageRoutingModule,
     LayoutModule,
-    uiModule
+    uiModule,
+    WebComponentsModule
   ],
   declarations: [CursosGestionPage]
 })

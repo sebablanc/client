@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 
@@ -12,6 +12,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage-angular';
 import { Drivers } from '@ionic/storage';
 import * as CordovaSQLiteDriver from 'localforage-cordovasqlitedriver';
+
+import { registerLocaleData } from '@angular/common';
+import localeEs from '@angular/common/locales/es-AR';
+registerLocaleData(localeEs, 'es-AR');
 
 @NgModule({
   declarations: [AppComponent],
@@ -28,7 +32,7 @@ import * as CordovaSQLiteDriver from 'localforage-cordovasqlitedriver';
       driverOrder: [CordovaSQLiteDriver._driver, Drivers.IndexedDB]
     })
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy },{ provide: LOCALE_ID, useValue: 'es-AR' },],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
