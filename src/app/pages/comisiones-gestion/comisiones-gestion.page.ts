@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationExtras } from '@angular/router';
 import { NavController } from '@ionic/angular';
+import { ComisionService } from 'src/app/services/comision/comision.service';
+import { IComisionSend } from 'src/app/services/comision/comisionService.interface';
 import { ShareService } from 'src/app/services/share-service/share.service';
 
 @Component({
@@ -10,8 +12,8 @@ import { ShareService } from 'src/app/services/share-service/share.service';
 })
 export class ComisionesGestionPage implements OnInit {
 
-  comisionesFilteredList: Array<any> = [];
-  comisionesList: Array<any> = [];
+  comisionesFilteredList: Array<IComisionSend> = [];
+  comisionesList: Array<IComisionSend> = [];
 
   constructor(private navCtrl: NavController, private shareSrv: ShareService, private comisionSrv: ComisionService) { }
 
@@ -20,10 +22,9 @@ export class ComisionesGestionPage implements OnInit {
   }
 
   async getComisionesList(){
-    //let response = await this.comisionSrv.getCursosList();
-    let response = null;
+    let response = await this.comisionSrv.getComisionesList();
     if(response && response.exito){
-      this.comisionesFilteredList = this.comisionesList = response.cursos;
+      this.comisionesFilteredList = this.comisionesList = response.comisiones;
     } else {
       this.comisionesFilteredList = this.comisionesList = [];
       this.shareSrv.presentToast({ message: response.messages[0], cssClass: 'TOAST_ERROR' });
@@ -32,8 +33,8 @@ export class ComisionesGestionPage implements OnInit {
 
   filtrarLista(event: string){
     if(event.length <= 0) this.comisionesFilteredList = this.comisionesList;
-    this.comisionesFilteredList = this.comisionesList.filter(curso =>{
-      return curso.nombre.includes(event) || curso.id.toString().includes(event);
+    this.comisionesFilteredList = this.comisionesList.filter(comision =>{
+      return comision.id.toString().includes(event);
     });
   }
 
