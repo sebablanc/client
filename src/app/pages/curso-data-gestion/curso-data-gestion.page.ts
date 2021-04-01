@@ -31,12 +31,12 @@ export class CursoDataGestionPage implements OnInit {
     if (event) {
       let cursoToSend: ICursoSend = this.cursoSrv.parseCursoToCursoSend(event);
       if(this.cursoId){
-        // this.modifyCurso(cursoToSend);
+        this.modifyCurso(cursoToSend);
       } else{
         this.saveCurso(cursoToSend);
       }
     } else {
-      this.shareSrv.goTo('curso-gestion');
+      this.returnToCursos();
     }
   }
 
@@ -46,11 +46,21 @@ export class CursoDataGestionPage implements OnInit {
     this.finishTransactions(response);
   }
 
+  async modifyCurso(curso: ICursoSend){
+    let response =  await this.cursoSrv.updateCurso(curso);
+    
+    this.finishTransactions(response);
+  }
+
   async finishTransactions(response: CursoResponse){
     let colorToast = response && response.exito ? 'SUCCESS_TOAST' : 'ERROR_TOAST';
     
     this.shareSrv.presentToast({message: response.messages[0], cssClass: colorToast});
     
+    this.returnToCursos();
+  }
+  
+  private returnToCursos(){
     this.shareSrv.goTo('cursos-gestion');
   }
 }

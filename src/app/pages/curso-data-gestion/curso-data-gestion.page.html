@@ -2,7 +2,7 @@
   <div class="curso-data-page routerOutlet routerOutlet-gestion">
     <div class="cdp-title">{{title}}</div>
     <div class="curso-data-container page-with-card">
-      <app-curso-data-form (emitSave)="guardarCurso($event)"></app-curso-data-form>
+      <app-curso-data-form [cursoId]="cursoId" (emitSave)="guardarCurso($event)"></app-curso-data-form>
     </div>
   </div>
 </app-layout>
