@@ -1,0 +1,20 @@
+<div class="comision-card">
+  <div class="comision-card-container card">
+    <img class="comision-card-img" src="assets/images/logos/logoDR.png" alt="">
+    <div class="comision-card-name">
+      <div>Nombre del curso:</div>
+      <div class="weight-text">{{comision.curso.nombre}}</div>
+    </div>
+    <div class="comision-card-name">
+      Número de comisión: <span class="weight-text">{{comision.id}}</span>
+    </div>
+    <div class="comision-card-dni">
+      Horario: <span class="weight-text">{{ horarioString }}</span>
+    </div>
+    <div class="comision-card-nroCuenta">
+      Dias: <span class="weight-text">{{ diasString }}</span>
+    </div>
+
+    <app-small-botonera class="comision-card-botonera" (leftButtonClicked)="goToModify()" (rightButtonClicked)="delete()"></app-small-botonera> 
+  </div>
+</div>

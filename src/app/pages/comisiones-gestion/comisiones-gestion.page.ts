@@ -43,6 +43,11 @@ export class ComisionesGestionPage implements OnInit {
       this.changePage(null);
     }
   }
+
+  goToModify(event: number){
+    this.changePage(event);
+  }
+  
   changePage(id: number){
     let navigationExtras: NavigationExtras = {
       queryParams: {
