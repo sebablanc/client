@@ -1,0 +1,18 @@
+.igr-container {
+    padding: 30px;
+    border-radius: 20px;
+    width: 55%;
+    margin: 0 auto;
+    text-align: center;
+
+    .igr-loading{
+        .igr-loading-img{
+            width: 60%;
+            margin: 0 auto;
+        }
+
+        .igr-loading-text{
+            font-size: 20px;
+        }
+    }
+}

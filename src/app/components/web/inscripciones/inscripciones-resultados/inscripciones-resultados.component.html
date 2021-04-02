@@ -1,0 +1,12 @@
+<div *ngIf="action" class="igr-container card" [ngSwitch]="action">
+  
+  <!-- T A R J E T A   L O A D I N G -->
+  <div class="igr-loading" *ngSwitchCase="actions.LOADING">
+    <img class="igr-loading-img" src="assets/images/delivery-data.png" alt="">
+    <p class="igr-loading-text">Realizando su solictud</p>
+  </div>
+  
+  <div *ngSwitchCase="actions.FAIL">Falló</div>
+  
+  <div *ngSwitchCase="actions.SUCCESS">Éxito</div>
+</div>

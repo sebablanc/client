@@ -27,7 +27,8 @@ export class InscripcionesGestionPage implements OnInit {
   steps: Array<IStep> = [
     {component: 'INSCRIPCIONES_INICIO', addToTitle: '', leftButton: false, middleButton: true, rightButton: true, leftButtonConfig: null, middleButtonConfig: null, rightButtonConfig: {text: 'Siguiente', rightIcon: 'arrow-forward-outline'}, onLeft: null, onMiddle: null, onRight:() => { this.changeStep(true) }},
     {component: 'ALUMNO_DATOS', addToTitle: 'Datos del alumno', leftButton: true, middleButton: false, rightButton: true, leftButtonConfig: {text: 'Cancelar', leftIcon: 'close-outline'}, middleButtonConfig: null, rightButtonConfig: {text: 'Siguiente', rightIcon: 'arrow-forward-outline'}, onLeft: () => { this.returnToInscripciones() }, onMiddle: null, onRight:() => { this.changeStep(true) }},
-    {component: 'COMISION_DATOS', addToTitle: 'Datos de la comisión', leftButton: true, middleButton: true, rightButton: true, leftButtonConfig: {text: 'Cancelar', leftIcon: 'close-outline'}, middleButtonConfig: {text: 'Atrás', leftIcon: 'arrow-back-outline'}, rightButtonConfig: {text: 'Confirmar', rightIcon: 'checkmark-outline'}, onLeft: () => { this.returnToInscripciones() }, onMiddle: () => { this.changeStep(false) }, onRight:() => { console.log('se ejecuta right'); }}
+    {component: 'COMISION_DATOS', addToTitle: 'Datos de la comisión', leftButton: true, middleButton: true, rightButton: true, leftButtonConfig: {text: 'Cancelar', leftIcon: 'close-outline'}, middleButtonConfig: {text: 'Atrás', leftIcon: 'arrow-back-outline'}, rightButtonConfig: {text: 'Confirmar', rightIcon: 'checkmark-outline'}, onLeft: () => { this.returnToInscripciones() }, onMiddle: () => { this.changeStep(false) }, onRight:() => { this.changeStep(true) }},
+    {component: 'RESULTADO_INSCRIPCION', addToTitle: 'Resultado', leftButton: false, middleButton: false, rightButton: false, leftButtonConfig: null, middleButtonConfig: null, rightButtonConfig: null, onLeft: () => {}, onMiddle: () => {}, onRight:() => {}}
   ]
 
   step: IStep = null;
@@ -35,7 +36,7 @@ export class InscripcionesGestionPage implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.step = this.steps[0];
+    this.step = this.steps[3];
   }
 
   changeStep(nextStep: boolean){

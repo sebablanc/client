@@ -13,6 +13,7 @@ import { UserPerfilFormComponent } from './user-perfil-form/user-perfil-form.com
 import { InscripcionesGestionInicioComponent } from './inscripciones/inscripciones-gestion-inicio/inscripciones-gestion-inicio.component';
 import { InscripcionesAlumnosDatosComponent } from './inscripciones/inscripciones-alumnos-datos/inscripciones-alumnos-datos.component';
 import { InscripcionesComisionesDatosComponent } from './inscripciones/inscripciones-comisiones-datos/inscripciones-comisiones-datos.component';
+import { InscripcionesResultadosComponent } from './inscripciones/inscripciones-resultados/inscripciones-resultados.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { InscripcionesComisionesDatosComponent } from './inscripciones/inscripci
       ComisionCardComponent,
       InscripcionesGestionInicioComponent,
       InscripcionesAlumnosDatosComponent,
-      InscripcionesComisionesDatosComponent
+      InscripcionesComisionesDatosComponent,
+      InscripcionesResultadosComponent
   ],
   imports: [
     CommonModule,
@@ -44,7 +46,8 @@ import { InscripcionesComisionesDatosComponent } from './inscripciones/inscripci
     ComisionCardComponent,
     InscripcionesGestionInicioComponent,
     InscripcionesAlumnosDatosComponent,
-    InscripcionesComisionesDatosComponent
+    InscripcionesComisionesDatosComponent,
+    InscripcionesResultadosComponent
   ]
 })
 export class WebComponentsModule {}
