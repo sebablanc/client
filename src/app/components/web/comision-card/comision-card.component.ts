@@ -9,6 +9,8 @@ import { diasList } from 'src/app/models/dias/dias.types';
 })
 export class ComisionCardComponent implements OnInit {
   @Input() comision: IComisionSend;
+  @Input() isSelected: boolean = false;
+  @Input() showSmallBotonera: boolean = true;
   @Output() modifyComision: EventEmitter<number> = new EventEmitter();
   @Output() deleteComision: EventEmitter<number> = new EventEmitter();
 

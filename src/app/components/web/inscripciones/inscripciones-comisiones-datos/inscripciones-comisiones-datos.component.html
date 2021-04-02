@@ -1,0 +1,6 @@
+<div class="icd-buscador-container">
+  <app-buscador-dr class="comisiones-gestion-buscador" [label]="'Buscar por número de comisión'" (textoBuscado)="filtrarLista($event)"></app-buscador-dr>
+</div>
+<div *ngIf="comisionesFilteredList && comisionesFilteredList.length > 0" class="icd-comision-cards">
+  <app-comision-card class="icd-comision-card" *ngFor="let comision of comisionesFilteredList"  [showSmallBotonera]="false" [isSelected]="comision == comisionSelected" [comision]="comision" (click)="comisionClicked(comision)"></app-comision-card>
+</div>

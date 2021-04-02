@@ -28,6 +28,13 @@
           justify-self: start;
           width: 32%;
       }
+
+      .middle-btn {
+        grid-column: 2;
+        justify-self: end;
+        padding: 0 10px;
+      }
+      
       .right-btn {
           grid-column: 3;
           justify-self: end;

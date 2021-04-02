@@ -7,7 +7,9 @@
     <div class="inscripciones-container">
       <div *ngIf="step" [ngSwitch]="step.component">
         <app-inscripciones-gestion-inicio *ngSwitchCase="'INSCRIPCIONES_INICIO'"></app-inscripciones-gestion-inicio>
-        <app-inscripciones-alumnos-datos *ngSwitchCase="'ALUMNOS_DATOS'" (emitPersona)="cargarDatosAlumno($event)"></app-inscripciones-alumnos-datos>
+        <app-inscripciones-alumnos-datos *ngSwitchCase="'ALUMNO_DATOS'" (emitPersona)="cargarDatosAlumno($event)"></app-inscripciones-alumnos-datos>
+        <app-inscripciones-comisiones-datos *ngSwitchCase="'COMISION_DATOS'" (emitComision)="cargarDatosComision($event)"></app-inscripciones-comisiones-datos>
+        <app-inscripciones-resultado-datos *ngSwitchCase="'COMISION_DATOS'" (emitComision)="cargarDatosComision($event)"></app-inscripciones-comisiones-datos>
       </div>
       
       <!-- B O T O N E R A -->

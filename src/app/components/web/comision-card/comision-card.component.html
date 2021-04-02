@@ -1,5 +1,8 @@
 <div class="comision-card">
   <div class="comision-card-container card">
+    <div class="check-icon" *ngIf="isSelected">
+      <img src="assets/images/check-option.png" alt="">
+    </div>
     <img class="comision-card-img" src="assets/images/logos/logoDR.png" alt="">
     <div class="comision-card-name">
       <div>Nombre del curso:</div>
@@ -15,6 +18,6 @@
       Dias: <span class="weight-text">{{ diasString }}</span>
     </div>
 
-    <app-small-botonera class="comision-card-botonera" (leftButtonClicked)="goToModify()" (rightButtonClicked)="delete()"></app-small-botonera> 
+    <app-small-botonera *ngIf="showSmallBotonera" class="comision-card-botonera" (leftButtonClicked)="goToModify()" (rightButtonClicked)="delete()"></app-small-botonera> 
   </div>
 </div>

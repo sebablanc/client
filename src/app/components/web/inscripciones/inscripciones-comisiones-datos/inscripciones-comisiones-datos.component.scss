@@ -1,16 +1,16 @@
-.agd-buscador-container{
+.icd-buscador-container{
     width: 55%;
     margin: 0 auto 20px;
 }
 
-.agd-alumno-cards {
+.icd-comision-cards {
     padding: 20px;
     display: grid;
     grid-template-columns: repeat(4, 25%);
     @media screen and (max-width: 1485px) {
         grid-template-columns: repeat(3, auto);
     }
-    .agd-alumno-card{
+    .icd-comision-card{
         cursor: pointer;
     }
 }
