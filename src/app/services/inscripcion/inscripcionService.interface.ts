@@ -1,7 +1,7 @@
 export interface IInscripcionSend{
     id: number;
     fechaInscripcion: Date;
-    alumnoId: number;
+    personaId: number;
     comisionId: number;
     createdAt: Date,
     updatedAt: Date

@@ -19,5 +19,6 @@
     </div>
 
     <app-small-botonera *ngIf="showSmallBotonera" class="comision-card-botonera" (leftButtonClicked)="goToModify()" (rightButtonClicked)="delete()"></app-small-botonera> 
+    <div *ngIf="showValue" class="comision-card-value">{{ comision.curso.valor  | currency:"ARS":"symbol" }}</div>
   </div>
 </div>

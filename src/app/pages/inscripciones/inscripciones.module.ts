@@ -9,6 +9,7 @@ import { InscripcionesPageRoutingModule } from './inscripciones-routing.module';
 import { InscripcionesPage } from './inscripciones.page';
 import { LayoutModule } from 'src/app/components/layout/layout.module';
 import { WebComponentsModule } from 'src/app/components/web/webComponents.module';
+import { uiModule } from 'src/app/ui/ui.module';
 
 @NgModule({
   imports: [
@@ -17,7 +18,8 @@ import { WebComponentsModule } from 'src/app/components/web/webComponents.module
     IonicModule,
     InscripcionesPageRoutingModule,
     LayoutModule,
-    WebComponentsModule
+    WebComponentsModule,
+    uiModule
   ],
   declarations: [InscripcionesPage]
 })

@@ -18,7 +18,7 @@ export class InscripcionService {
 
     let inscripcionToSend: IInscripcionSend = {
       id: inscripcion.obtenerId,
-      alumnoId: inscripcion.obtenerAlumno.id,
+      personaId: inscripcion.obtenerAlumno.id,
       comisionId: inscripcion.obtenerComision.id,
       fechaInscripcion: inscripcion.obtenerFechaInscripcion,
       createdAt: inscripcion.obtenerFechaCreacion ? inscripcion.obtenerFechaCreacion : null,

@@ -1,0 +1,21 @@
+.ics-container{
+    width: 55%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-evenly;
+    .ics-alumno-card,
+    .ics-comision-card{
+        display: inline-flex;
+
+        ::ng-deep .alumno-card,
+        ::ng-deep .comision-card{
+            .persona-card-container,
+            .comision-card-container{
+                min-height: 220px;
+                max-height: 220px;
+                max-width: 444px;
+                min-width: 444px;
+            }
+        }
+    }
+}

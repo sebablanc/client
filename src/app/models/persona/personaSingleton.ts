@@ -13,6 +13,7 @@ export class PersonaSingleton {
 
     async instance() {
         if(!this.entity){
+            this.entity = new Persona();
             let personaStorage = await this.storageSrv.get('persona');
             Object.assign(this.entity, personaStorage);
             let localidadResp = await this.localidadSrv.getLocalidadByID(personaStorage.localidadId);

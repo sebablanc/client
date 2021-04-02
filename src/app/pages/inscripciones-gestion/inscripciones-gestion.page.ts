@@ -81,7 +81,6 @@ export class InscripcionesGestionPage implements OnInit {
   }
 
   cargarDatosComision(event: IComisionSend){
-    //TODO: CARGAR DATOS COMISION EN LA ENTIDAD DE INSCRIPCION
     this.inscripcion.cambiarComision = event;
   }
 

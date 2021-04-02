@@ -11,6 +11,7 @@ export class ComisionCardComponent implements OnInit {
   @Input() comision: IComisionSend;
   @Input() isSelected: boolean = false;
   @Input() showSmallBotonera: boolean = true;
+  @Input() showValue: boolean = false;
   @Output() modifyComision: EventEmitter<number> = new EventEmitter();
   @Output() deleteComision: EventEmitter<number> = new EventEmitter();
 

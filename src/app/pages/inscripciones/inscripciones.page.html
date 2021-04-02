@@ -1,12 +1,21 @@
 <app-layout>
   <div class="inscripciones-page routerOutlet">
-    <div class="iab-title">Inscripciones</div>
-    <div class="inscripciones-container page-with-card">
-
-      <div [ngSwitch]="conditionExpression">
-        <app-inscripciones-alumnos-inicio *ngSwitchCase="expression"></app-inscripciones-alumnos-inicio>
+    <div class="iab-title">Inscripciones<span *ngIf="step && step.addToTitle"> - {{step.addToTitle}}</span></div>
+    
+    <div class="inscripciones-container">
+      <div *ngIf="step" [ngSwitch]="step.component">
+        <app-inscripciones-alumnos-inicio *ngSwitchCase="'INSCRIPCIONES_INICIO'"></app-inscripciones-alumnos-inicio>
+        <app-inscripciones-comisiones-datos *ngSwitchCase="'COMISION_DATOS'" [comisionSelected]="inscripcion.obtenerComision" (emitComision)="cargarDatosComision($event)"></app-inscripciones-comisiones-datos>
+        <app-inscripcion-confirmation-step *ngSwitchCase="'CONFIRMATION_STEP'" [inscripcion]="inscripcion"></app-inscripcion-confirmation-step>
+        <app-inscripciones-resultados *ngSwitchCase="'RESULTADO_INSCRIPCION'" [step]="step" [inscripcion]="inscripcion" (emitReturn)="returnToInscripciones()"></app-inscripciones-resultados>
       </div>
 
+      <!-- B O T O N E R A -->
+      <div *ngIf="step" class="steper-botonera">
+        <app-rounded-button *ngIf="step.leftButton" class="left-btn" [config]="step.leftButtonConfig" (click)="step.onLeft()"></app-rounded-button>
+        <app-rounded-button *ngIf="step.middleButton" class="middle-btn" [config]="step.middleButtonConfig" (click)="step.onMiddle()"></app-rounded-button>
+        <app-rounded-button *ngIf="step.rightButton" class="right-btn" [config]="step.rightButtonConfig" (click)="step.onRight()"></app-rounded-button>
+      </div>
     </div>
   </div>
 </app-layout>

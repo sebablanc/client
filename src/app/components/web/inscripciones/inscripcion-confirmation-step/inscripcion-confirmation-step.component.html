@@ -1,0 +1,4 @@
+<div class="ics-container">
+  <app-alumno-card class="ics-alumno-card" *ngIf="inscripcion.obtenerAlumno" [showSmallBotonera]="false" [persona]="inscripcion.obtenerAlumno"></app-alumno-card>
+  <app-comision-card class="ics-comision-card" *ngIf="inscripcion.obtenerComision" [showValue]="true" [showSmallBotonera]="false" [comision]="inscripcion.obtenerComision"></app-comision-card>
+</div>
