@@ -13,6 +13,7 @@ export class InputDrComponent implements OnInit {
   @Output('suffixIconClicked') suffixIconClicked: EventEmitter<boolean> = new EventEmitter();
   @Output('prefixIconClicked') prefixIconClicked: EventEmitter<boolean> = new EventEmitter();
   @Output('dataEmit') dataEmit: EventEmitter<any> = new EventEmitter();
+  @Output('dataEmitKey') dataEmitKey: EventEmitter<any> = new EventEmitter();
 
   field: AbstractControl;
   

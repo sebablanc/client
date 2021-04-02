@@ -46,7 +46,7 @@ export class AlumnosGestionPage implements OnInit {
   filtrarLista(event: string){
     if(event.length <= 0) this.alumnosFilteredList = this.alumnosList;
     this.alumnosFilteredList = this.alumnosList.filter(alumno =>{
-      return alumno.nombre.includes(event) || alumno.apellido.includes(event) || alumno.nroCuenta.includes(event) || alumno.dni.toString().includes(event);
+      return alumno.nombre.toLowerCase().includes(event.toLowerCase()) || alumno.apellido.toLowerCase().includes(event.toLowerCase()) || alumno.nroCuenta.includes(event) || alumno.dni.toString().includes(event);
     });
   }
 

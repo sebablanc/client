@@ -9,6 +9,8 @@ import { IPersonaSend } from 'src/app/services/persona/personaService.interface'
 export class AlumnoCardComponent implements OnInit {
 
   @Input() persona: IPersonaSend;
+  @Input() isSelected: boolean = false;
+  @Input() showSmallBotonera: boolean = true;
   @Output() modifyPersona: EventEmitter<number> = new EventEmitter();
   @Output() deletePersona: EventEmitter<number> = new EventEmitter();
 

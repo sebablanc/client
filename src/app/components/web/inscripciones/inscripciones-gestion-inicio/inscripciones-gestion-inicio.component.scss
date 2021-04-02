@@ -1,0 +1,29 @@
+.igi-container {
+    padding: 30px;
+    border-radius: 20px;
+    width: 55%;
+    margin: 0 auto;
+    
+    .igi-title {
+        font-size: 25px;
+        text-align: center;
+        margin: 3vh 0;
+    }
+
+    .igi-text {
+        font-size: 20px;
+    }
+
+    .igi-item{
+        display: grid;
+        grid-template-columns: 8vh auto;
+        grid-gap: 10px;
+        margin: 20px 0;
+        -webkit-box-align: center;
+        align-items: center;
+    }
+
+    .igi-aclaracion {
+        font-size: 12px;
+    }
+}

@@ -10,6 +10,8 @@ import { CursoDataFormComponent } from './curso-data-form/curso-data-form.compon
 import { InscripcionesAlumnosInicioComponent } from './inscripciones/inscripciones-alumnos-inicio/inscrpiciones-alumnos-inicio/inscripciones-alumnos-inicio.component';
 import { ResultRegisterModalComponent } from './result-register-modal/result-register-modal.component';
 import { UserPerfilFormComponent } from './user-perfil-form/user-perfil-form.component';
+import { InscripcionesGestionInicioComponent } from './inscripciones/inscripciones-gestion-inicio/inscripciones-gestion-inicio.component';
+import { InscripcionesAlumnosDatosComponent } from './inscripciones/inscripciones-alumnos-datos/inscripciones-alumnos-datos.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { UserPerfilFormComponent } from './user-perfil-form/user-perfil-form.com
       ResultRegisterModalComponent,
       CursoCardComponent,
       ComisionDataFormComponent,
-      ComisionCardComponent
+      ComisionCardComponent,
+      InscripcionesGestionInicioComponent,
+      InscripcionesAlumnosDatosComponent
   ],
   imports: [
     CommonModule,
@@ -35,7 +39,9 @@ import { UserPerfilFormComponent } from './user-perfil-form/user-perfil-form.com
     ResultRegisterModalComponent,
     CursoCardComponent,
     ComisionDataFormComponent,
-    ComisionCardComponent
+    ComisionCardComponent,
+    InscripcionesGestionInicioComponent,
+    InscripcionesAlumnosDatosComponent
   ]
 })
 export class WebComponentsModule {}

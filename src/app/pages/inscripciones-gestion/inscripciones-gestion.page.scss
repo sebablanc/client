@@ -1,7 +1,39 @@
 .inscripciones-gestion-page {
-    .igp-round-button{
-        position: absolute;
-        left: calc(100% - 75px);
-        top: 10px;
+
+  .igp-round-button {
+    position: absolute;
+    left: calc(100% - 75px);
+    top: 10px;
+  }
+
+  .igp-title {
+    width: 55%;
+    margin: 0 auto;
+    border-radius: 20px;
+    padding: 15px;
+    text-align: center;
+    font-size: 35px;
+  }
+
+  .inscripciones-container{
+    margin: 20px auto 0;
+    
+    .steper-botonera {
+      display: grid;
+      grid-template-columns: 50% auto max-content;
+      margin: 10px auto;
+      width: 55%;
+      .left-btn {
+          grid-column: 1;
+          justify-self: start;
+          width: 32%;
+      }
+      .right-btn {
+          grid-column: 3;
+          justify-self: end;
+          padding: 0 10px;
+      }
     }
+  }
+
 }

@@ -1,5 +1,22 @@
 <app-layout>
   <div class="inscripciones-gestion-page routerOutlet routerOutlet-gestion">
-    <app-round-button class="igp-round-button" (roundButtonClicked)="buscar($event)"></app-round-button>
+    <app-round-button *ngIf="step.component == 'INSCRIPCIONES_INICIO'" class="igp-round-button" (roundButtonClicked)="buscar($event)"></app-round-button>
+    
+    <div class="igp-title">Inscripciones<span *ngIf="step && step.addToTitle"> - {{step.addToTitle}}</span></div>
+    
+    <div class="inscripciones-container">
+      <div *ngIf="step" [ngSwitch]="step.component">
+        <app-inscripciones-gestion-inicio *ngSwitchCase="'INSCRIPCIONES_INICIO'"></app-inscripciones-gestion-inicio>
+        <app-inscripciones-alumnos-datos *ngSwitchCase="'ALUMNOS_DATOS'" (emitPersona)="cargarDatosAlumno($event)"></app-inscripciones-alumnos-datos>
+      </div>
+      
+      <!-- B O T O N E R A -->
+      <div class="steper-botonera">
+        <app-rounded-button *ngIf="step.leftButton" class="left-btn" [config]="step.leftButtonConfig" (click)="step.onLeft()"></app-rounded-button>
+        <app-rounded-button *ngIf="step.middleButton" class="middle-btn" [config]="step.middleButtonConfig" (click)="step.onMiddle()"></app-rounded-button>
+        <app-rounded-button *ngIf="step.rightButton" class="right-btn" [config]="step.rightButtonConfig" (click)="step.onRight()"></app-rounded-button>
+      </div>
+
+    </div>
   </div>
 </app-layout>
