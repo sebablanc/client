@@ -1,18 +1,28 @@
 .igr-container {
-    padding: 30px;
-    border-radius: 20px;
-    width: 55%;
-    margin: 0 auto;
+  padding: 30px;
+  border-radius: 20px;
+  width: 55%;
+  margin: 0 auto;
+  text-align: center;
+
+  .igr-title {
+    font-size: 40px;
     text-align: center;
+    margin: 3vh 0;
+    grid-column: 1 / span 2;
+  }
 
-    .igr-loading{
-        .igr-loading-img{
-            width: 60%;
-            margin: 0 auto;
-        }
+  .igr-loading-img {
+    width: 60%;
+    margin: 0 auto;
+  }
 
-        .igr-loading-text{
-            font-size: 20px;
-        }
-    }
+  .igr-resp-img {
+    width: 30%;
+    margin: 20px auto;
+  }
+
+  .igr-detail {
+    font-size: 20px;
+  }
 }

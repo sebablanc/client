@@ -3,7 +3,7 @@ import { IComisionSend } from 'src/app/services/comision/comisionService.interfa
 import { IPersonaSend } from 'src/app/services/persona/personaService.interface';
 import { IRoundedButtonConfig } from 'src/app/ui/rounded-button/rounded-button.component';
 
-interface IStep{
+export interface IStep{
   component: string;
   addToTitle: string;
   leftButton: boolean;

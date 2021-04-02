@@ -1,12 +1,20 @@
 <div *ngIf="action" class="igr-container card" [ngSwitch]="action">
   
   <!-- T A R J E T A   L O A D I N G -->
-  <div class="igr-loading" *ngSwitchCase="actions.LOADING">
+  <div *ngSwitchCase="actions.LOADING">
     <img class="igr-loading-img" src="assets/images/delivery-data.png" alt="">
-    <p class="igr-loading-text">Realizando su solictud</p>
+    <p class="igr-detail">Realizando su solictud</p>
   </div>
   
-  <div *ngSwitchCase="actions.FAIL">Falló</div>
+  <div *ngSwitchCase="actions.FAIL">
+    <div class="igr-title">Fallo en la inscripción</div>
+    <img class="igr-resp-img" src="assets/images/wrong.png">
+    <div class="igr-detail">¡Disculpas!<br>No se pudo realizar tu inscripción, intentalo más tarde o bien, comunicate al 03442-678040.</div>
+  </div>
   
-  <div *ngSwitchCase="actions.SUCCESS">Éxito</div>
+  <div *ngSwitchCase="actions.SUCCESS">
+    <div class="igr-title">Éxito en la inscripción</div>
+    <img class="igr-resp-img" src="assets/images/check.png">
+    <div class="igr-detail">¡La preinscripción ha finalizado de manera correcta!<br>Te esperamos en el comienzo de clases.</div>
+  </div>
 </div>
