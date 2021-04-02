@@ -2,5 +2,5 @@
   <app-buscador-dr class="alumnos-gestion-buscador" [label]="'Buscar alumnos por apellido, nombre, DNI o Nro de alumno'" (textoBuscado)="filtrarLista($event)"></app-buscador-dr>
 </div>
 <div *ngIf="alumnosFilteredList.length > 0" class="agd-alumno-cards">
-  <app-alumno-card class="agd-alumno-card" *ngFor="let alumno of alumnosFilteredList" [showSmallBotonera]="false" [isSelected]="alumno == alumnoSelected" [persona]="alumno" (click)="alumnoClicked(alumno)"></app-alumno-card>
+  <app-alumno-card class="agd-alumno-card" *ngFor="let alumno of alumnosFilteredList" [showSmallBotonera]="false" [isSelected]="isSelected(alumno)" [persona]="alumno" (click)="alumnoClicked(alumno)"></app-alumno-card>
 </div>

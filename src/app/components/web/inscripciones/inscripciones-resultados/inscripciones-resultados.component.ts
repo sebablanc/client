@@ -1,5 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Inscripcion } from 'src/app/models/inscripcion/inscripcion';
+import { InscripcionResponse } from 'src/app/models/inscripcion/inscripcionResponse';
 import { IStep } from 'src/app/pages/inscripciones-gestion/inscripciones-gestion.page';
+import { InscripcionService } from 'src/app/services/inscripcion/inscripcion.service';
 
 const actionsType = {
   LOADING: 'LOADING',
@@ -15,21 +18,24 @@ const actionsType = {
 export class InscripcionesResultadosComponent implements OnInit {
   
   @Input() step: IStep;
+  @Input() inscripcion: Inscripcion;
   @Output() emitReturn: EventEmitter<boolean> = new EventEmitter();
 
   action: string = actionsType.LOADING;
   actions = actionsType;
 
-  constructor() { }
+  constructor(private inscripcionSrv: InscripcionService) { }
 
-  ngOnInit() {
-    setTimeout(() => {
-      this.sendData(actionsType.FAIL);
-    }, 1000);
+  async ngOnInit() {
+    await this.sendData();
   }
-
-  sendData(borrar){
-    this.action = borrar;
+  
+  async sendData(){
+    let inscripcionToSend = this.inscripcionSrv.parseInscripcionToInscripcionSend(this.inscripcion);
+    console.log(inscripcionToSend);
+    
+    let response = await this.inscripcionSrv.guardarInscripcion(inscripcionToSend);
+    this.action = response && response.exito ? actionsType.SUCCESS : actionsType.FAIL;
     if(this.action == actionsType.SUCCESS){
       this.setSuccessButtons();
     } else {
@@ -60,7 +66,7 @@ export class InscripcionesResultadosComponent implements OnInit {
       text: 'Reintentar',
       rightIcon: 'refresh'
     }
-    this.step.onRight = () => { this.sendData(actionsType.SUCCESS); };
+    this.step.onRight = () => { this.sendData(); };
     this.step.middleButton = false;
     this.step.leftButton = true;
     this.step.leftButtonConfig = {

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Inscripcion } from 'src/app/models/inscripcion/inscripcion';
 import { IComisionSend } from 'src/app/services/comision/comisionService.interface';
 import { IPersonaSend } from 'src/app/services/persona/personaService.interface';
+import { ShareService } from 'src/app/services/share-service/share.service';
 import { IRoundedButtonConfig } from 'src/app/ui/rounded-button/rounded-button.component';
 
 export interface IStep{
@@ -32,17 +34,38 @@ export class InscripcionesGestionPage implements OnInit {
   ]
 
   step: IStep = null;
+  inscripcion: Inscripcion;
 
-  constructor() { }
+  constructor(private shareSrv: ShareService) { }
 
   ngOnInit() {
-    this.step = this.steps[3];
+    this.inscripcion = new Inscripcion();
+    this.inscripcion.cambiarFechaInscripcion = new Date();
+    this.step = this.steps[0];
   }
 
   changeStep(nextStep: boolean){
     let indexOf = this.steps.findIndex(actualStep => {
       return actualStep == this.step;
     });
+
+    //Verificando paso
+    switch (indexOf) {
+      case 0:
+        break;
+      case 1:
+        if((this.inscripcion.obtenerAlumno == null || this.inscripcion.obtenerAlumno == undefined) && nextStep) {
+          this.shareSrv.presentToast({message: 'Debe seleccionar un alumno para continuar', cssClass: 'ERROR_TOAST'});
+          return;
+        }
+        break;
+      case 2:
+        if((this.inscripcion.obtenerComision == null || this.inscripcion.obtenerComision == undefined) && nextStep) {
+          this.shareSrv.presentToast({message: 'Debe seleccionar una comisión para continuar', cssClass: 'ERROR_TOAST'});
+          return;
+        }
+        break;
+    }
 
     if(indexOf> -1 && nextStep && indexOf<this.steps.length-1){
       indexOf++;
@@ -54,15 +77,12 @@ export class InscripcionesGestionPage implements OnInit {
   }
 
   cargarDatosAlumno(event: IPersonaSend){
-    //TODO: CARGAR DATOS ALUMNOS EN LA ENTIDAD DE INSCRIPCION
-    console.log('cargarDatosAlumno');
-    console.log(event);
+    this.inscripcion.cambiarAlumno = event;
   }
 
   cargarDatosComision(event: IComisionSend){
     //TODO: CARGAR DATOS COMISION EN LA ENTIDAD DE INSCRIPCION
-    console.log('cargarDatosComision');
-    console.log(event);
+    this.inscripcion.cambiarComision = event;
   }
 
   private returnToInscripciones(){

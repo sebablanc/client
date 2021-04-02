@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, Input } from '@angular/core';
 import { PersonaService } from 'src/app/services/persona/persona.service';
 import { IPersonaSend } from 'src/app/services/persona/personaService.interface';
 import { ShareService } from 'src/app/services/share-service/share.service';
@@ -10,15 +10,19 @@ import { ShareService } from 'src/app/services/share-service/share.service';
 })
 export class InscripcionesAlumnosDatosComponent implements OnInit {
 
+  @Input() alumnoSelected: IPersonaSend;
   @Output() emitPersona: EventEmitter<IPersonaSend> = new EventEmitter();
   alumnosFilteredList: Array<IPersonaSend> = [];
   alumnosList: Array<IPersonaSend> = [];
-  alumnoSelected: IPersonaSend = null;
 
   constructor(private personaSrv: PersonaService, private shareSrv: ShareService) {}
 
   async ngOnInit() {
     await this.getPersonasList();
+  }
+
+  isSelected(alumno: IPersonaSend){
+    return alumno && this.alumnoSelected && alumno.id == this.alumnoSelected.id;
   }
 
   async getPersonasList(){

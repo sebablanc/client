@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, Input } from '@angular/core';
 import { ComisionService } from 'src/app/services/comision/comision.service';
 import { IComisionSend } from 'src/app/services/comision/comisionService.interface';
 import { ShareService } from 'src/app/services/share-service/share.service';
@@ -10,15 +10,19 @@ import { ShareService } from 'src/app/services/share-service/share.service';
 })
 export class InscripcionesComisionesDatosComponent implements OnInit {
   
+  @Input() comisionSelected: IComisionSend = null;
   @Output() emitComision: EventEmitter<IComisionSend> = new EventEmitter();
   comisionesFilteredList: Array<IComisionSend> = [];
   comisionesList: Array<IComisionSend> = [];
-  comisionSelected: IComisionSend = null;
 
   constructor(private comisionSrv: ComisionService, private shareSrv: ShareService) { }
 
   async ngOnInit() {
     await this.getComisionesList();  
+  }
+
+   isSelected(comision: IComisionSend){
+    return comision && this.comisionSelected && comision.id == this.comisionSelected.id;
   }
 
   async getComisionesList(){
