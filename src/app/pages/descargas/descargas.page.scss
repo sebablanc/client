@@ -11,6 +11,13 @@
         grid-template-columns: 60% 40%;
         font-size: 14px;
       }
+
+      .descargas-cursos {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        padding: 20px;
+        grid-gap: 20px;
+      }
     }
   }
   

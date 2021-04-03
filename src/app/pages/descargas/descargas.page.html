@@ -6,7 +6,9 @@
       <div>Esta es un área restringida, creada exclusivamente para los alumnos del Instituto.</div> <br/>
       <div>Estimado alumno para descargar los apuntes del curso que está participando, por favor seleccione el título del mismo y luego ingrese el código proporcionado en clases. Gracias</div>
 
-      <div>Acá irían las tarjetas del curso</div>
+      <div *ngIf="cursosList && cursosList.length>0" class="descargas-cursos">
+        <app-push-button *ngFor="let curso of cursosList" [curso]="curso" (click)="goToDownloads(curso)"></app-push-button>
+      </div>
 
     </div>
   </div>

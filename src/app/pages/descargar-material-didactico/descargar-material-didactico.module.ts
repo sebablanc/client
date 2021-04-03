@@ -4,9 +4,9 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { DescargasPageRoutingModule } from './descargas-routing.module';
+import { DescargarMaterialDidacticoPageRoutingModule } from './descargar-material-didactico-routing.module';
 
-import { DescargasPage } from './descargas.page';
+import { DescargarMaterialDidacticoPage } from './descargar-material-didactico.page';
 import { LayoutModule } from 'src/app/components/layout/layout.module';
 import { uiModule } from 'src/app/ui/ui.module';
 
@@ -15,10 +15,10 @@ import { uiModule } from 'src/app/ui/ui.module';
     CommonModule,
     FormsModule,
     IonicModule,
-    DescargasPageRoutingModule,
+    DescargarMaterialDidacticoPageRoutingModule,
     LayoutModule,
     uiModule
   ],
-  declarations: [DescargasPage]
+  declarations: [DescargarMaterialDidacticoPage]
 })
-export class DescargasPageModule {}
+export class DescargarMaterialDidacticoPageModule {}

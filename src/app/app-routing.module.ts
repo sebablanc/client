@@ -98,6 +98,10 @@ const routes: Routes = [
   {
     path: 'curso-detail',
     loadChildren: () => import('./pages/curso-detail/curso-detail.module').then( m => m.CursoDetailPageModule)
+  },
+  {
+    path: 'descargar-material-didactico',
+    loadChildren: () => import('./pages/descargar-material-didactico/descargar-material-didactico.module').then( m => m.DescargarMaterialDidacticoPageModule)
   }
 ];
 
