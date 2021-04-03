@@ -90,6 +90,10 @@ const routes: Routes = [
   {
     path: 'inscripciones-gestion',
     loadChildren: () => import('./pages/inscripciones-gestion/inscripciones-gestion.module').then( m => m.InscripcionesGestionPageModule)
+  },
+  {
+    path: 'informe-inscripciones-gestion',
+    loadChildren: () => import('./pages/informe-inscripciones-gestion/informe-inscripciones-gestion.module').then( m => m.InformeInscripcionesGestionPageModule)
   }
 ];
 

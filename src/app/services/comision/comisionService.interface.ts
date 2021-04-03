@@ -15,6 +15,7 @@ export interface IComisionSend{
 export interface IComisionGet{
     id: number;
     curso: ICursoSend;
+    cursoId?: number;
     dias: string;
     horaDesde: Date;
     horaHasta: Date;

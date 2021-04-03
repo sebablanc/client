@@ -1,0 +1,28 @@
+<app-layout>
+  <div class="inscripciones-gestion-page routerOutlet routerOutlet-gestion">
+    <div class="iigp-container page-with-card card">
+      <app-round-button class="iigp-round-button" [name]="'cloud-download'" (roundButtonClicked)="downloadDataList()">
+      </app-round-button>
+
+      <div class="header-table">
+        <img class="header-logos header-logo-adultos" src="assets/images/logos/logoDR.png">
+        <div class="header-curso-name">Reparación de PC II</div>
+        <img class="header-logos header-logo-kids" src="assets/images/logos/logoDRKids.png">
+        <div class="text-header-table">Fecha de inscripción</div>
+        <div class="text-header-table">Nro. Cuenta</div>
+        <div class="text-header-table">Apellido, Nombre</div>
+        <div class="text-header-table">Teléfono</div>
+        <div class="text-header-table">Celular</div>
+        <div class="text-header-table">E-Mail</div>
+      </div>
+      <div class="body-table" *ngFor="let inscripcion of inscripcionesList">
+        <div class="inscripcion-data">{{ inscripcion.fechaInscripcion }}</div>
+        <div class="inscripcion-data">{{ inscripcion.persona.nroCuenta }}</div>
+        <div class="inscripcion-data">{{ inscripcion.persona.apellido }}, {{ inscripcion.persona.nombre }}</div>
+        <div class="inscripcion-data">{{ inscripcion.persona.telefono }}</div>
+        <div class="inscripcion-data">{{ inscripcion.persona.celular }}</div>
+        <div class="inscripcion-data">{{ inscripcion.persona.email }}</div>
+      </div>
+    </div>
+  </div>
+</app-layout>

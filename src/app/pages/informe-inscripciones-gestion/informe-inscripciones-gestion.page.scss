@@ -1,0 +1,57 @@
+.inscripciones-gestion-page{
+    .iigp-container{
+        .iigp-round-button{
+            ::ng-deep .round-button{
+                position: unset;
+                margin: 12px auto;
+            }
+        }
+
+        .header-table{
+            display: grid;
+            grid-template-columns: repeat(6,1fr);
+            background: linear-gradient(0deg,red,#f76a6a,red);
+            border: 1px solid gray;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+
+            .header-logos {
+                justify-self: center;
+                width: 7vw;
+                padding: 10px;
+            }
+
+            .header-logo-adultos {
+                grid-column: 1;
+            }
+
+            .header-curso-name {
+                grid-column: 2/span 4;
+                justify-self: center;
+                align-self: center;
+                font-size: 2vw;
+                font-weight: bolder;
+            }
+
+            .header-logo-kids {
+                grid-column: 6;
+            }
+
+            .text-header-table {
+                font-weight: bolder;
+                border: 1px solid #000;
+            }
+        }
+
+        .body-table {
+            display: grid;
+            grid-template-columns: repeat(6,1fr);
+            .inscripcion-data{
+                border: 1px solid black;
+            }
+        }
+        .body-table:nth-child(odd){
+            background-color: rgb(172, 171, 171);
+        }
+    }
+}

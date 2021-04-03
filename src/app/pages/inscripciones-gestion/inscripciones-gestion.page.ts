@@ -115,12 +115,12 @@ export class InscripcionesGestionPage implements OnInit {
 
   changePage(data){
     let navigationExtras: NavigationExtras = {
-      queryParams: {
+      state: {
           'curso': data.selected,
           'fechaInicio': data.fechaInicio,
           'fechaFin': data.fechaFin
       }
     };
-    this.navCtrl.navigateRoot(['comision-data-gestion'], navigationExtras);
+    this.navCtrl.navigateRoot(['informe-inscripciones-gestion'], navigationExtras);
   }
 }

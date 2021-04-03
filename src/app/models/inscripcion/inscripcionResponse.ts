@@ -3,5 +3,5 @@ import { IInscripcionSend } from "../../services/inscripcion/inscripcionService.
 export interface InscripcionResponse {
     exito: boolean;
     messages: Array<string>;
-    inscripciones: Array<IInscripcionSend>;
+    personasComisiones: Array<IInscripcionSend>;
 }

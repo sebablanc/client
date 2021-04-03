@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import jsPDF from 'jspdf'
 import autoTable from 'jspdf-autotable'
+import { Inscripcion } from 'src/app/models/inscripcion/inscripcion';
+import { IInscripcionSend } from '../inscripcion/inscripcionService.interface';
 import { IPersonaSend } from '../persona/personaService.interface';
 
 @Injectable({
@@ -19,10 +21,19 @@ export class PdfService {
     this.createPDFWithTable('Alumnos', heads, body);
   }
 
+  createPDFInformeInscripciones(inscripciones: Array<IInscripcionSend>, cursoName: string){
+    let heads = ['Fecha de inscripcion', 'Nro. Cuenta', 'Apellido, Nombre', 'Teléfono', 'Celular', 'E-Mail'];
+    let body = [];
+    inscripciones.forEach(inscripcion => {
+      body.push([inscripcion.fechaInscripcion, inscripcion.persona.nroCuenta, inscripcion.persona.apellido+', '+inscripcion.persona.nombre, inscripcion.persona.telefono, inscripcion.persona.celular, inscripcion.persona.email]);
+    });
+    this.createPDFWithTable(cursoName+' - Informe de Inscripción', heads, body);
+  }
+
   createPDFWithTable(title, head, body){
     let doc = new jsPDF();
     autoTable(doc, {
-      headStyles:{halign: 'center', valign: 'middle'},
+      headStyles:{fillColor: [255, 0, 0], halign: 'center', valign: 'middle'},
       bodyStyles:{halign: 'center', valign: 'middle'},
       head: [head],
       body: body

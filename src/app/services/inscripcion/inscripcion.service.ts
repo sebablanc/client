@@ -10,6 +10,7 @@ import { IInscripcionSend } from './inscripcionService.interface';
 export class InscripcionService {
 
   private urlCreateInscripcion = 'personaComision/create';
+  private urlFindAllInscripciones = 'personaComision/all';
 
   constructor(private httpHelperSrv: HttpHelperService) { }
 
@@ -29,11 +30,16 @@ export class InscripcionService {
   }
 
   async guardarInscripcion(data: IInscripcionSend): Promise<InscripcionResponse>{
-    console.log('url');
-    console.log(this.urlCreateInscripcion);
-    
     return this.httpHelperSrv.post({url: this.urlCreateInscripcion, body: data}).then(response =>{
       return response;
+    }).catch(error => {
+      return error.error;
+    })
+  }
+
+  async getInscripcionesList(): Promise<InscripcionResponse>{
+    return this.httpHelperSrv.get({url: this.urlFindAllInscripciones, body: null}).then(result => {
+      return result;
     }).catch(error => {
       return error.error;
     })
