@@ -12,7 +12,7 @@
     <app-input-dr class="comdf-fecha-fin-cell" [config]="fechaFinConfig"></app-input-dr>
   </form>
   <div class="botonera">
-    <app-rounded-button class="cancel-btn" [config]="cancelConfig" (click)="emitSearch.emit(null)"></app-rounded-button>
-    <app-rounded-button class="search-btn" [config]="searchConfig" (click)="emitSearch.emit(comision)"></app-rounded-button>
+    <app-rounded-button class="cancel-btn" [config]="cancelConfig" (click)="modalDismiss(false)"></app-rounded-button>
+    <app-rounded-button class="search-btn" [config]="searchConfig" (click)="modalDismiss(true)"></app-rounded-button>
   </div>
 </div>

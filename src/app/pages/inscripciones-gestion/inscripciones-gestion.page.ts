@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { NavigationExtras } from '@angular/router';
+import { ModalController, NavController } from '@ionic/angular';
 import { BuscadorOneSelectorModalComponent } from 'src/app/components/web/buscador-one-selector-modal/buscador-one-selector-modal.component';
 import { Inscripcion } from 'src/app/models/inscripcion/inscripcion';
 import { IComisionSend } from 'src/app/services/comision/comisionService.interface';
+import { CursoService } from 'src/app/services/curso/curso.service';
 import { IPersonaSend } from 'src/app/services/persona/personaService.interface';
 import { ShareService } from 'src/app/services/share-service/share.service';
 import { IRoundedButtonConfig } from 'src/app/ui/rounded-button/rounded-button.component';
@@ -38,7 +40,7 @@ export class InscripcionesGestionPage implements OnInit {
   step: IStep = null;
   inscripcion: Inscripcion;
 
-  constructor(private shareSrv: ShareService, private modalCtrl: ModalController) { }
+  constructor(private shareSrv: ShareService, private modalCtrl: ModalController, private cursoSrv: CursoService, private navCtrl: NavController) { }
 
   ngOnInit() {
     this.inscripcion = new Inscripcion();
@@ -91,17 +93,34 @@ export class InscripcionesGestionPage implements OnInit {
   }
 
   async buscar(){
+    let list = await this.cursoSrv.getCursosList();
     const modal = await this.modalCtrl.create({
       component: BuscadorOneSelectorModalComponent,
       cssClass: 'buscador-modal',
       backdropDismiss: false,
       componentProps: {
         'title': 'Buscar inscripciones',
-        'list': [],
+        'list': list.cursos,
         'fieldToShowList': 'nombre',
         'labelList': 'Nombre del curso'
       }
     });
-    return await modal.present();
+    
+    await modal.present();
+    const modalData = await modal.onWillDismiss();
+    if(modalData.data){
+      this.changePage(modalData.data);
+    }
+  }
+
+  changePage(data){
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+          'curso': data.selected,
+          'fechaInicio': data.fechaInicio,
+          'fechaFin': data.fechaFin
+      }
+    };
+    this.navCtrl.navigateRoot(['comision-data-gestion'], navigationExtras);
   }
 }
