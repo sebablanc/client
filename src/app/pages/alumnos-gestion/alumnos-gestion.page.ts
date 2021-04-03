@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationExtras } from '@angular/router';
 import { NavController } from '@ionic/angular';
+import { PdfService } from 'src/app/services/pdf/pdf.service';
 import { PersonaService } from 'src/app/services/persona/persona.service';
 import { IPersonaSend } from 'src/app/services/persona/personaService.interface';
 import { ShareService } from 'src/app/services/share-service/share.service';
@@ -15,7 +16,7 @@ export class AlumnosGestionPage implements OnInit {
   alumnosFilteredList: Array<IPersonaSend> = [];
   alumnosList: Array<IPersonaSend> = [];
   
-  constructor(private personaSrv: PersonaService, private shareSrv: ShareService, private navCtrl: NavController) { }
+  constructor(private personaSrv: PersonaService, private shareSrv: ShareService, private navCtrl: NavController, private pdfSrv: PdfService) { }
 
   ngOnInit() {
     this.getPersonasList();  
@@ -63,6 +64,10 @@ export class AlumnosGestionPage implements OnInit {
       }
     };
     this.navCtrl.navigateRoot(['alumno-data-gestion'], navigationExtras);
+  }
+
+  downloadDataList(){
+    this.pdfSrv.createPDFAlumnos(this.alumnosFilteredList);
   }
 
 }

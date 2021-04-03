@@ -1,7 +1,13 @@
 .alumnos-gestion-page {
-    .agp-round-button{
+    .agp-right-round-button{
         position: absolute;
         left: calc(100% - 75px);
+        top: 10px;
+    }
+
+    .agp-left-round-button{
+        position: absolute;
+        left: 10px;
         top: 10px;
     }
 

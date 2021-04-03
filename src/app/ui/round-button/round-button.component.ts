@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-round-button',
@@ -7,6 +7,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 })
 export class RoundButtonComponent implements OnInit {
   
+  @Input() name: string;
   @Output() roundButtonClicked: EventEmitter<boolean> = new EventEmitter();
   
   constructor() { }
