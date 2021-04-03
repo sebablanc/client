@@ -1,4 +1,4 @@
-<div class="header-container" [ngClass]="{'header-container-kids': linkActive.includes('kids'), 'header-container-gestion': linkActive.includes('gestion')}">
+<div class="header-container" [ngClass]="{'header-container-kids': linkActive.includes('kids') || isKids, 'header-container-gestion': linkActive.includes('gestion')}">
   <img class="header-logo" src="../../../../assets/images/logos/logoDR.png" alt="">
   <div class="name-dr dr-font"><span class="dr">DR</span> Computers<span *ngIf="linkActive.includes('gestion')"> - Gestión</span></div>
 

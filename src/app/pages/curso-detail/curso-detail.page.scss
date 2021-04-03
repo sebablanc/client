@@ -1,0 +1,30 @@
+.curso-detail-page{
+    .curso-detail-container{
+        .curso-detail-title {
+            text-align: center;
+            font-size: 30px;
+            margin-bottom: 20px;
+        }
+        .curso-detail-img {
+            border-radius: 50%;
+            height: 100px;
+            width: 100px;
+            justify-content: space-between;
+            left: calc(50% - 50px);
+            position: relative;
+        }
+
+        .curso-description{
+            margin-bottom: 20px;
+        }
+
+        .back-btn {
+            left: calc(50% - 63px);
+            position: relative;
+
+            ::ng-deep button{
+                width: 126px !important;
+            }
+        }
+    }
+}

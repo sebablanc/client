@@ -20,7 +20,7 @@
       </div>
 
       <div *ngIf="cursosList && cursosList.length>0" class="dr-computers-cursos">
-        <app-push-button *ngFor="let curso of cursosList" [curso]="curso"></app-push-button>
+        <app-push-button *ngFor="let curso of cursosList" [curso]="curso" (click)="goToDetail(curso)"></app-push-button>
       </div>
     </div>
   </div>

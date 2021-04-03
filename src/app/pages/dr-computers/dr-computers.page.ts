@@ -3,6 +3,8 @@ import { CursoService } from 'src/app/services/curso/curso.service';
 import { CursoType } from 'src/app/models/curso/curso-types.enum';
 import { ShareService } from 'src/app/services/share-service/share.service';
 import { ICursoSend } from 'src/app/services/curso/cursoService.interface';
+import { NavController } from '@ionic/angular';
+import { NavigationExtras } from '@angular/router';
 
 const CATEGORIA_FILTER = {
   categoria: CursoType.ADULTOS
@@ -17,7 +19,7 @@ export class DrComputersPage implements OnInit {
 
   cursosList: Array<ICursoSend>;
   
-  constructor(private cursoSrv: CursoService, private shareSrv: ShareService) { }
+  constructor(private cursoSrv: CursoService, private shareSrv: ShareService, private navCtrl: NavController) { }
 
   async ngOnInit() {
     let cursoResponse = await this.cursoSrv.getCursoByFilters(CATEGORIA_FILTER);
@@ -28,4 +30,12 @@ export class DrComputersPage implements OnInit {
     }
   }
 
+  goToDetail(curso: ICursoSend){
+    let navigationExtras: NavigationExtras = {
+      state: {
+          'curso': curso
+      }
+    };
+    this.navCtrl.navigateRoot(['curso-detail'], navigationExtras);
+  }
 }

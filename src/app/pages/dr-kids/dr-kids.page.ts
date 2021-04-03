@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NavigationExtras } from '@angular/router';
+import { NavController } from '@ionic/angular';
 import { CursoType } from 'src/app/models/curso/curso-types.enum';
 import { CursoService } from 'src/app/services/curso/curso.service';
 import { ICursoSend } from 'src/app/services/curso/cursoService.interface';
@@ -17,7 +19,7 @@ export class DrKidsPage implements OnInit {
   
   cursosList: Array<ICursoSend>;
   
-  constructor(private cursoSrv: CursoService, private shareSrv: ShareService) { }
+  constructor(private cursoSrv: CursoService, private shareSrv: ShareService, private navCtrl: NavController) { }
 
   async ngOnInit() {
     let cursoResponse = await this.cursoSrv.getCursoByFilters(CATEGORIA_FILTER);
@@ -26,5 +28,14 @@ export class DrKidsPage implements OnInit {
     } else {
       this.shareSrv.presentToast({message: cursoResponse.messages[0], cssClass: 'ERROR_TOAST'});
     }
+  }
+
+  goToDetail(curso: ICursoSend){
+    let navigationExtras: NavigationExtras = {
+      state: {
+          'curso': curso
+      }
+    };
+    this.navCtrl.navigateRoot(['curso-detail'], navigationExtras);
   }
 }

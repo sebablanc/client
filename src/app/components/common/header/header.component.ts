@@ -29,7 +29,7 @@ export const NAV_ITEMS = [
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  
+  @Input() isKids: boolean = false;
   roundedButtonConfig: IRoundedButtonConfig;
   headerNavItems: Array<INavItem> = NAV_ITEMS;
   linkActive = NAV_ITEMS[0].text;
