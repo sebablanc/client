@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
-import jsPDF from 'jspdf'
-import autoTable from 'jspdf-autotable'
-import { Inscripcion } from 'src/app/models/inscripcion/inscripcion';
 import { IInscripcionSend } from '../inscripcion/inscripcionService.interface';
 import { IPersonaSend } from '../persona/personaService.interface';
+import autoTable from 'jspdf-autotable';
+import jsPDF from 'jspdf';
 
 @Injectable({
   providedIn: 'root'

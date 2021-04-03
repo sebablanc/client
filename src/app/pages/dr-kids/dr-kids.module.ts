@@ -8,6 +8,7 @@ import { DrKidsPageRoutingModule } from './dr-kids-routing.module';
 
 import { DrKidsPage } from './dr-kids.page';
 import { LayoutModule } from 'src/app/components/layout/layout.module';
+import { uiModule } from 'src/app/ui/ui.module';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { LayoutModule } from 'src/app/components/layout/layout.module';
     FormsModule,
     IonicModule,
     DrKidsPageRoutingModule,
-    LayoutModule
+    LayoutModule,
+    uiModule
   ],
   declarations: [DrKidsPage]
 })

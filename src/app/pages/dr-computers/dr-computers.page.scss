@@ -1,0 +1,9 @@
+.dr-computers-page {
+  .dr-computers-container {
+    .dr-computers-cursos {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      padding: 20px;
+    }
+  }
+}

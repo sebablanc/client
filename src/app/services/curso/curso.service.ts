@@ -74,4 +74,13 @@ export class CursoService {
       return error.error;
     })
   }
+
+  async getCursoByFilters(filter): Promise<CursoResponse>{
+    let data = filter;
+    return this.httpHelperSrv.post({url: this.urlFindCurso, body: data}).then(response =>{
+      return response;
+    }).catch(error => {
+      return error.error;
+    })
+  }
 }

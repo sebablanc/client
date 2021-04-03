@@ -19,8 +19,8 @@
         perfeccionamiento en él y de esa manera obtener un segundo titulo.<br><br>
       </div>
 
-      <div class="dr-computers-cursos">
-        Acá irían los cursos
+      <div *ngIf="cursosList && cursosList.length>0" class="dr-computers-cursos">
+        <app-push-button *ngFor="let curso of cursosList" [curso]="curso"></app-push-button>
       </div>
     </div>
   </div>

@@ -22,8 +22,8 @@
         </div><img alt="" src="assets/images/logos/logoDRKids.png">
       </div>
 
-      <div class="dr-kids-cursos">
-        Acá irían los cursos
+      <div *ngIf="cursosList && cursosList.length>0" class="dr-kids-cursos">
+        <app-push-button *ngFor="let curso of cursosList" [curso]="curso"></app-push-button>
       </div>
     </div>
   </div>
