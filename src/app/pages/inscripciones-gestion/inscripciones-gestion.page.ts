@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+import { BuscadorOneSelectorModalComponent } from 'src/app/components/web/buscador-one-selector-modal/buscador-one-selector-modal.component';
 import { Inscripcion } from 'src/app/models/inscripcion/inscripcion';
 import { IComisionSend } from 'src/app/services/comision/comisionService.interface';
 import { IPersonaSend } from 'src/app/services/persona/personaService.interface';
@@ -36,7 +38,7 @@ export class InscripcionesGestionPage implements OnInit {
   step: IStep = null;
   inscripcion: Inscripcion;
 
-  constructor(private shareSrv: ShareService) { }
+  constructor(private shareSrv: ShareService, private modalCtrl: ModalController) { }
 
   ngOnInit() {
     this.inscripcion = new Inscripcion();
@@ -86,5 +88,20 @@ export class InscripcionesGestionPage implements OnInit {
 
   private returnToInscripciones(){
     location.reload();
+  }
+
+  async buscar(){
+    const modal = await this.modalCtrl.create({
+      component: BuscadorOneSelectorModalComponent,
+      cssClass: 'buscador-modal',
+      backdropDismiss: false,
+      componentProps: {
+        'title': 'Buscar inscripciones',
+        'list': [],
+        'fieldToShowList': 'nombre',
+        'labelList': 'Nombre del curso'
+      }
+    });
+    return await modal.present();
   }
 }

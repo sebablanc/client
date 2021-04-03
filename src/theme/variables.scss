@@ -160,6 +160,13 @@
   }
 }
 
+.buscador-modal {
+  .modal-wrapper {
+    height: 319px;
+    border-radius: 15px;
+  }
+}
+
 .hidden {
   display: none;
 }
@@ -168,7 +175,7 @@
   font-weight: 700;
 }
 
-.button{
+.button {
   display: block;
   font-size: 15px;
   cursor: pointer;
@@ -180,7 +187,7 @@
   border: none;
 }
 
-.button:active{
+.button:active {
   background-color: #ce2a2a;
   box-shadow: 0 5px #666;
   transform: translateY(2px);

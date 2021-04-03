@@ -1,0 +1,18 @@
+<div class="bosmc-container card">
+  <div class="bosmc-title">{{title}}</div>
+  <form class="bosmc-form">
+
+     <!-- N O M B R E   C U R S O -->
+    <app-select-dr class="comdf-curso-cell" [config]="cursoConfig"></app-select-dr>
+
+     <!-- F E C H A   C O M I E N Z O -->
+    <app-input-dr class="comdf-fecha-comienzo-cell" [config]="fechaComienzoConfig"></app-input-dr>
+
+    <!-- F E C H A   F I N -->
+    <app-input-dr class="comdf-fecha-fin-cell" [config]="fechaFinConfig"></app-input-dr>
+  </form>
+  <div class="botonera">
+    <app-rounded-button class="cancel-btn" [config]="cancelConfig" (click)="emitSearch.emit(null)"></app-rounded-button>
+    <app-rounded-button class="search-btn" [config]="searchConfig" (click)="emitSearch.emit(comision)"></app-rounded-button>
+  </div>
+</div>
