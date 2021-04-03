@@ -10,7 +10,7 @@
   <div *ngIf="user && user.email" class="login-options login-options-logged" >
     <div class="drop-arrow">
       <span>Menú de usuario</span>
-      <ion-icon class="drop-arrow-icon" name="caret-down-outline"></ion-icon>
+      <ion-icon class="drop-arrow-icon" name="caret-down"></ion-icon>
     </div>
     <div class="drop-content">
       <div *ngIf="user.tipo == userTypes.ADMIN" class="option" (click)="goTo('home')">Alumnos</div>

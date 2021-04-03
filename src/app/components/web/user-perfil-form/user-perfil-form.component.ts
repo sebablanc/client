@@ -182,7 +182,7 @@ export class UserPerfilFormComponent implements OnInit {
       label: 'DNI',
       type: 'number',
       form: this.form,
-      suffixIcon: 'search-outline'
+      suffixIcon: 'search'
     };
 
     this.nombreConfig = {
@@ -226,7 +226,7 @@ export class UserPerfilFormComponent implements OnInit {
       label: 'Código Postal',
       type: 'number',
       form: this.form,
-      suffixIcon: 'search-outline'
+      suffixIcon: 'search'
     };
 
     this.localidadConfig = {
