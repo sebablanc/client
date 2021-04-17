@@ -30,4 +30,5 @@ export interface ITextAreaConfig {
   label: string;
   type: string;
   readOnly?: boolean;
+  minRows?: number;
 }

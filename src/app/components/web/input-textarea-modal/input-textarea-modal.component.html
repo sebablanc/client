@@ -1,0 +1,16 @@
+<div class="itm-container card">
+  <div class="itm-title">{{title}}</div>
+  <form class="itm-form">
+
+    <!-- T I T U L O   N O V E D A D -->
+    <app-input-dr class="itmf-titulo-cell" [config]="tituloConfig"></app-input-dr>
+
+    <!-- M E N S A J E   N O V E D A D -->
+    <app-text-area-dr class="itmf-mensaje-cell" [config]="mensajeConfig"></app-text-area-dr>
+  </form>
+  <div class="botonera">
+    <app-rounded-button class="cancel-btn" [config]="cancelConfig" (click)="modalDismiss(false)"></app-rounded-button>
+    <app-rounded-button class="search-btn" [config]="searchConfig" (click)="modalDismiss(true)"></app-rounded-button>
+  </div>
+</div>
+

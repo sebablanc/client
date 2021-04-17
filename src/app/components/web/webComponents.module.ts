@@ -16,6 +16,7 @@ import { InscripcionesComisionesDatosComponent } from './inscripciones/inscripci
 import { InscripcionesResultadosComponent } from './inscripciones/inscripciones-resultados/inscripciones-resultados.component';
 import { InscripcionConfirmationStepComponent } from './inscripciones/inscripcion-confirmation-step/inscripcion-confirmation-step.component';
 import { BuscadorOneSelectorModalComponent } from './buscador-one-selector-modal/buscador-one-selector-modal.component';
+import { InputTextareaModalComponent } from './input-textarea-modal/input-textarea-modal.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { BuscadorOneSelectorModalComponent } from './buscador-one-selector-modal
       InscripcionesComisionesDatosComponent,
       InscripcionesResultadosComponent,
       InscripcionConfirmationStepComponent,
-      BuscadorOneSelectorModalComponent
+      BuscadorOneSelectorModalComponent,
+      InputTextareaModalComponent
   ],
   imports: [
     CommonModule,
@@ -53,7 +55,8 @@ import { BuscadorOneSelectorModalComponent } from './buscador-one-selector-modal
     InscripcionesComisionesDatosComponent,
     InscripcionesResultadosComponent,
     InscripcionConfirmationStepComponent,
-    BuscadorOneSelectorModalComponent
+    BuscadorOneSelectorModalComponent,
+    InputTextareaModalComponent
   ]
 })
 export class WebComponentsModule {}

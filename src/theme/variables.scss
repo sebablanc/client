@@ -171,6 +171,12 @@
   }
 }
 
+.input-textarea-modal {
+  .modal-wrapper {
+    border-radius: 15px;
+  }
+}
+
 .hidden {
   display: none;
 }
@@ -195,6 +201,18 @@
   background-color: #ce2a2a;
   box-shadow: 0 5px #666;
   transform: translateY(2px);
+}
+
+.right-float-button{
+  position: absolute;
+  left: calc(100% - 75px);
+  top: 10px;
+}
+
+.left-float-button{
+  position: absolute;
+  left: 10px;
+  top: 10px;
 }
 
 @media (prefers-color-scheme: dark) {

@@ -7,7 +7,7 @@
               [readonly]="config.readOnly"
               cdkTextareaAutosize
               #autosize="cdkTextareaAutosize"
-              cdkAutosizeMinRows="2"
+              cdkAutosizeMinRows="{{ config.minRows ? config.minRows : 2}}"
               cdkAutosizeMaxRows="10"
               (focusout)="dataEmit.emit(field.value)"></textarea>
     <mat-error *ngIf="config && config.type">{{getErrorMessage(config.type)}}</mat-error>

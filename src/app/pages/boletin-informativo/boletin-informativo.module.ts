@@ -8,6 +8,9 @@ import { BoletinInformativoPageRoutingModule } from './boletin-informativo-routi
 
 import { BoletinInformativoPage } from './boletin-informativo.page';
 import { LayoutModule } from 'src/app/components/layout/layout.module';
+import { WebComponentsModule } from 'src/app/components/web/webComponents.module';
+import { AngularMaterialModule } from 'src/app/material/material.module';
+import { uiModule } from 'src/app/ui/ui.module';
 
 @NgModule({
   imports: [
@@ -15,7 +18,10 @@ import { LayoutModule } from 'src/app/components/layout/layout.module';
     FormsModule,
     IonicModule,
     BoletinInformativoPageRoutingModule,
-    LayoutModule
+    LayoutModule,
+    WebComponentsModule,
+    uiModule,
+    AngularMaterialModule
   ],
   declarations: [BoletinInformativoPage]
 })

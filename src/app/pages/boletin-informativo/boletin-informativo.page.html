@@ -1,8 +1,8 @@
 <app-layout>
   <div class="boletin-informativo-page routerOutlet">
+    <app-round-button class="right-float-button" [name]="'add'" (roundButtonClicked)="createNewNovedad($event)"></app-round-button>
     <div class="boletin-informativo-container page-with-card card">
       <div class="boletin-informativo-title dr-font">Novedades</div>
-
       <div>Acá iría las novedades card</div>
     </div>
   </div>
