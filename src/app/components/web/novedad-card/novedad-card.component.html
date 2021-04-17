@@ -1,0 +1,12 @@
+<div class="novedad-card-container">
+  <div class="novedad-card-title">{{novedad.title}}</div>
+  <div class="novedad-card-description">{{ novedad.messageNovedad }}</div>
+  <div *ngIf="user && user.tipo == userTypes.ADMIN" class="card-novedad-botonera">
+    <div class="card-novedad-btn card-btn button" (click)="editNovedad.emit(novedad)">
+      <ion-icon name="pencil"></ion-icon>
+    </div>
+    <div class="card-novedad-btn card-btn button" (click)="deleteNovedad.emit(novedad)">
+      <ion-icon name="trash"></ion-icon>
+    </div>
+  </div>
+</div>

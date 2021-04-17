@@ -11,6 +11,10 @@ export class Novedad {
     get obtenerId(){
         return this.id;
     }
+    
+    set cambiarId(id: number){
+        this.id = id;
+    }
 
     get obtenerTitle(){
         return this.title;

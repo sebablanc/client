@@ -1,0 +1,32 @@
+.novedad-card-container {
+    width: 95%;
+    border: 1px solid #d3d3d3;
+    border-radius: 20px;
+    margin: 0 auto 30px;
+    padding: 15px 35px;
+    box-shadow: 1px 4px 7px 0 grey;
+    background: linear-gradient(180deg,#fff 33%,#d3d3d3,gray);
+    .novedad-card-title {
+        font-weight: bolder;
+    }
+
+    .novedad-card-description {
+        margin: 10px;
+    }
+
+    .card-novedad-botonera{
+        text-align: right;
+        .card-novedad-btn{
+            margin-left: 15px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, red, #8b0000);
+            display: inline-flex;
+            font-size: 23px;
+            padding: 10px;
+            border: 1px solid gray;
+            box-shadow: 1px 2px 3px 0 #000;
+            width: 45px;
+            height: 45px;
+        }
+    }
+}

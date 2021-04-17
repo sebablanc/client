@@ -35,7 +35,7 @@ export class CursoService {
     return cursoToSend;
   }
 
-  async guardarCurso(data: ICursoSend): Promise<CursoResponse>{
+  async saveCurso(data: ICursoSend): Promise<CursoResponse>{
     return this.httpHelperSrv.post({url: this.urlCreateCurso, body: data}).then(response =>{
       return response;
     }).catch(error => {

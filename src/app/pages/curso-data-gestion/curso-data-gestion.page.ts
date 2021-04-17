@@ -41,7 +41,7 @@ export class CursoDataGestionPage implements OnInit {
   }
 
   async saveCurso(cursoToSend: ICursoSend){
-    let response =  await this.cursoSrv.guardarCurso(cursoToSend);
+    let response =  await this.cursoSrv.saveCurso(cursoToSend);
     
     this.finishTransactions(response);
   }

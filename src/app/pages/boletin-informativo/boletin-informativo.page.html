@@ -1,9 +1,12 @@
 <app-layout>
   <div class="boletin-informativo-page routerOutlet">
-    <app-round-button class="right-float-button" [name]="'add'" (roundButtonClicked)="createNewNovedad($event)"></app-round-button>
+    <app-round-button *ngIf="user && user.tipo == userTypes.ADMIN" class="right-float-button" [name]="'add'" (roundButtonClicked)="createNewNovedad($event)"></app-round-button>
     <div class="boletin-informativo-container page-with-card card">
       <div class="boletin-informativo-title dr-font">Novedades</div>
-      <div>Acá iría las novedades card</div>
+      <div *ngIf="!novedadesList || novedadesList.length<=0">No se encontraron novedades para mostrar</div>
+      <div *ngIf="novedadesList && novedadesList.length>0">
+        <app-novedad-card *ngFor="let novedad of novedadesList" [user]="user" [novedad]="novedad" (editNovedad)="editNovedad($event)" (deleteNovedad)="deleteNovedad($event)"></app-novedad-card>
+      </div>
     </div>
   </div>
 </app-layout>

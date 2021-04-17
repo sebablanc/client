@@ -10,6 +10,9 @@ import { INovedadSend } from './novedadService.interface';
 export class NovedadService {
 
   private urlCreateNovedad = 'novedad/create';
+  private urlUpdateNovedad = 'novedad/update';
+  private urlDeleteNovedad = 'novedad/delete';
+  private urlFindAllNovedades = 'novedad/all';
 
   constructor(private httpHelperSrv: HttpHelperService) { }
 
@@ -27,11 +30,34 @@ export class NovedadService {
     return novedadToSend;
   }
 
-  async guardarNovedad(data: INovedadSend): Promise<NovedadResponse>{
+  async saveNovedad(data: INovedadSend): Promise<NovedadResponse>{
     return this.httpHelperSrv.post({url: this.urlCreateNovedad, body: data}).then(response =>{
       return response;
     }).catch(error => {
       return error.error;
+    })
+  }
+
+  async updateNovedad(data: INovedadSend): Promise<NovedadResponse>{
+    return this.httpHelperSrv.put({url: this.urlUpdateNovedad, body: data}).then(response =>{
+      return response;
+    }).catch(error => {
+      return error.error;
+    });
+  }
+
+  async deleteNovedad(id: number): Promise<NovedadResponse>{
+    let data = {id: id};
+    return this.httpHelperSrv.post({url: this.urlDeleteNovedad, body: data}).then(response => { 
+      return response;
+    }).catch(error => {
+      return error.error;
+    })
+  }
+
+  async getNovedadesList(): Promise<NovedadResponse>{
+    return this.httpHelperSrv.get({url: this.urlFindAllNovedades, body: null}).then(result => {
+      return result;
     })
   }
 }

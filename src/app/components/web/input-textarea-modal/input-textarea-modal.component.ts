@@ -16,6 +16,7 @@ export class InputTextareaModalComponent implements OnInit {
   @Input() title: string = 'Titulo';
   @Input() inputLabel: string;
   @Input() textareaLabel: string;
+  @Input() element: any;
 
   tituloConfig: IInputConfig;
   mensajeConfig:ITextAreaConfig;
@@ -31,9 +32,10 @@ export class InputTextareaModalComponent implements OnInit {
   }
 
   initForm(){
+    
     this.form = new FormGroup({
-      title: new FormControl(null,{ validators: [Validators.required], updateOn: 'change'}),
-      message: new FormControl(null, { validators: [Validators.required], updateOn: 'change'}),
+      title: new FormControl(this.element && this.element.title ? this.element.title : null,{ validators: [Validators.required], updateOn: 'change'}),
+      message: new FormControl(this.element && this.element.message ? this.element.message : null, { validators: [Validators.required], updateOn: 'change'}),
     });
   }
 
