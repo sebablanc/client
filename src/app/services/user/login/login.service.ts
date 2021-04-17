@@ -22,6 +22,8 @@ export class LoginService {
       }
       return user;
     }).catch(error => {
+      console.log('error en login ', error);
+      
       return false;
     })
   }
