@@ -1,6 +1,6 @@
 <app-layout>
   <div class="inscripciones-gestion-page routerOutlet routerOutlet-gestion">
-    <app-round-button *ngIf="step.component == 'INSCRIPCIONES_INICIO'" class="igp-round-button" [name]="'search'" (roundButtonClicked)="buscar($event)"></app-round-button>
+    <app-round-button *ngIf="step.component == 'INSCRIPCIONES_INICIO'" class="right-float-button" [name]="'search'" (roundButtonClicked)="buscar($event)"></app-round-button>
     
     <div class="igp-title">Inscripciones<span *ngIf="step && step.addToTitle"> - {{step.addToTitle}}</span></div>
     

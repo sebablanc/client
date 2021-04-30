@@ -8,6 +8,9 @@ import { PremiosPageRoutingModule } from './premios-routing.module';
 
 import { PremiosPage } from './premios.page';
 import { LayoutModule } from 'src/app/components/layout/layout.module';
+import { WebComponentsModule } from 'src/app/components/web/webComponents.module';
+import { uiModule } from 'src/app/ui/ui.module';
+import { AngularMaterialModule } from 'src/app/material/material.module';
 
 @NgModule({
   imports: [
@@ -15,7 +18,10 @@ import { LayoutModule } from 'src/app/components/layout/layout.module';
     FormsModule,
     IonicModule,
     PremiosPageRoutingModule,
-    LayoutModule
+    LayoutModule,
+    WebComponentsModule,
+    uiModule,
+    AngularMaterialModule
   ],
   declarations: [PremiosPage]
 })

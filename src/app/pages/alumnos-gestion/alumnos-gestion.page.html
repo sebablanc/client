@@ -1,7 +1,7 @@
 <app-layout>
     <div class="alumnos-gestion-page routerOutlet routerOutlet-gestion">
-        <app-round-button class="agp-left-round-button" [name]="'cloud-download'" (roundButtonClicked)="downloadDataList()"></app-round-button>
-        <app-round-button class="agp-right-round-button" [name]="'add'" (roundButtonClicked)="goToNuevoAlumno($event)"></app-round-button>
+        <app-round-button class="left-float-button" [name]="'cloud-download'" (roundButtonClicked)="downloadDataList()"></app-round-button>
+        <app-round-button class="right-float-button" [name]="'add'" (roundButtonClicked)="goToNuevoAlumno($event)"></app-round-button>
         <app-buscador-dr class="alumnos-gestion-buscador" [label]="'Buscar alumnos por apellido, nombre, DNI o Nro de alumno'" (textoBuscado)="filtrarLista($event)"></app-buscador-dr>
         <div *ngIf="alumnosFilteredList.length > 0" class="alumnos-gestion-cards">
             <app-alumno-card *ngFor="let alumno of alumnosFilteredList" [persona]="alumno" (modifyPersona)="goToModify($event)" (deletePersona)="deletePersona($event)"></app-alumno-card>

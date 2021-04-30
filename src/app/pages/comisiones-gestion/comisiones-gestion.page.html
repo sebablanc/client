@@ -1,6 +1,6 @@
 <app-layout>
   <div class="comisiones-gestion-page routerOutlet routerOutlet-gestion">
-    <app-round-button class="comgp-round-button" [name]="'add'" (roundButtonClicked)="goToNuevaComision($event)"></app-round-button>
+    <app-round-button class="right-float-button" [name]="'add'" (roundButtonClicked)="goToNuevaComision($event)"></app-round-button>
     <app-buscador-dr class="comisiones-gestion-buscador" [label]="'Buscar comisiones por curso o Nro de curso'" (textoBuscado)="filtrarLista($event)"></app-buscador-dr>
     <div *ngIf="comisionesFilteredList && comisionesFilteredList.length > 0" class="comisiones-gestion-cards">
       <app-comision-card *ngFor="let comision of comisionesFilteredList" [comision]="comision" (modifyComision)="goToModify($event)" (deleteComision)="deleteComision($event)"></app-comision-card>

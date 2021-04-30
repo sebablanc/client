@@ -1,5 +1,6 @@
 <app-layout>
   <div class="premios-page routerOutlet">
+    <app-round-button class="right-float-button" [name]="'add'" (roundButtonClicked)="goToNuevoAlumno($event)"></app-round-button>
     <div class="premios-title">Resultado de los sorteos</div>
     <div class="premios-container page-with-card card">
       <div class="premios-header">
