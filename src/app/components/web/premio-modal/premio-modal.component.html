@@ -1,0 +1,27 @@
+<div class="pm-container card">
+  <div class="pm-title">{{title}}</div>
+  <form class="pm-form" *ngIf="form" [formGroup]="form" >
+
+    <!-- F E C H A   S O R T E O -->
+    <app-input-dr class="pmf-fecha-sorteo-cell" [config]="fechaSorteoConfig"></app-input-dr>
+
+    <!-- N U M E R O   C U P O N -->
+    <app-input-dr class="pmf-nro-cupon-cell" [config]="numeroCuponConfig"></app-input-dr>
+
+    <!-- A L U M N O   F A V O R E C I D O -->
+    <app-input-dr class="pmf-alumno-favorecido-cell" [config]="alumnoFavorecidoConfig"></app-input-dr>
+
+    <!-- A L U M N O   E X T R A C T O R -->
+    <app-input-dr class="pmf-alumno-extractor-cell" [config]="alumnoExtractorConfig"></app-input-dr>
+
+    <!-- H O R A R I O   E X T R A C C I O N -->
+    <app-input-dr class="pmf-horario-extraccion-cell" [config]="detalleExtraccionConfig"></app-input-dr>
+
+    <!-- T I P O-->
+  <app-select-dr class="pmf-tipo-cell" [config]="tipoConfig"></app-select-dr>
+  </form>
+  <div class="botonera">
+    <app-rounded-button class="cancel-btn" [config]="cancelConfig" (click)="modalDismiss(false)"></app-rounded-button>
+    <app-rounded-button class="save-btn" [config]="saveConfig" (click)="modalDismiss(true)"></app-rounded-button>
+  </div>
+</div>

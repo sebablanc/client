@@ -18,6 +18,7 @@ import { InscripcionConfirmationStepComponent } from './inscripciones/inscripcio
 import { BuscadorOneSelectorModalComponent } from './buscador-one-selector-modal/buscador-one-selector-modal.component';
 import { InputTextareaModalComponent } from './input-textarea-modal/input-textarea-modal.component';
 import { NovedadCardComponent } from './novedad-card/novedad-card.component';
+import { PremioModalComponent } from './premio-modal/premio-modal.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { NovedadCardComponent } from './novedad-card/novedad-card.component';
       InscripcionConfirmationStepComponent,
       BuscadorOneSelectorModalComponent,
       InputTextareaModalComponent,
-      NovedadCardComponent
+      NovedadCardComponent,
+      PremioModalComponent
   ],
   imports: [
     CommonModule,
@@ -59,7 +61,8 @@ import { NovedadCardComponent } from './novedad-card/novedad-card.component';
     InscripcionConfirmationStepComponent,
     BuscadorOneSelectorModalComponent,
     InputTextareaModalComponent,
-    NovedadCardComponent
+    NovedadCardComponent,
+    PremioModalComponent
   ]
 })
 export class WebComponentsModule {}
