@@ -1,0 +1,20 @@
+.curso-card{
+    background: white;
+    color: black;
+    width: 500px;
+    border-radius: 15px;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    box-shadow: 1px 1px 11px 1px gray;
+    display: grid;
+    grid-template-columns: 20% 80%;
+    align-items: center;
+    height: 75px;
+    font-weight: 400;
+    font-size: 20px;
+    cursor: pointer;
+    img {
+      max-height: 50px;
+      min-height: 30px;
+    }
+  }

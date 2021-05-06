@@ -11,6 +11,7 @@ import { RoundButtonComponent } from './round-button/round-button.component';
 import { TextAreaDrComponent } from './text-area-dr/text-area-dr.component';
 import { CheckboxDiasDrComponent } from './checkbox-dias-dr/checkbox-dias-dr.component';
 import { PushButtonComponent } from './push-button/push-button.component';
+import { RectangleButtonComponent } from './rectangle-button/rectangle-button.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { PushButtonComponent } from './push-button/push-button.component';
     RoundButtonComponent,
     TextAreaDrComponent,
     CheckboxDiasDrComponent,
-    PushButtonComponent
+    PushButtonComponent,
+    RectangleButtonComponent
   ],
   imports: [CommonModule, AngularMaterialModule],
   exports: [
@@ -36,7 +38,8 @@ import { PushButtonComponent } from './push-button/push-button.component';
     RoundButtonComponent,
     TextAreaDrComponent,
     CheckboxDiasDrComponent,
-    PushButtonComponent
+    PushButtonComponent,
+    RectangleButtonComponent
   ]
 })
 export class uiModule { }

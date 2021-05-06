@@ -1,6 +1,13 @@
 <app-layout>
+    
     <div class="home-page routerOutlet">
+        <div *ngIf="cursosAdultos && cursosAdultos.length > 0" class="cursos-adultos-container">
+            <app-rectangle-button *ngFor="let curso of cursosAdultos" [curso]="curso" (click)="goToDetail(curso)"></app-rectangle-button>
+        </div>
         <div class="home-bienvenida">Bienvenidos a <span class="dr-font"><div class="dr">DR</div> Computers</span></div>
         <app-home-swiper></app-home-swiper>
+        <div *ngIf="cursosKids && cursosKids.length > 0" class="cursos-kids-container">
+            <app-rectangle-button *ngFor="let curso of cursosKids" [curso]="curso" (click)="goToDetail(curso)"></app-rectangle-button>
+        </div>
     </div>
 </app-layout>

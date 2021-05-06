@@ -1,10 +1,22 @@
 .home-page {
   padding: 20px 0;
+
+  .cursos-adultos-container{
+    position: absolute;
+    margin-left: 10px;
+  }
+
+  .cursos-kids-container {
+    position: absolute;
+    right: 10px;
+    top: 20px;
+  }
+
   .home-bienvenida {
     text-align: center;
     font-size: 50px;
     color: #000;
-    margin-bottom: 14px;
+    margin-bottom: 30px;
     .dr-font{
         font-size: 50px;
     }
