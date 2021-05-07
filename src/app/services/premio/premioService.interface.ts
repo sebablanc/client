@@ -6,6 +6,7 @@ export interface IPremioSend{
     alumnoExtractor: string;
     detalleExtraccion: string;
     tipo: string;
+    mes: string;
     createdAt: Date;
     updatedAt: Date;
 }

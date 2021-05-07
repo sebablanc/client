@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ModalController } from '@ionic/angular';
+import { meses } from 'src/app/models/meses/meses';
 import { Premio } from 'src/app/models/premio/premio';
 import { sorteosTypes, SorteoTypeInfo } from 'src/app/models/premio/sorteo-types.enum';
 import { ShareService } from 'src/app/services/share-service/share.service';
@@ -24,6 +25,7 @@ export class PremioModalComponent implements OnInit {
   alumnoFavorecidoConfig: IInputConfig;
   alumnoExtractorConfig: IInputConfig;
   detalleExtraccionConfig: IInputConfig;
+  mesConfig: ISelectConfig;
   tipoConfig: ISelectConfig;
   saveConfig: IRoundedButtonConfig;
   cancelConfig: IRoundedButtonConfig;
@@ -38,8 +40,6 @@ export class PremioModalComponent implements OnInit {
   }
   
   initForm(){
-    console.log(this.premio);
-    
     this.form = new FormGroup({
       id: new FormControl(this.premio && this.premio.obtenerId ? this.premio.obtenerId : null,{ validators: [], updateOn: 'change'}),
       fechaSorteo: new FormControl(this.premio && this.premio.obtenerFechaSorteo ? this.premio.obtenerFechaSorteo : '',{ validators: [Validators.required], updateOn: 'change'}),
@@ -47,6 +47,7 @@ export class PremioModalComponent implements OnInit {
       alumnoFavorecido: new FormControl(this.premio && this.premio.obtenerAlumnoFavorecido ? this.premio.obtenerAlumnoFavorecido : '',{ validators: [Validators.required], updateOn: 'change'}),
       alumnoExtractor: new FormControl(this.premio && this.premio.obtenerAlumnoExtractor ? this.premio.obtenerAlumnoExtractor : '',{ validators: [Validators.required], updateOn: 'change'}),
       detalleExtraccion: new FormControl(this.premio && this.premio.obtenerDetalleExtraccion ? this.premio.obtenerDetalleExtraccion : '',{ validators: [Validators.required], updateOn: 'change'}),
+      mes: new FormControl(this.premio && this.premio.obtenerMes ? this.premio.obtenerMes : '',{ validators: [Validators.required], updateOn: 'change'}),
       tipo: new FormControl(this.premio && this.premio.obtenerTipo ? this.premio.obtenerTipo : '',{ validators: [Validators.required], updateOn: 'change'}),
     });
   }
@@ -86,6 +87,14 @@ export class PremioModalComponent implements OnInit {
       type: 'text',
       form: this.form
     };
+
+    this.mesConfig = {
+      form: this.form,
+      formControlName: 'mes',
+      label: 'Mes',
+      list: meses,
+      fieldToShow: 'description'
+    }
 
     this.tipoConfig = {
       form: this.form,

@@ -27,6 +27,7 @@ export class PremioService {
       detalleExtraccion: premio.obtenerDetalleExtraccion,
       numeroCupon: premio.obtenerNumeroCupon,
       tipo: premio.obtenerTipo.value,
+      mes: premio.obtenerMes.value,
       createdAt: premio.obtenerFechaCreacion ? premio.obtenerFechaCreacion : null,
       updatedAt: null
     }

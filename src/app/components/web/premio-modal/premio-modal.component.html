@@ -17,8 +17,11 @@
     <!-- H O R A R I O   E X T R A C C I O N -->
     <app-input-dr class="pmf-horario-extraccion-cell" [config]="detalleExtraccionConfig"></app-input-dr>
 
+    <!-- M E S-->
+    <app-select-dr class="pmf-mes-cell" [config]="mesConfig"></app-select-dr>
+
     <!-- T I P O-->
-  <app-select-dr class="pmf-tipo-cell" [config]="tipoConfig"></app-select-dr>
+    <app-select-dr class="pmf-tipo-cell" [config]="tipoConfig"></app-select-dr>
   </form>
   <div class="botonera">
     <app-rounded-button class="cancel-btn" [config]="cancelConfig" (click)="modalDismiss(false)"></app-rounded-button>

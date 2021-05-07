@@ -1,3 +1,4 @@
+import { meses, MesType } from "../meses/meses";
 import { sorteosTypes, SorteoTypeInfo } from "./sorteo-types.enum";
 
 export class Premio {
@@ -8,6 +9,7 @@ export class Premio {
     private alumnoFavorecido: string;
     private alumnoExtractor: string;
     private detalleExtraccion: string;
+    private mes: MesType;
 
     //Revisar tipo de dato
     private tipo: SorteoTypeInfo;
@@ -70,6 +72,14 @@ export class Premio {
 
     set cambiarTipo(tipo: string){
         this.tipo = sorteosTypes.filter(type => {return type.value == tipo})[0];
+    }
+
+    get obtenerMes(){
+        return this.mes;
+    }
+
+    set cambiarMes(mes: string){
+        this.mes = meses.filter(mesObject => {return mesObject.value == mes})[0];
     }
 
     get obtenerFechaCreacion(){
