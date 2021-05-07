@@ -27,8 +27,6 @@ export class PremiosPage implements OnInit {
     this.premiosList = [];
     if(response && response.exito){
       this.premiosList = response.premios;
-      console.log(this.premiosList);
-      
     } else {
       this.shareSrv.presentToast({message: response.messages[0], cssClass: 'ERROR_TOAST'});
     }
@@ -41,6 +39,24 @@ export class PremiosPage implements OnInit {
       var premio = new Premio();
       Object.assign(premio, modalData.data);
       this.guardarPremio(premio, true);
+    }
+  }
+
+  async editPremio(){
+    if(!this.premioSelected){
+      this.shareSrv.presentToast({ message: 'Debe seleccionar alguno de los premios para modificarlo', cssClass: 'WARNING_TOAST'});
+      return;
+    }
+
+    var premio = new Premio();
+    Object.assign(premio, this.premioSelected);
+    premio.cambiarTipo = this.premioSelected.tipo;
+    
+    const modalData = await this.showModal(premio);
+    
+    if(modalData.data){
+      Object.assign(premio, modalData.data);
+      this.guardarPremio(premio, false);
     }
   }
   
@@ -68,17 +84,17 @@ export class PremiosPage implements OnInit {
       var response = null;
       
       if(create){
-        //Guardar novedad mediante el servicio
+        //Guardar premio mediante el servicio
         response = await this.premioSrv.savePremio(parsedPremio);
       } else {
-        //Modificar novedad mediante el servicio
-        //response = await this.novedadSrv.updateNovedad(parsedNovedad);
+        //Modificar premio mediante el servicio
+        response = await this.premioSrv.updatePremio(parsedPremio);
       }
       
       
       if(response && response.exito){
         // recargar premios
-        //this.obtenerNovedades();
+        this.getPremios();
         
         //mostrar mensaje de resultado correcto
         this.shareSrv.presentToast({ message:response && response.messages && response.messages.length>0 ? response.messages[0] : 'Premio guardado correctamente', cssClass: 'SUCCESS_TOAST'})

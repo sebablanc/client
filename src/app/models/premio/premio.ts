@@ -1,4 +1,4 @@
-import { SorteoTypeInfo } from "./sorteo-types.enum";
+import { sorteosTypes, SorteoTypeInfo } from "./sorteo-types.enum";
 
 export class Premio {
     
@@ -68,8 +68,8 @@ export class Premio {
         return this.tipo;
     }
 
-    set cambiarTipo(tipo: SorteoTypeInfo){
-        this.tipo = tipo;
+    set cambiarTipo(tipo: string){
+        this.tipo = sorteosTypes.filter(type => {return type.value == tipo})[0];
     }
 
     get obtenerFechaCreacion(){

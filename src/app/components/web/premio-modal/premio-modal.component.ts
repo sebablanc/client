@@ -32,14 +32,17 @@ export class PremioModalComponent implements OnInit {
   constructor(private modalCtrl: ModalController, private shareSrv: ShareService) { }
 
   ngOnInit() {
+    
     this.initForm();
     this.initConfigs();
   }
-
+  
   initForm(){
+    console.log(this.premio);
+    
     this.form = new FormGroup({
       id: new FormControl(this.premio && this.premio.obtenerId ? this.premio.obtenerId : null,{ validators: [], updateOn: 'change'}),
-      fechaSorteo: new FormControl(this.premio && this.premio.obtenerId ? this.premio.obtenerId : '',{ validators: [Validators.required], updateOn: 'change'}),
+      fechaSorteo: new FormControl(this.premio && this.premio.obtenerFechaSorteo ? this.premio.obtenerFechaSorteo : '',{ validators: [Validators.required], updateOn: 'change'}),
       numeroCupon: new FormControl(this.premio && this.premio.obtenerNumeroCupon ? this.premio.obtenerNumeroCupon : '',{ validators: [Validators.required], updateOn: 'change'}),
       alumnoFavorecido: new FormControl(this.premio && this.premio.obtenerAlumnoFavorecido ? this.premio.obtenerAlumnoFavorecido : '',{ validators: [Validators.required], updateOn: 'change'}),
       alumnoExtractor: new FormControl(this.premio && this.premio.obtenerAlumnoExtractor ? this.premio.obtenerAlumnoExtractor : '',{ validators: [Validators.required], updateOn: 'change'}),
