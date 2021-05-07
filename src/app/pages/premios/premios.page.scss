@@ -36,8 +36,22 @@
 
     .premio-cuota-container{
       display: grid;
-      grid-template-columns: repeat(4, 25%);
+      grid-template-columns: repeat(4, calc(25% - 15px));
       margin-top: 20px;
+      column-gap: 20px;
+      row-gap: 20px;
+    }
+
+    @media screen and (max-width: 1450px){
+      .premio-cuota-container{
+        grid-template-columns: repeat(2, calc(50% - 10px));
+      }
+    }
+
+    @media screen and (max-width: 740px){
+      .premio-cuota-container{
+        grid-template-columns: 100%;
+      }
     }
 
     .pc-winner {

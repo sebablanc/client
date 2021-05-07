@@ -4,6 +4,7 @@ import { PremioModalComponent } from 'src/app/components/web/premio-modal/premio
 import { Premio } from 'src/app/models/premio/premio';
 import { PremioResponse } from 'src/app/models/premio/premioReponse';
 import { PremioService } from 'src/app/services/premio/premio.service';
+import { IPremioSend } from 'src/app/services/premio/premioService.interface';
 import { ShareService } from 'src/app/services/share-service/share.service';
 import { SweetAlertService } from 'src/app/services/sweet-alert/sweet-alert.service';
 
@@ -15,7 +16,8 @@ import { SweetAlertService } from 'src/app/services/sweet-alert/sweet-alert.serv
 export class PremiosPage implements OnInit {
 
   showGanadorPC: boolean = false;
-  premiosList: any = [];
+  premiosCuotasList: Array<IPremioSend> = [];
+  premioComputadora: IPremioSend = null;
   premioSelected: any = null;
 
   constructor(private modalCtrl: ModalController, private shareSrv: ShareService, private premioSrv: PremioService, private sweetAlertSrv: SweetAlertService) { }
@@ -26,9 +28,14 @@ export class PremiosPage implements OnInit {
 
   async getPremios(){
     let response = await this.premioSrv.getPremios();
-    this.premiosList = [];
+    this.premiosCuotasList = [];
     if(response && response.exito){
-      this.premiosList = response.premios;
+      this.premiosCuotasList = response.premios.filter(premio =>{
+        return premio.tipo == 'CUOTA'
+      });
+      this.premioComputadora = response.premios.filter(premio =>{
+        return premio.tipo == 'COMPUTADORA'
+      })[0];
     } else {
       this.shareSrv.presentToast({message: response.messages[0], cssClass: 'ERROR_TOAST'});
     }

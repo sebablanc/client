@@ -7,17 +7,19 @@
     <div class="premios-container page-with-card card">
       <div class="premios-header">
         <img alt="logoDR" class="header-logos" src="assets/images/logos/logoDR.png">
-        <span>Sorteo mensual año 2021 - Una Cuota</span>
+        <span>Sorteo mensual año 2021</span>
         <img alt="logoDRKids" class="header-logos" src="assets/images/logos/logoDRKids.png">
       </div>
 
-      <div *ngIf="premiosList && premiosList.length > 0" class="premio-cuota-container">
-        <app-premio-card *ngFor="let premio of premiosList" [premio]="premio" [selected]="premioSelected && premioSelected.id === premio.id" (click)="selectPremio(premio)"></app-premio-card>
+      <div *ngIf="premiosCuotasList && premiosCuotasList.length > 0" class="premio-cuota-container">
+        <app-premio-card class="premios-cuotas-card" *ngFor="let premio of premiosCuotasList" [premio]="premio" [selected]="premioSelected && premioSelected.id === premio.id" (click)="selectPremio(premio)"></app-premio-card>
       </div>
 
       <img class="pc-winner" src="assets/images/DinoPC.webp" (click)="showGanadorPC = !showGanadorPC">
 
-      <div *ngIf="showGanadorPC">Acá iría tarjeta con el ganador de la pc anual</div>
+      <div *ngIf="showGanadorPC">
+        <app-premio-card *ngIf="premioComputadora" [premio]="premioComputadora" [selected]="premioSelected && premioSelected.id === premioComputadora.id" (click)="selectPremio(premioComputadora)"></app-premio-card>
+      </div>
     </div>
   </div>
 </app-layout>
