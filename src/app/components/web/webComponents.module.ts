@@ -19,6 +19,7 @@ import { BuscadorOneSelectorModalComponent } from './buscador-one-selector-modal
 import { InputTextareaModalComponent } from './input-textarea-modal/input-textarea-modal.component';
 import { NovedadCardComponent } from './novedad-card/novedad-card.component';
 import { PremioModalComponent } from './premio-modal/premio-modal.component';
+import { PremioCardComponent } from './premio-card/premio-card.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { PremioModalComponent } from './premio-modal/premio-modal.component';
       BuscadorOneSelectorModalComponent,
       InputTextareaModalComponent,
       NovedadCardComponent,
-      PremioModalComponent
+      PremioModalComponent,
+      PremioCardComponent
   ],
   imports: [
     CommonModule,
@@ -62,7 +64,8 @@ import { PremioModalComponent } from './premio-modal/premio-modal.component';
     BuscadorOneSelectorModalComponent,
     InputTextareaModalComponent,
     NovedadCardComponent,
-    PremioModalComponent
+    PremioModalComponent,
+    PremioCardComponent
   ]
 })
 export class WebComponentsModule {}

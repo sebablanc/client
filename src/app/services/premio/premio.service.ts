@@ -10,6 +10,7 @@ import { IPremioSend } from './premioService.interface';
 export class PremioService {
 
   private urlCreatePremio = 'premio/create';
+  private urlGetPremios = 'premio/all';
 
   constructor(private httpHelperSrv: HttpHelperService) { }
 
@@ -36,6 +37,12 @@ export class PremioService {
       return response;
     }).catch(error => {
       return error.error;
+    })
+  }
+
+  async getPremios(): Promise<PremioResponse>{
+    return this.httpHelperSrv.get({url: this.urlGetPremios, body: null}).then(result => {
+      return result;
     })
   }
 }

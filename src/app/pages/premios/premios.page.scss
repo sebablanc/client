@@ -26,6 +26,12 @@
       }
     }
 
+    .premio-cuota-container{
+      display: grid;
+      grid-template-columns: repeat(4, 25%);
+      margin-top: 20px;
+    }
+
     .pc-winner {
       height: 10vh;
       margin-top: 5vh;

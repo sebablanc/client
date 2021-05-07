@@ -9,7 +9,9 @@
         <img alt="logoDRKids" class="header-logos" src="assets/images/logos/logoDRKids.png">
       </div>
 
-      <div>Acá iría tarjetas con los ganadores de las cuotas</div>
+      <div *ngIf="premiosList && premiosList.length > 0" class="premio-cuota-container">
+        <app-premio-card *ngFor="let premio of premiosList" [premio]="premio" [selected]="premioSelected && premioSelected.id === premio.id" (click)="selectPremio(premio)"></app-premio-card>
+      </div>
 
       <img class="pc-winner" src="assets/images/DinoPC.webp" (click)="showGanadorPC = !showGanadorPC">
 

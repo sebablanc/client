@@ -13,10 +13,25 @@ import { ShareService } from 'src/app/services/share-service/share.service';
 export class PremiosPage implements OnInit {
 
   showGanadorPC: boolean = false;
+  premiosList: any = [];
+  premioSelected: any = null;
 
   constructor(private modalCtrl: ModalController, private shareSrv: ShareService, private premioSrv: PremioService) { }
 
   ngOnInit() {
+    this.getPremios();
+  }
+
+  async getPremios(){
+    let response = await this.premioSrv.getPremios();
+    this.premiosList = [];
+    if(response && response.exito){
+      this.premiosList = response.premios;
+      console.log(this.premiosList);
+      
+    } else {
+      this.shareSrv.presentToast({message: response.messages[0], cssClass: 'ERROR_TOAST'});
+    }
   }
 
   async addPremio(){
@@ -71,6 +86,14 @@ export class PremiosPage implements OnInit {
         //mostrar mensaje de resultado incorrecto
         this.shareSrv.presentToast({ message:response && response.messages && response.messages.length>0 ? response.messages[0] : 'Error al intentar guardar la novedad', cssClass: 'ERROR_TOAST'})
       }
+    }
+  }
+
+  selectPremio(premio: any){
+    if(!this.premioSelected || (this.premioSelected && this.premioSelected.id != premio.id)){
+      this.premioSelected = premio
+    } else {
+      this.premioSelected = null;
     }
   }
 }

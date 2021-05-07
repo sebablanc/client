@@ -1,0 +1,41 @@
+.premio-card {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    border-radius: 10px;
+    box-shadow: 1px 1px 1px 1px gray;
+    padding: 10px;
+    row-gap: 10px;
+    position: relative;
+    cursor: pointer;
+    background: #b53838;
+    color: white;
+
+    .ganaste-label{
+        position: absolute;
+        right: 0;
+        transform: rotate(45deg);
+        top: 30px;
+        color: yellow;
+    }
+    .alumno-favorecido{
+        grid-column: 1 / span 2;
+        font-size: 27px;
+    }
+
+    .cupon-number-label,
+    .mes-label,
+    .alumno-retiro,
+    .horario-label{
+        grid-column: 1 / span 2;
+        text-align: left;
+        margin-left: 10px;
+    }
+}
+
+.premio-card:hover{
+    background-color: rgb(66, 122, 66);
+}
+
+.premio-card-selected{
+    background-color: green;
+}
