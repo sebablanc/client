@@ -12,6 +12,7 @@ export class PremioService {
   private urlCreatePremio = 'premio/create';
   private urlGetPremios = 'premio/all';
   private urlupdatePremio = 'premio/update';
+  private urlDeletePremio = 'premio/delete';
 
   constructor(private httpHelperSrv: HttpHelperService) { }
 
@@ -49,6 +50,15 @@ export class PremioService {
 
   async updatePremio(data: IPremioSend): Promise<PremioResponse>{
     return this.httpHelperSrv.put({url: this.urlupdatePremio, body: data}).then(response => { 
+      return response;
+    }).catch(error => {
+      return error.error;
+    })
+  }
+
+  async deletePremio(id: number): Promise<PremioResponse>{
+    let data = {id: id}
+    return this.httpHelperSrv.post({url: this.urlDeletePremio, body: data}).then(response => { 
       return response;
     }).catch(error => {
       return error.error;

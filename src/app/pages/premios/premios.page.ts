@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { PremioModalComponent } from 'src/app/components/web/premio-modal/premio-modal.component';
 import { Premio } from 'src/app/models/premio/premio';
+import { PremioResponse } from 'src/app/models/premio/premioReponse';
 import { PremioService } from 'src/app/services/premio/premio.service';
 import { ShareService } from 'src/app/services/share-service/share.service';
+import { SweetAlertService } from 'src/app/services/sweet-alert/sweet-alert.service';
 
 @Component({
   selector: 'app-premios',
@@ -16,7 +18,7 @@ export class PremiosPage implements OnInit {
   premiosList: any = [];
   premioSelected: any = null;
 
-  constructor(private modalCtrl: ModalController, private shareSrv: ShareService, private premioSrv: PremioService) { }
+  constructor(private modalCtrl: ModalController, private shareSrv: ShareService, private premioSrv: PremioService, private sweetAlertSrv: SweetAlertService) { }
 
   ngOnInit() {
     this.getPremios();
@@ -44,7 +46,7 @@ export class PremiosPage implements OnInit {
 
   async editPremio(){
     if(!this.premioSelected){
-      this.shareSrv.presentToast({ message: 'Debe seleccionar alguno de los premios para modificarlo', cssClass: 'WARNING_TOAST'});
+      this.shareSrv.presentToast({ message: 'Debe seleccionar alguno de los premios para realizar esta acción', cssClass: 'WARNING_TOAST'});
       return;
     }
 
@@ -91,17 +93,8 @@ export class PremiosPage implements OnInit {
         response = await this.premioSrv.updatePremio(parsedPremio);
       }
       
+      this.verifyReponse(response, 'Premio guardado correctamente', 'Error al intentar guardar el premio');
       
-      if(response && response.exito){
-        // recargar premios
-        this.getPremios();
-        
-        //mostrar mensaje de resultado correcto
-        this.shareSrv.presentToast({ message:response && response.messages && response.messages.length>0 ? response.messages[0] : 'Premio guardado correctamente', cssClass: 'SUCCESS_TOAST'})
-      } else {
-        //mostrar mensaje de resultado incorrecto
-        this.shareSrv.presentToast({ message:response && response.messages && response.messages.length>0 ? response.messages[0] : 'Error al intentar guardar la novedad', cssClass: 'ERROR_TOAST'})
-      }
     }
   }
 
@@ -110,6 +103,36 @@ export class PremiosPage implements OnInit {
       this.premioSelected = premio
     } else {
       this.premioSelected = null;
+    }
+  }
+
+  async confirmDelete(){
+    if(!this.premioSelected){
+      this.shareSrv.presentToast({ message: 'Debe seleccionar alguno de los premios para realizar esta acción', cssClass: 'WARNING_TOAST'});
+      return;
+    }
+
+    let eliminar = await this.sweetAlertSrv.decisionAlert('¿Desea eliminar el premio?', 'Este proceso no tiene vuelta atrás', 'Sí, quiero borrar', 'No, mantener');
+    if(eliminar){
+      this.deletePremio();
+    }
+  }
+
+  private async deletePremio(){
+    let response = await this.premioSrv.deletePremio(this.premioSelected.id);
+    this.verifyReponse(response, 'Premio eliminado correctamente', 'Error al intentar eliminar el premio');
+  }
+
+  private verifyReponse(response: PremioResponse, messageSuccesDefault: string, messageErrorDefault: string){
+    if(response && response.exito){
+      // recargar premios
+      this.getPremios();
+      
+      //mostrar mensaje de resultado correcto
+      this.shareSrv.presentToast({ message:response && response.messages && response.messages.length>0 ? response.messages[0] : messageSuccesDefault, cssClass: 'SUCCESS_TOAST'})
+    } else {
+      //mostrar mensaje de resultado incorrecto
+      this.shareSrv.presentToast({ message:response && response.messages && response.messages.length>0 ? response.messages[0] : messageErrorDefault, cssClass: 'ERROR_TOAST'})
     }
   }
 }
