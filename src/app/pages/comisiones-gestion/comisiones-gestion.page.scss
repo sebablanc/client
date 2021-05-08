@@ -12,8 +12,11 @@
         @media screen and (max-width: 1485px) {
             grid-template-columns: repeat(3, auto);
         }
-        @media screen and (max-width: 1485px) {
+        @media screen and (min-width: 780px) and (max-width: 1485px){
             grid-template-columns: repeat(2, auto);
+        }
+        @media screen and (max-width: 780px){
+            grid-template-columns: auto;
         }
     }
 }

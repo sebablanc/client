@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ICursoSend } from 'src/app/services/curso/cursoService.interface';
+import { smallBotonerConfig } from 'src/app/ui/small-botonera/small-botonera.component';
 
 @Component({
   selector: 'app-curso-card',
@@ -11,9 +12,16 @@ export class CursoCardComponent implements OnInit {
   @Output() modifyCurso: EventEmitter<number> = new EventEmitter();
   @Output() deleteCurso: EventEmitter<number> = new EventEmitter();
 
+  smallBotoneraConfig: smallBotonerConfig;
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.smallBotoneraConfig = {
+      needLeftButton: true,
+      needMiddleButton: true,
+      needRightButton: true
+    }
+  }
 
   goToModify(){
     this.modifyCurso.emit(this.curso.id);

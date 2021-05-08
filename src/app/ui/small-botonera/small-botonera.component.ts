@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-small-botonera',
@@ -8,9 +8,18 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 export class SmallBotoneraComponent implements OnInit {
   @Output('leftButtonClicked') leftButtonClicked: EventEmitter<boolean> = new EventEmitter();
   @Output('rightButtonClicked') rightButtonClicked: EventEmitter<boolean> = new EventEmitter();
-  
+  @Output('middleButtonClicked') middleButtonClicked: EventEmitter<boolean> = new EventEmitter();
+  @Input() config: smallBotonerConfig;
+
   constructor() { }
 
   ngOnInit() {}
 
+}
+
+
+export interface smallBotonerConfig{
+  needLeftButton: boolean;
+  needMiddleButton: boolean;
+  needRightButton: boolean;
 }

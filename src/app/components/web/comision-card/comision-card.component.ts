@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { IComisionSend } from 'src/app/services/comision/comisionService.interface';
 import { diasList } from 'src/app/models/dias/dias.types';
+import { smallBotonerConfig } from 'src/app/ui/small-botonera/small-botonera.component';
 
 @Component({
   selector: 'app-comision-card',
@@ -17,12 +18,17 @@ export class ComisionCardComponent implements OnInit {
 
   horarioString: string = '';
   diasString: string = '';
-
+  smallBotoneraConfig: smallBotonerConfig;
+  
   constructor() { }
 
   ngOnInit() {
     //Obtengo el string de días con los nombres completos
-    console.log(this.comision);
+    this.smallBotoneraConfig = {
+      needLeftButton: true,
+      needMiddleButton: false,
+      needRightButton: true
+    }
     
     let days = this.comision.dias.split('/');
     diasList.forEach(dia => {

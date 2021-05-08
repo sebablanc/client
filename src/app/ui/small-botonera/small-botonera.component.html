@@ -1,9 +1,11 @@
 <div class="botonera-small">
-  <div class="left-btn button" (click)="leftButtonClicked.emit(true)">
+  <div *ngIf="config && config.needLeftButton" class="left-btn button" (click)="leftButtonClicked.emit(true)">
     <ion-icon name="pencil"></ion-icon>
   </div>
-  
-  <div class="right-btn button" (click)="rightButtonClicked.emit(true)">
+  <div *ngIf="config && config.needMiddleButton" class="middle-btn button" (click)="middleButtonClicked.emit(true)">
+    <ion-icon name="folder-open"></ion-icon>
+  </div>
+  <div *ngIf="config && config.needRightButton" class="right-btn button" (click)="rightButtonClicked.emit(true)">
     <ion-icon name="trash"></ion-icon>
   </div>
 </div>

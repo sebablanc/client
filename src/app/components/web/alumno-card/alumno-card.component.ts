@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { IPersonaSend } from 'src/app/services/persona/personaService.interface';
+import { smallBotonerConfig } from 'src/app/ui/small-botonera/small-botonera.component';
 
 @Component({
   selector: 'app-alumno-card',
@@ -14,9 +15,15 @@ export class AlumnoCardComponent implements OnInit {
   @Output() modifyPersona: EventEmitter<number> = new EventEmitter();
   @Output() deletePersona: EventEmitter<number> = new EventEmitter();
 
+  smallBotoneraConfig: smallBotonerConfig;
   constructor() { }
 
   ngOnInit() {
+    this.smallBotoneraConfig = {
+      needLeftButton: true,
+      needMiddleButton: false,
+      needRightButton: true
+    }
   }
 
   goToModify(){

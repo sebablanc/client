@@ -5,6 +5,6 @@
     <div class="curso-card-dni">ID del curso: <span class="weight-text">{{curso.id}}</span></div>
     <div class="curso-card-nroCuenta">Valor: <span class="weight-text">{{curso.valor | currency:"ARS":"symbol"}}</span></div>
 
-    <app-small-botonera class="curso-card-botonera" (leftButtonClicked)="goToModify()" (rightButtonClicked)="delete()"></app-small-botonera> 
+    <app-small-botonera class="curso-card-botonera" [config]="smallBotoneraConfig" (leftButtonClicked)="goToModify()" (rightButtonClicked)="delete()"></app-small-botonera> 
   </div>
 </div>
