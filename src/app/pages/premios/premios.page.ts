@@ -60,6 +60,7 @@ export class PremiosPage implements OnInit {
     var premio = new Premio();
     Object.assign(premio, this.premioSelected);
     premio.cambiarTipo = this.premioSelected.tipo;
+    premio.cambiarMes = this.premioSelected.mes;
     
     const modalData = await this.showModal(premio);
     

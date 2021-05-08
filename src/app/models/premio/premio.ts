@@ -79,7 +79,8 @@ export class Premio {
     }
 
     set cambiarMes(mes: string){
-        this.mes = meses.filter(mesObject => {return mesObject.value == mes})[0];
+        this.mes = meses.filter(mesObject => {return mesObject.value == mes})[0];;
+        
     }
 
     get obtenerFechaCreacion(){

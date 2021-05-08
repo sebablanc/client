@@ -19,6 +19,7 @@
 
       <div *ngIf="showGanadorPC">
         <app-premio-card *ngIf="premioComputadora" [premio]="premioComputadora" [selected]="premioSelected && premioSelected.id === premioComputadora.id" (click)="selectPremio(premioComputadora)"></app-premio-card>
+        <div *ngIf="!premioComputadora">No hay datos para mostrar. ¡Quizás no se sorteó y tu nombre sea el próximo!</div>
       </div>
     </div>
   </div>
