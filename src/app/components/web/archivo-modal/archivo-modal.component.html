@@ -1,0 +1,16 @@
+<div class="am-container card">
+  <div class="am-title">{{title}}</div>
+  <form *ngIf="form" class="am-form" [formGroup]="form">
+
+    <!-- N O M B R E   A R C H I V O -->
+    <app-input-dr class="amf-nombre-cell" [config]="nombreConfig"></app-input-dr>
+
+    <!-- F I L E   A R C H I V O -->
+    <input id="file" type="file" (change)="cargarPDF($event)" />
+    
+  </form>
+  <div class="botonera">
+    <app-rounded-button class="cancel-btn" [config]="cancelConfig" (click)="modalDismiss(false)"></app-rounded-button>
+    <app-rounded-button class="search-btn" [config]="saveConfig" (click)="modalDismiss(true)"></app-rounded-button>
+  </div>
+</div>

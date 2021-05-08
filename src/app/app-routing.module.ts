@@ -102,6 +102,10 @@ const routes: Routes = [
   {
     path: 'descargar-material-didactico',
     loadChildren: () => import('./pages/descargar-material-didactico/descargar-material-didactico.module').then( m => m.DescargarMaterialDidacticoPageModule)
+  },
+  {
+    path: 'material-didactico-gestion',
+    loadChildren: () => import('./pages/material-didactico-gestion/material-didactico-gestion.module').then( m => m.MaterialDidacticoGestionPageModule)
   }
 ];
 

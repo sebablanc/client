@@ -54,6 +54,7 @@ export class CursosGestionPage implements OnInit {
       this.changePage(null);
     }
   }
+
   changePage(id: number){
     let navigationExtras: NavigationExtras = {
       queryParams: {
@@ -61,5 +62,14 @@ export class CursosGestionPage implements OnInit {
       }
     };
     this.navCtrl.navigateRoot(['curso-data-gestion'], navigationExtras);
+  }
+
+  goToMaterialDidactico(id: number){
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+          id: id
+      }
+    };
+    this.navCtrl.navigateRoot(['material-didactico-gestion'], navigationExtras);
   }
 }

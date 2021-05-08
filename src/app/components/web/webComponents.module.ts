@@ -20,6 +20,9 @@ import { InputTextareaModalComponent } from './input-textarea-modal/input-textar
 import { NovedadCardComponent } from './novedad-card/novedad-card.component';
 import { PremioModalComponent } from './premio-modal/premio-modal.component';
 import { PremioCardComponent } from './premio-card/premio-card.component';
+import { MaterialDidacticoComponent } from './material-didactico/material-didactico.component';
+import { MaterialDidacticoCardComponent } from './material-didactico-card/material-didactico-card.component';
+import { ArchivoModalComponent } from './archivo-modal/archivo-modal.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +43,10 @@ import { PremioCardComponent } from './premio-card/premio-card.component';
       InputTextareaModalComponent,
       NovedadCardComponent,
       PremioModalComponent,
-      PremioCardComponent
+      PremioCardComponent,
+      MaterialDidacticoComponent,
+      MaterialDidacticoCardComponent,
+      ArchivoModalComponent
   ],
   imports: [
     CommonModule,
@@ -65,7 +71,10 @@ import { PremioCardComponent } from './premio-card/premio-card.component';
     InputTextareaModalComponent,
     NovedadCardComponent,
     PremioModalComponent,
-    PremioCardComponent
+    PremioCardComponent,
+    MaterialDidacticoComponent,
+    MaterialDidacticoCardComponent,
+    ArchivoModalComponent
   ]
 })
 export class WebComponentsModule {}

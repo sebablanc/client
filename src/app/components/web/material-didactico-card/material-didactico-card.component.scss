@@ -1,0 +1,33 @@
+.mdc-container{
+    background: linear-gradient(0deg,#e3dcdc,#fff,#fff,#e3dcdc);
+    border-radius: 10px;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 10% auto 10% 10%;
+    .mdc-number{
+        font-size: 50px;
+        width: max-content;
+        display: inline-flex;
+    }
+
+    .mdc-title{
+        font-size: 31px;
+        display: inline-flex;
+        align-self: center;
+    }
+
+    .eliminar-btn,
+    .modificar-btn {
+        border-radius: 50px;
+        align-self: center;
+        justify-self: center;
+        padding: 10px;
+        font-size: 25px;
+        width: 50px;
+        height: 50px;
+    }
+
+    .modificar-btn{
+        float: right;
+    }
+}

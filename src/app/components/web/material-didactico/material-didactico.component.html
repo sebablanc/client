@@ -1,0 +1,8 @@
+<div *ngIf="curso" class="material-didactico-gestion-container page-with-card card">
+  <div class="material-didactico-gestion-title dr-font">{{ curso.nombre }}</div>
+  <!--div *ngIf="!novedadesList || novedadesList.length<=0">No se encontraron novedades para mostrar</div>
+  <div *ngIf="novedadesList && novedadesList.length>0">
+    <app-novedad-card *ngFor="let novedad of novedadesList" [user]="user" [novedad]="novedad" (editNovedad)="editNovedad($event)" (deleteNovedad)="deleteNovedad($event)"></app-novedad-card>
+  </div-->
+  <app-material-didactico-card></app-material-didactico-card>
+</div>

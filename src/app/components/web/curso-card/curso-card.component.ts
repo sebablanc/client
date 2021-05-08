@@ -11,6 +11,7 @@ export class CursoCardComponent implements OnInit {
   @Input() curso: ICursoSend;
   @Output() modifyCurso: EventEmitter<number> = new EventEmitter();
   @Output() deleteCurso: EventEmitter<number> = new EventEmitter();
+  @Output() materialDidactico: EventEmitter<number> = new EventEmitter();
 
   smallBotoneraConfig: smallBotonerConfig;
   constructor() { }
@@ -25,6 +26,11 @@ export class CursoCardComponent implements OnInit {
 
   goToModify(){
     this.modifyCurso.emit(this.curso.id);
+  }
+
+
+  goToMaterialDidactico(){
+    this.materialDidactico.emit(this.curso.id);
   }
 
   delete(){
