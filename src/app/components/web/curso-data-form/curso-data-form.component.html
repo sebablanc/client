@@ -7,7 +7,13 @@
   <div class="cdf-programa-cell">programa</div>
 
   <!-- I M A G E N -->
-  <div class="cdf-iamgen-cell">imagen</div>
+  <div class="cdf-imagen-cell">
+    <input id="file" type="file" (change)="mostrarImagenCargada($event)"/>
+    <hr>
+    <div #preview id="preview">
+      <img [src]="cursoImage">
+    </div>
+  </div>
  
   <!-- C A T E G O R I A -->
   <app-select-dr class="cdf-categoria-cell" [config]="categoriaConfig"></app-select-dr>

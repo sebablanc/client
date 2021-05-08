@@ -3,7 +3,8 @@
     <div class="check-icon" *ngIf="isSelected">
       <img src="assets/images/check-option.png" alt="">
     </div>
-    <img class="comision-card-img" src="assets/images/logos/logoDR.png" alt="">
+    <img *ngIf="!comision || !comision.curso || !comision.curso.imagen" class="comision-card-img" src="assets/images/logos/logoDR.png" alt="">
+    <img *ngIf="comision && comision.curso && comision.curso.imagen" class="comision-card-img" src="{{'http://localhost:8000/images/curso/'+comision.curso.imagen}}" alt="">
     <div class="comision-card-name">
       <div>Nombre del curso:</div>
       <div class="weight-text">{{comision.curso.nombre}}</div>

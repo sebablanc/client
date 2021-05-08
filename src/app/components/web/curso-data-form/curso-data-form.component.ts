@@ -27,7 +27,7 @@ export class CursoDataFormComponent implements OnInit {
   cancelConfig: IRoundedButtonConfig;
   cursosTypesList: Array<CursoTypeInfo> = cursosTypes;
   curso: Curso;
-
+  cursoImage: string;
   constructor(private cursoSrv: CursoService) { }
 
   async ngOnInit() {
@@ -52,6 +52,9 @@ export class CursoDataFormComponent implements OnInit {
     }
     this.initForm();
     this.initConfigs();
+    if(this.form){
+      this.mostarImagenCurso();
+    }
   }
 
   initForm(){
@@ -112,4 +115,30 @@ export class CursoDataFormComponent implements OnInit {
     };
   }
 
+  get imagen() { return this.form.controls.imagen; }
+
+  mostarImagenCurso(){
+    if(!this.curso || !this.curso.obtenerImagen) return;
+    this.cursoImage = 'http://localhost:8000/images/curso/'+this.curso.obtenerImagen;
+  }
+
+  mostrarImagenCargada(event){
+    // Creamos el objeto de la clase FileReader
+    let reader = new FileReader();
+    var self = this;
+    // Leemos el archivo subido y se lo pasamos a nuestro fileReader
+    reader.readAsDataURL(event.target.files[0]);
+
+    // Le decimos que cuando este listo ejecute el código interno
+    reader.onload = function(){
+      self.imagen.patchValue(reader.result);
+      let preview = document.getElementById('preview');
+      let image = document.createElement('img');
+      
+      image.src = reader.result.toString();
+
+      preview.innerHTML = '';
+      preview.append(image);
+    };
+  }
 }
