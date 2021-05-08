@@ -4,6 +4,7 @@ import { Curso } from 'src/app/models/curso/curso';
 import { CursoResponse } from 'src/app/models/curso/cursoResponse';
 import { CursoService } from 'src/app/services/curso/curso.service';
 import { ICursoSend } from 'src/app/services/curso/cursoService.interface';
+import { PdfService } from 'src/app/services/pdf/pdf.service';
 import { ShareService } from 'src/app/services/share-service/share.service';
 
 @Component({
@@ -16,7 +17,7 @@ export class CursoDataGestionPage implements OnInit {
   cursoId: number;
   title: string = 'Agregando curso';
 
-  constructor(private route: ActivatedRoute, private shareSrv: ShareService, private cursoSrv: CursoService) { }
+  constructor(private route: ActivatedRoute, private shareSrv: ShareService, private cursoSrv: CursoService, private pdfService: PdfService) { }
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
@@ -27,14 +28,17 @@ export class CursoDataGestionPage implements OnInit {
     });
   }
 
-  async guardarCurso(event: Curso) {
+  async guardarCurso(event: {curso: Curso, pdf: any}) {
     if (event) {
-      let cursoToSend: ICursoSend = this.cursoSrv.parseCursoToCursoSend(event);
+      let cursoToSend: ICursoSend = this.cursoSrv.parseCursoToCursoSend(event.curso);
+      let response = null;
       if(this.cursoId){
-        this.modifyCurso(cursoToSend);
+        response = await this.modifyCurso(cursoToSend);
+        response.cursos = [event.curso];
       } else{
-        this.saveCurso(cursoToSend);
+        response = await this.saveCurso(cursoToSend);
       }
+      this.finishTransactions(response, event.pdf);
     } else {
       this.returnToCursos();
     }
@@ -42,18 +46,27 @@ export class CursoDataGestionPage implements OnInit {
 
   async saveCurso(cursoToSend: ICursoSend){
     let response =  await this.cursoSrv.saveCurso(cursoToSend);
+    return response;
     
-    this.finishTransactions(response);
   }
 
   async modifyCurso(curso: ICursoSend){
     let response =  await this.cursoSrv.updateCurso(curso);
     
-    this.finishTransactions(response);
+    return response;
   }
 
-  async finishTransactions(response: CursoResponse){
+  async finishTransactions(response: CursoResponse, pdf: any){
     let colorToast = response && response.exito ? 'SUCCESS_TOAST' : 'ERROR_TOAST';
+
+    console.log(response);
+    
+    if(response && response.exito){
+      //TODO: enviar PDF
+      console.log(pdf);
+      
+      await this.pdfService.sendPDFProgramaCurso(pdf, response.cursos[0].id);
+    }
     
     this.shareSrv.presentToast({message: response.messages[0], cssClass: colorToast});
     

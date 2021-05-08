@@ -16,7 +16,7 @@ import { ITextAreaConfig } from 'src/app/ui/text-area-dr/text-area-dr.component'
 })
 export class CursoDataFormComponent implements OnInit {
   @Input() cursoId: number;
-  @Output('emitSave') emitSave: EventEmitter<Curso> = new EventEmitter(); 
+  @Output('emitSave') emitSave: EventEmitter<{curso: Curso, pdf: any}> = new EventEmitter(); 
 
   form: FormGroup;
   nombreConfig: IInputConfig;
@@ -28,6 +28,8 @@ export class CursoDataFormComponent implements OnInit {
   cursosTypesList: Array<CursoTypeInfo> = cursosTypes;
   curso: Curso;
   cursoImage: string;
+  pdfUploaded: any;
+
   constructor(private cursoSrv: CursoService) { }
 
   async ngOnInit() {
@@ -139,6 +141,19 @@ export class CursoDataFormComponent implements OnInit {
 
       preview.innerHTML = '';
       preview.append(image);
+    };
+  }
+
+  cargarPDF(event){
+    // Creamos el objeto de la clase FileReader
+    let reader = new FileReader();
+    var self = this;
+    // Leemos el archivo subido y se lo pasamos a nuestro fileReader
+    reader.readAsDataURL(event.target.files[0]);
+
+    // Le decimos que cuando este listo ejecute el código interno
+    reader.onload = function(){
+      self.pdfUploaded = reader.result;
     };
   }
 }

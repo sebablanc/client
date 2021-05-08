@@ -4,7 +4,11 @@
   <app-input-dr class="cdf-nombre-cell entire-row" [config]="nombreConfig"></app-input-dr>
   
   <!-- P R O G R A M A -->
-  <div class="cdf-programa-cell">programa</div>
+  <div class="cdf-programa-cell">
+    <input id="file" type="file" (change)="cargarPDF($event)"/>
+    <hr>
+    <div>PDF image</div>
+  </div>
 
   <!-- I M A G E N -->
   <div class="cdf-imagen-cell">
@@ -27,5 +31,5 @@
 </form>
 <div class="botonera">
   <app-rounded-button [config]="cancelConfig" (click)="emitSave.emit(null)"></app-rounded-button>
-  <app-rounded-button class="save-btn" [config]="saveConfig" (click)="emitSave.emit(curso)"></app-rounded-button>
+  <app-rounded-button class="save-btn" [config]="saveConfig" (click)="emitSave.emit({curso: curso, pdf: pdfUploaded})"></app-rounded-button>
 </div>

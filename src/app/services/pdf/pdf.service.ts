@@ -3,13 +3,16 @@ import { IInscripcionSend } from '../inscripcion/inscripcionService.interface';
 import { IPersonaSend } from '../persona/personaService.interface';
 import autoTable from 'jspdf-autotable';
 import jsPDF from 'jspdf';
+import { HttpHelperService } from '../http/http-helper.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PdfService {
 
-  constructor() { }
+  private urlSendProgramaCurso = 'pdf/curso_programa';
+
+  constructor(private httpHelperSrv: HttpHelperService) { }
 
   createPDFAlumnos(personas: Array<IPersonaSend>){
     let heads = ['Nro. Cuenta', 'DNI', 'Nombre', 'Apellido', 'Teléfono', 'Celular', 'E-Mail'];
@@ -39,5 +42,14 @@ export class PdfService {
     });
 
     doc.save(title+'.pdf');
+  }
+
+  sendPDFProgramaCurso(pdf, id){
+    let send = {pdf: pdf, idCurso: id};
+    return this.httpHelperSrv.post({url: this.urlSendProgramaCurso, body: send}).then(response =>{
+      return response;
+    }).catch(error => {
+      return error.error;
+    })
   }
 }
