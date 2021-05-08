@@ -11,7 +11,13 @@
   <!-- D N I -->
   <app-input-dr class="upf-dni-cell" [config]="dniConfig" (dataEmit)="searchByDNI($event)" (suffixIconClicked)="searchByDNIIcon($event)"></app-input-dr>
   
-  <div class="img-user">imagen</div>
+  <div #imageUser class="img-user">
+    <input id="file" type="file" (change)="mostrarImagenCargada($event)"/>
+    <hr>
+    <div #preview id="preview">
+      <img [src]="userImage">
+    </div>
+  </div>
   
   <!-- N O M B R E -->
   <app-input-dr class="upf-nombre-cell" [config]="nombreConfig"></app-input-dr>

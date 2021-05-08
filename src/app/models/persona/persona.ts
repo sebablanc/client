@@ -16,6 +16,7 @@ export class Persona {
     private fechaNacimiento: Date;
     private createdAt: Date;
     private updatedAt: Date;
+    private foto: any;
 
     constructor(){}
 
@@ -105,6 +106,14 @@ export class Persona {
 
     set setDNI(dni: number){
         this.dni = dni;
+    }
+
+    get getFoto(): any{
+        return this.foto;
+    }
+
+    set setFoto(foto: any){
+        this.foto = foto;
     }
 
     get obtenerFechaNacimiento(){

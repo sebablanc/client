@@ -60,7 +60,6 @@ export class LoginPage implements OnInit {
     if(response && response['exito']){
       this.goTo('home');
     } else {
-      console.log(response);
       this.shareSrv.presentToast({message: response && response['messages'] && response['messages'][0] ? response['messages'][0] : 'Error al intentar ingresar', cssClass: 'ERROR_TOAST'});
     }
   }

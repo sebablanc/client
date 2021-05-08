@@ -36,6 +36,7 @@ export class PersonaService {
       telefono: persona.getTelefono,
       dni: parseInt(persona.getDNI.toString()),
       fechaNacimiento: persona.obtenerFechaNacimiento,
+      foto: persona.getFoto,
       createdAt: persona.obtenerFechaCreacion ? persona.obtenerFechaCreacion : null,
       updatedAt: null
     }

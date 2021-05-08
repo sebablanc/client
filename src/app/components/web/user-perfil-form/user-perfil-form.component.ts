@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { format, differenceInYears, parseISO } from 'date-fns'
 import { IInputConfig } from 'src/app/ui/input-dr/input-dr.component';
@@ -22,6 +22,7 @@ export class UserPerfilFormComponent implements OnInit {
   @Input() personaId: number;
   @Input() userTipo: string;
   @Output('emitSave') emitSave: EventEmitter<Persona> = new EventEmitter(); 
+  @ViewChild('imageUser', null) imageUser;
   
   persona: Persona;
   form: FormGroup;
@@ -47,6 +48,7 @@ export class UserPerfilFormComponent implements OnInit {
   userTypes = UserTypes;
   usersTypesList: Array<UserTypeInfo> = usersTypes;
   user: User;
+  userImage: string;
 
   constructor(
     private localidadSrv: LocalidadService,
@@ -55,6 +57,7 @@ export class UserPerfilFormComponent implements OnInit {
 
   async ngOnInit() {
     let personaFinded = null;
+    this.userImage = null;
     if(this.personaId){
       personaFinded = await this.personaSrv.getPersonaById(this.personaId);
     }
@@ -69,6 +72,9 @@ export class UserPerfilFormComponent implements OnInit {
     }
     await this.initForm();
     this.initConfigs();
+    if(this.form){
+      this.mostarImagenUser();
+    }
   }
 
  async  initForm(){
@@ -111,16 +117,17 @@ export class UserPerfilFormComponent implements OnInit {
       localidad: new FormControl(this.persona && this.persona.getLocalidad ? this.persona.getLocalidad :'', { validators: [Validators.required], updateOn: 'change'}),
       provincia: new FormControl(this.persona && this.persona.getLocalidad && this.persona.getLocalidad.obtenerProvincia ? this.persona.getLocalidad.obtenerProvincia :'', { validators: [Validators.required], updateOn: 'change'}),
       telefono: new FormControl(this.persona && this.persona.getTelefono ? this.persona.getTelefono : '', { validators: [Validators.required], updateOn: 'change'}),
-      celular: new FormControl(this.persona && this.persona.getCelular ? this.persona.getCelular : '', { validators: [Validators.required], updateOn: 'change'}),
-      email: new FormControl(this.persona && this.persona.getEmail ? this.persona.getEmail : '', { validators: [Validators.required], updateOn: 'change'}),
-      otroMedio: new FormControl(this.persona && this.persona.getOtroMedio ? this.persona.getOtroMedio : '', { validators: [Validators.required], updateOn: 'change'}),
+      celular: new FormControl(this.persona && this.persona.getCelular ? this.persona.getCelular : '', { validators: [], updateOn: 'change'}),
+      email: new FormControl(this.persona && this.persona.getEmail ? this.persona.getEmail : '', { validators: [], updateOn: 'change'}),
+      otroMedio: new FormControl(this.persona && this.persona.getOtroMedio ? this.persona.getOtroMedio : '', { validators: [], updateOn: 'change'}),
+      foto: new FormControl(this.persona && this.persona.getFoto ? this.persona.getFoto : '', { validators: [], updateOn: 'change'}),
       rol: new FormControl(userType[0], { validators: [Validators.required], updateOn: 'change'})
     });
 
     if(this.persona && this.persona.getLocalidad && this.persona.getLocalidad.obtenerCodPostal && this.persona.getLocalidad.obtenerCodPostal > 0){
       this.getLocalidadList(this.persona.getLocalidad.obtenerCodPostal);
     }
-
+   
     this.form.valueChanges.subscribe(ob =>{
       Object.assign(this.persona, ob);
       if(this.localidad && this.localidad.value) {
@@ -300,6 +307,7 @@ export class UserPerfilFormComponent implements OnInit {
   get edad() { return this.form.controls.edad; }
   get localidad() { return this.form.controls.localidad; }
   get provincia() { return this.form.controls.provincia; }
+  get foto() { return this.form.controls.foto; }
 
   calculateAge(date){
     return differenceInYears(new Date(), parseISO(date))
@@ -345,5 +353,29 @@ export class UserPerfilFormComponent implements OnInit {
     }
   }
 
+  mostarImagenUser(){
+    if(!this.persona || !this.persona.getFoto) return;
+    this.userImage = 'http://localhost:8000/images/user/'+this.persona.getFoto;
+  }
+
+  mostrarImagenCargada(event){
+    // Creamos el objeto de la clase FileReader
+    let reader = new FileReader();
+    var self = this;
+    // Leemos el archivo subido y se lo pasamos a nuestro fileReader
+    reader.readAsDataURL(event.target.files[0]);
+
+    // Le decimos que cuando este listo ejecute el código interno
+    reader.onload = function(){
+      self.foto.patchValue(reader.result);
+      let preview = document.getElementById('preview');
+      let image = document.createElement('img');
+      
+      image.src = reader.result.toString();
+
+      preview.innerHTML = '';
+      preview.append(image);
+    };
+  }
   
 }

@@ -88,9 +88,16 @@
     .img-user{
         grid-column: 2;
         grid-row: 3 / span 5;
+        text-align: center;
         @media screen and (max-width: 970px){
             grid-column: 1;
             grid-row: 9 / span 3;
+        }
+
+        #preview{
+            width: 450px;
+            margin: 0 auto;
+            border-radius: 50%;
         }
     }
 

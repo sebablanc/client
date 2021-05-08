@@ -16,7 +16,9 @@ export class SelectDrComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.field = this.config.form.controls[this.config.formControlName];
+    if(this.config && this.config.form){
+      this.field = this.config.form.controls[this.config.formControlName];
+    }
   }
 
   compareFn(c1: any, c2: any): boolean {

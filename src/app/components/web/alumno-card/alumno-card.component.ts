@@ -16,7 +16,8 @@ export class AlumnoCardComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
   goToModify(){
     this.modifyPersona.emit(this.persona.id);

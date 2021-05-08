@@ -32,7 +32,6 @@ export class AlumnoDataGestionPage implements OnInit {
       if(this.personaId){
         this.modifyPersona(personaToSend);
       } else{
-        console.log('guarda');
         this.savePersona(personaToSend);
       }
     } else {

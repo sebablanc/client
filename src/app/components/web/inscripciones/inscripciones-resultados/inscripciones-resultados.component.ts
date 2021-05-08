@@ -32,8 +32,6 @@ export class InscripcionesResultadosComponent implements OnInit {
   
   async sendData(){
     let inscripcionToSend = this.inscripcionSrv.parseInscripcionToInscripcionSend(this.inscripcion);
-    console.log(inscripcionToSend);
-    
     let response = await this.inscripcionSrv.guardarInscripcion(inscripcionToSend);
     this.action = response && response.exito ? actionsType.SUCCESS : actionsType.FAIL;
     if(this.action == actionsType.SUCCESS){

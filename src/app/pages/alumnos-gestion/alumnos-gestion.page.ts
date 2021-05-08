@@ -25,7 +25,8 @@ export class AlumnosGestionPage implements OnInit {
   async getPersonasList(){
     let response = await this.personaSrv.getPersonasList();
     if(response.exito){
-      this.alumnosFilteredList = this.alumnosList = response.personas;
+      this.alumnosFilteredList = response.personas;
+      this.alumnosList = response.personas;
     } else {
       this.alumnosFilteredList = this.alumnosList = [];
       this.shareSrv.presentToast({ message: response.messages[0], cssClass: 'TOAST_ERROR' });

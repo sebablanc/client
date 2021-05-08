@@ -3,6 +3,7 @@ import { User } from 'src/app/models/user/user/user';
 import { UserTypes } from 'src/app/models/user/user/user-types.enum';
 import { UserSingleton } from 'src/app/models/user/user/userSingleton';
 import { ShareService } from 'src/app/services/share-service/share.service';
+import { StorageService } from 'src/app/services/storage/storage.service';
 import { LoginService } from 'src/app/services/user/login/login.service';
 import { IRoundedButtonConfig } from 'src/app/ui/rounded-button/rounded-button.component';
 
@@ -33,21 +34,29 @@ export class HeaderComponent implements OnInit {
   roundedButtonConfig: IRoundedButtonConfig;
   headerNavItems: Array<INavItem> = NAV_ITEMS;
   linkActive = NAV_ITEMS[0].text;
-  user: User;
+  user: User = new User();
   userTypes = UserTypes;
   
-  constructor(private shareSrv: ShareService, private userSingleton: UserSingleton, private loginSrv: LoginService) {
+  constructor(private shareSrv: ShareService, private storageSrv: StorageService, private loginSrv: LoginService) {
   }
   
   ngOnInit() {
     this.viewComponentsConfiguration();
-    this.user = this.userSingleton.instance();
     this.linkActive = location.pathname.substring(1, location.pathname.length);
+    this.getUser();
   }
 
   viewComponentsConfiguration(){
     this.roundedButtonConfig = { text: 'Registrarme' };
-    this.user = this.userSingleton.instance();
+    this.getUser();
+  }
+
+  getUser(){
+    setInterval(()=>{
+      this.storageSrv.get('user').then(user =>{
+        Object.assign(this.user, user);
+    });
+    }, 500);
   }
 
   goTo(link: string){

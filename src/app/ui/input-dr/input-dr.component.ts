@@ -20,7 +20,9 @@ export class InputDrComponent implements OnInit {
   constructor(private shareSrv: ShareService) { }
 
   ngOnInit() {
-    this.field = this.config.form.controls[this.config.formControlName];
+    if(this.config && this.config.form){
+      this.field = this.config.form.controls[this.config.formControlName];
+    }
   }
 
   getErrorMessage(type: any){

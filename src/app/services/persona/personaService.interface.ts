@@ -10,6 +10,7 @@ export interface IPersonaSend{
     otroMedio: string;
     localidadId: number;
     dni: number;
+    foto: any;
     fechaNacimiento: Date;
     createdAt: Date;
     updatedAt: Date;
