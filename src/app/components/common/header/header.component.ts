@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Persona } from 'src/app/models/persona/persona';
 import { User } from 'src/app/models/user/user/user';
 import { UserTypes } from 'src/app/models/user/user/user-types.enum';
 import { UserSingleton } from 'src/app/models/user/user/userSingleton';
@@ -36,6 +37,7 @@ export class HeaderComponent implements OnInit {
   linkActive = NAV_ITEMS[0].text;
   user: User = new User();
   userTypes = UserTypes;
+  persona: Persona = new Persona();
   
   constructor(private shareSrv: ShareService, private storageSrv: StorageService, private loginSrv: LoginService) {
   }
@@ -55,7 +57,10 @@ export class HeaderComponent implements OnInit {
     setInterval(()=>{
       this.storageSrv.get('user').then(user =>{
         Object.assign(this.user, user);
-    });
+      });
+      this.storageSrv.get('persona').then(persona =>{
+        Object.assign(this.persona, persona);
+      })
     }, 500);
   }
 

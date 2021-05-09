@@ -9,7 +9,8 @@
 
   <div *ngIf="user && user.email" class="login-options login-options-logged" >
     <div class="drop-arrow">
-      <span>Menú de usuario</span>
+      <span *ngIf="!persona || !persona.nombre || !persona.apellido">Menú de usuario</span>
+      <span *ngIf="persona && persona.nombre && persona.apellido">{{ persona.nombre }} {{persona.apellido}}</span>
       <ion-icon class="drop-arrow-icon" name="caret-down"></ion-icon>
     </div>
     <div class="drop-content">
