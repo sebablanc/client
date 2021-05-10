@@ -1,6 +1,7 @@
 <div *ngIf="curso" class="push-button">
   <div class="push-button-container">
-    <img src="assets/images/logos/logoDR.png">
+    <img *ngIf="!curso || !curso.imagen" src="assets/images/logos/logoDR.png">
+    <img *ngIf="curso && curso.imagen"  src="{{'http://localhost:8000/images/curso/'+curso.imagen}}" alt="">
     <div class="push-button-text">{{ curso.nombre }}</div>
   </div>
 </div>

@@ -1,4 +1,5 @@
 <div  class="curso-card">
-  <img src="assets/images/logos/logoDR.png">
+  <img *ngIf="!curso || !curso.imagen" src="assets/images/logos/logoDR.png">
+  <img *ngIf="curso && curso.imagen"  src="{{'http://localhost:8000/images/curso/'+curso.imagen}}" alt="">
   <div>{{ curso.nombre }}</div>
 </div>

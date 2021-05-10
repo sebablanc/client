@@ -59,6 +59,7 @@ export class UserPerfilFormComponent implements OnInit {
     let personaFinded = null;
     this.userImage = null;
     if(this.personaId){
+      debugger;
       personaFinded = await this.personaSrv.getPersonaById(this.personaId);
     }
     this.persona = new Persona();
@@ -120,7 +121,7 @@ export class UserPerfilFormComponent implements OnInit {
       celular: new FormControl(this.persona && this.persona.getCelular ? this.persona.getCelular : '', { validators: [], updateOn: 'change'}),
       email: new FormControl(this.persona && this.persona.getEmail ? this.persona.getEmail : '', { validators: [], updateOn: 'change'}),
       otroMedio: new FormControl(this.persona && this.persona.getOtroMedio ? this.persona.getOtroMedio : '', { validators: [], updateOn: 'change'}),
-      foto: new FormControl(this.persona && this.persona.getFoto ? this.persona.getFoto : '', { validators: [], updateOn: 'change'}),
+      foto: new FormControl(this.persona && this.persona.getFoto ? this.persona.getFoto : null, { validators: [], updateOn: 'change'}),
       rol: new FormControl(userType[0], { validators: [Validators.required], updateOn: 'change'})
     });
 

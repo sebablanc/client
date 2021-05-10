@@ -1,6 +1,7 @@
 <div class="curso-card">
   <div class="curso-card-container card">
-    <img class="curso-card-img" src="{{'http://localhost:8000/images/curso/'+curso.imagen}}" alt="">
+    <img *ngIf="!curso || !curso.imagen" class="curso-card-img" src="assets/images/logos/logoDR.png">
+    <img *ngIf="curso && curso.imagen" class="curso-card-img" src="{{'http://localhost:8000/images/curso/'+curso.imagen}}" alt="">
     <div class="curso-card-name weight-text">{{curso.nombre}}</div>
     <div class="curso-card-dni">ID del curso: <span class="weight-text">{{curso.id}}</span></div>
     <div class="curso-card-nroCuenta">Valor: <span class="weight-text">{{curso.valor | currency:"ARS":"symbol"}}</span></div>
