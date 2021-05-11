@@ -7,7 +7,7 @@ import { ConsultaResponse, IConsultaSend } from './consultaService.interface';
 })
 export class ConsultaService {
 
-  private urlSendConsulta = 'consulta/create';
+  private urlSendConsulta = 'consulta/send';
 
   constructor(private httpHelperSrv: HttpHelperService) { }
 
