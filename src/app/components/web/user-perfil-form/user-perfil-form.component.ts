@@ -59,7 +59,6 @@ export class UserPerfilFormComponent implements OnInit {
     let personaFinded = null;
     this.userImage = null;
     if(this.personaId){
-      debugger;
       personaFinded = await this.personaSrv.getPersonaById(this.personaId);
     }
     this.persona = new Persona();

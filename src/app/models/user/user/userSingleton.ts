@@ -12,7 +12,6 @@ export class UserSingleton {
     private constructor(private storageSrv: StorageService, private storage: Storage) { }
 
     instance(reset: boolean = false): User {
-        debugger;
         if(!this.entity || reset){
             this.entity = new User();
             this.storageSrv.get('user').then(user =>{
