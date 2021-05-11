@@ -6,6 +6,6 @@ export interface ICursoSend{
     valor: number;
     descripcion: string;
     categoria: string;
-    createdAt: Date,
-    updatedAt: Date
+    createdAt: Date;
+    updatedAt: Date;
 }

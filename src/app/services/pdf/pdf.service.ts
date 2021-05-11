@@ -4,6 +4,9 @@ import { IPersonaSend } from '../persona/personaService.interface';
 import autoTable from 'jspdf-autotable';
 import jsPDF from 'jspdf';
 import { HttpHelperService } from '../http/http-helper.service';
+import { MaterialDidactico } from 'src/app/models/material-didactico/materialDidactico';
+import { IMaterialDidacticoSend } from './materialDidactico.interface';
+import { MaterialDidacticoResponse } from 'src/app/models/material-didactico/materialDidacticoResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +14,23 @@ import { HttpHelperService } from '../http/http-helper.service';
 export class PdfService {
 
   private urlSendProgramaCurso = 'pdf/curso_programa';
-
+  private urlSendMaterialDidactico = 'pdf/curso_file'
   constructor(private httpHelperSrv: HttpHelperService) { }
+
+  parsePDFMaterialDidacticoToMaterialDidacticoSend(materialDidactico: MaterialDidactico): IMaterialDidacticoSend{
+    if(!materialDidactico) return;
+
+    let materialDidacticoToSend: IMaterialDidacticoSend = {
+      id: materialDidactico.obtenerId,
+      nombreArchivo: materialDidactico.obtenerNombreArchivo,
+      archivo: materialDidactico.obtenerArchivo,
+      cursoId: materialDidactico.obtenerCurso.obtenerId,
+      createdAt: materialDidactico.obtenerFechaCreacion ? materialDidactico.obtenerFechaCreacion : null,
+      updatedAt: null
+    }
+
+    return materialDidacticoToSend;
+  }
 
   createPDFAlumnos(personas: Array<IPersonaSend>){
     let heads = ['Nro. Cuenta', 'DNI', 'Nombre', 'Apellido', 'Teléfono', 'Celular', 'E-Mail'];
@@ -47,6 +65,14 @@ export class PdfService {
   sendPDFProgramaCurso(pdf, id){
     let send = {pdf: pdf, idCurso: id};
     return this.httpHelperSrv.post({url: this.urlSendProgramaCurso, body: send}).then(response =>{
+      return response;
+    }).catch(error => {
+      return error.error;
+    })
+  }
+
+  sendPDFMaterialDidacticoCurso(materialDidactico: IMaterialDidacticoSend): Promise<MaterialDidacticoResponse>{
+    return this.httpHelperSrv.post({url: this.urlSendMaterialDidactico, body: materialDidactico}).then(response =>{
       return response;
     }).catch(error => {
       return error.error;

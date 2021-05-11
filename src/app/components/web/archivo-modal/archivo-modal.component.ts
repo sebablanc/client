@@ -30,7 +30,7 @@ export class ArchivoModalComponent implements OnInit {
 
   initForm(){
     this.form = new FormGroup({
-      nombre: new FormControl(null,{ validators: [Validators.required], updateOn: 'change'}),
+      nombreArchivo: new FormControl(null,{ validators: [Validators.required], updateOn: 'change'}),
       archivo: new FormControl(null, { validators: [Validators.required], updateOn: 'change'}),
     });
   }
@@ -39,7 +39,7 @@ export class ArchivoModalComponent implements OnInit {
 
     this.nombreConfig = {
       form: this.form,
-      formControlName: 'nombre',
+      formControlName: 'nombreArchivo',
       label: this.inputLabel,
       type: 'text'
     };
