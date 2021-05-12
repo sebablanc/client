@@ -1,8 +1,8 @@
 <app-layout>
   <div class="premios-page routerOutlet">
-    <app-round-button class="right-float-button" [name]="'add'" (roundButtonClicked)="addPremio($event)"></app-round-button>
-    <app-round-button class="right-float-button edit-button" [name]="'pencil'" (roundButtonClicked)="editPremio($event)"></app-round-button>
-    <app-round-button class="right-float-button delete-button" [name]="'trash'" (roundButtonClicked)="confirmDelete($event)"></app-round-button>
+    <app-round-button *ngIf="user && user.tipo == userTypes.ADMIN" class="right-float-button" [name]="'add'" (roundButtonClicked)="addPremio($event)"></app-round-button>
+    <app-round-button *ngIf="user && user.tipo == userTypes.ADMIN" class="right-float-button edit-button" [name]="'pencil'" (roundButtonClicked)="editPremio($event)"></app-round-button>
+    <app-round-button *ngIf="user && user.tipo == userTypes.ADMIN" class="right-float-button delete-button" [name]="'trash'" (roundButtonClicked)="confirmDelete($event)"></app-round-button>
     <div class="premios-title">Resultado de los sorteos</div>
     <div class="premios-container page-with-card card">
       <div class="premios-header">

@@ -11,11 +11,11 @@ import { PdfService } from 'src/app/services/pdf/pdf.service';
 export class MaterialDidacticoComponent implements OnInit {
   @Input() curso: Curso = new Curso();
   @Input() materialDidacticoList: Array<MaterialDidactico> = [];
-  constructor(private pdfSrv: PdfService ) {
+
+  constructor(private pdfSrv: PdfService) {
   }
 
   async ngOnInit() {
-    
   }
 
   async downloadMaterialDidactico(event: MaterialDidactico){

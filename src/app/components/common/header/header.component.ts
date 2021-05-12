@@ -39,7 +39,7 @@ export class HeaderComponent implements OnInit {
   userTypes = UserTypes;
   persona: Persona = new Persona();
   
-  constructor(private shareSrv: ShareService, private storageSrv: StorageService, private loginSrv: LoginService) {
+  constructor(private shareSrv: ShareService, private storageSrv: StorageService, private loginSrv: LoginService, private userSingleton: UserSingleton) {
   }
   
   ngOnInit() {
@@ -60,12 +60,16 @@ export class HeaderComponent implements OnInit {
   getUser(){
     setInterval(()=>{
       this.storageSrv.get('user').then(user =>{
-        this.user = new User();
-        Object.assign(this.user, user);
+        if(user){
+          this.user = new User();
+          Object.assign(this.user, user);
+        }
       });
       this.storageSrv.get('persona').then(persona =>{
-        this.persona = new Persona();
-        Object.assign(this.persona, persona);
+        if(persona){
+          this.persona = new Persona();
+          Object.assign(this.persona, persona);
+        }
       })
     }, 500);
   }
@@ -78,8 +82,7 @@ export class HeaderComponent implements OnInit {
   async logOut(){
     this.user = null;
     this.persona = null;
-    await this.loginSrv.logOut();
-    location.reload();
+    this.loginSrv.logOut();
     this.goTo('home');
   }
 

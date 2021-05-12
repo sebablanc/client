@@ -3,6 +3,9 @@ import { ModalController } from '@ionic/angular';
 import { PremioModalComponent } from 'src/app/components/web/premio-modal/premio-modal.component';
 import { Premio } from 'src/app/models/premio/premio';
 import { PremioResponse } from 'src/app/models/premio/premioReponse';
+import { User } from 'src/app/models/user/user/user';
+import { UserTypes } from 'src/app/models/user/user/user-types.enum';
+import { UserSingleton } from 'src/app/models/user/user/userSingleton';
 import { PremioService } from 'src/app/services/premio/premio.service';
 import { IPremioSend } from 'src/app/services/premio/premioService.interface';
 import { ShareService } from 'src/app/services/share-service/share.service';
@@ -19,10 +22,17 @@ export class PremiosPage implements OnInit {
   premiosCuotasList: Array<IPremioSend> = [];
   premioComputadora: IPremioSend = null;
   premioSelected: any = null;
+  user: User;
+  userTypes = UserTypes;
 
-  constructor(private modalCtrl: ModalController, private shareSrv: ShareService, private premioSrv: PremioService, private sweetAlertSrv: SweetAlertService) { }
+  constructor(private modalCtrl: ModalController,
+    private shareSrv: ShareService,
+    private premioSrv: PremioService,
+    private sweetAlertSrv: SweetAlertService,
+    private userSingleton: UserSingleton) { }
 
   ngOnInit() {
+    this.user = this.userSingleton.instance();
     this.getPremios();
   }
 

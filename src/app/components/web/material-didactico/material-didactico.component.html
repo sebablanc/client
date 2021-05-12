@@ -2,6 +2,6 @@
   <div class="material-didactico-gestion-title dr-font">{{ curso.nombre }}</div>
   <div *ngIf="!materialDidacticoList || materialDidacticoList.length<=0">No se encontraron materiales didácticos para el curso</div>
   <div *ngIf="materialDidacticoList && materialDidacticoList.length>0">
-    <app-material-didactico-card *ngFor="let materialDidactico of materialDidacticoList; let i = index" [index]="i+1" [user]="user" [materialDidactico]="materialDidactico" (emitDownloadAction)="downloadMaterialDidactico($event)" (emitDeleteAction)="deleteMaterialDidactico($event)"></app-material-didactico-card>
+    <app-material-didactico-card *ngFor="let materialDidactico of materialDidacticoList; let i = index" [index]="i+1" [materialDidactico]="materialDidactico" (emitDownloadAction)="downloadMaterialDidactico($event)" (emitDeleteAction)="deleteMaterialDidactico($event)"></app-material-didactico-card>
   </div>
 </div>

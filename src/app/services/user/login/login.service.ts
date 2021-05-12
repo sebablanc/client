@@ -18,6 +18,7 @@ export class LoginService {
       if(user && user.exito && user.usuarios && user.usuarios.length>0){
         let userFinded = user.usuarios[0];
         this.storageSrv.set('user', userFinded);
+        this.userSingleton.instance(true);
         if(userFinded && userFinded.persona && userFinded.persona['id']) this.storageSrv.set('persona', userFinded.persona);
       }
       return user;
@@ -34,7 +35,7 @@ export class LoginService {
 
   logOut(){
     this.userSingleton.instance(true);
-    return this.storageSrv.removeAll();
+    this.storageSrv.removeAll();
   }
 
 }

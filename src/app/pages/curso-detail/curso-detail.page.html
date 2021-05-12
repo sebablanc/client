@@ -2,7 +2,8 @@
   <div class="curso-detail-page routerOutlet" [ngClass]="{'routerOutlet-kids': curso.categoria == 'KIDS'}">
     <div class="curso-detail-container page-with-card card">
       <div class="curso-detail-title dr-font">{{ curso.nombre}}</div>
-      <img class="curso-detail-img" src="assets/images/logos/logoDR.png">
+      <img *ngIf="!curso || !curso.imagen" class="curso-detail-img" src="assets/images/logos/logoDR.png">
+      <img *ngIf="curso && curso.imagen" class="curso-detail-img" src="{{'http://localhost:8000/images/curso/'+curso.imagen}}" alt="">
       <div class="curso-description">{{ curso.descripcion }}</div>
       <app-rounded-button class="back-btn" [config]="backConfig" (click)="back()"></app-rounded-button>
     </div>

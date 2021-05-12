@@ -15,7 +15,9 @@ export class UserSingleton {
         if(!this.entity || reset){
             this.entity = new User();
             this.storageSrv.get('user').then(user =>{
-                Object.assign(this.entity, user);
+                if(user){
+                    Object.assign(this.entity, user);
+                }
                 return this.entity;
             });
         }

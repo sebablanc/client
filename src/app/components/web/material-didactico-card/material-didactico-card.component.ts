@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MaterialDidactico } from 'src/app/models/material-didactico/materialDidactico';
 import { User } from 'src/app/models/user/user/user';
+import { UserTypes } from 'src/app/models/user/user/user-types.enum';
+import { UserSingleton } from 'src/app/models/user/user/userSingleton';
 
 @Component({
   selector: 'app-material-didactico-card',
@@ -13,8 +15,12 @@ export class MaterialDidacticoCardComponent implements OnInit {
   @Input() index: number;
   @Output() emitDownloadAction: EventEmitter<MaterialDidactico> = new EventEmitter();
   @Output() emitDeleteAction: EventEmitter<MaterialDidactico> = new EventEmitter();
-  constructor() { }
+  userTypes = UserTypes;
 
-  ngOnInit() {}
+  constructor(private userSingleton: UserSingleton) { }
+
+  ngOnInit() {
+    this.user = this.userSingleton.instance();
+  }
 
 }

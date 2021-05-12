@@ -1,7 +1,7 @@
 <app-layout>
   <div class="perfil-usuario-page routerOutlet">
     <div class="pu-title">Mi perfil</div>
-    <div class="perfil-usuario-container page-with-card">
+    <div *ngIf="personaId" class="perfil-usuario-container page-with-card">
       <app-user-perfil-form (emitSave)="guardarPersona($event)" [personaId]="personaId" [userTipo]="userTipo"></app-user-perfil-form>
     </div>
   </div>

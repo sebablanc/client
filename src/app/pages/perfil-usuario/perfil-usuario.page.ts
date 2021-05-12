@@ -28,7 +28,7 @@ export class PerfilUsuarioPage implements OnInit {
     }
 
   async ngOnInit() {
-    let user = this.userSingleton.instance();
+    let user = await this.storageSrv.get('user')
     this.userTipo = user.tipo;
     this.personaId = user.persona['id'];
   }
