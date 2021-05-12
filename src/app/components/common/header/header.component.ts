@@ -35,7 +35,7 @@ export class HeaderComponent implements OnInit {
   roundedButtonConfig: IRoundedButtonConfig;
   headerNavItems: Array<INavItem> = NAV_ITEMS;
   linkActive = NAV_ITEMS[0].text;
-  user: User = new User();
+  user: User = null;
   userTypes = UserTypes;
   persona: Persona = new Persona();
   
@@ -45,20 +45,26 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     this.viewComponentsConfiguration();
     this.linkActive = location.pathname.substring(1, location.pathname.length);
-    this.getUser();
+    if(this.user == null){
+      this.getUser();
+    }
   }
 
   viewComponentsConfiguration(){
     this.roundedButtonConfig = { text: 'Registrarme' };
-    this.getUser();
+    if(this.user == null){
+      this.getUser();
+    }
   }
 
   getUser(){
     setInterval(()=>{
       this.storageSrv.get('user').then(user =>{
+        this.user = new User();
         Object.assign(this.user, user);
       });
       this.storageSrv.get('persona').then(persona =>{
+        this.persona = new Persona();
         Object.assign(this.persona, persona);
       })
     }, 500);
@@ -70,6 +76,8 @@ export class HeaderComponent implements OnInit {
   }
 
   async logOut(){
+    this.user = null;
+    this.persona = null;
     await this.loginSrv.logOut();
     location.reload();
     this.goTo('home');

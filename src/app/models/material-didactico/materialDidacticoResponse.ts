@@ -3,5 +3,5 @@ import { IMaterialDidacticoSend } from "src/app/services/pdf/materialDidactico.i
 export interface MaterialDidacticoResponse {
     exito: boolean;
     messages: Array<string>;
-    cursoArchivo: Array<IMaterialDidacticoSend>;
+    cursoArchivos: Array<IMaterialDidacticoSend>;
 }

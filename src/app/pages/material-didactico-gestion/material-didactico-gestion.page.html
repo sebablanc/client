@@ -1,6 +1,6 @@
 <app-layout>
   <div class="material-didactico-gestion-page routerOutlet routerOutlet-gestion">
     <app-round-button *ngIf="user && user.tipo == userTypes.ADMIN" class="right-float-button" [name]="'add'" (roundButtonClicked)="createNewArchivo($event)"></app-round-button>
-    <app-material-didactico [cursoId]="cursoId"></app-material-didactico>
+    <app-material-didactico [curso]="curso" [materialDidacticoList]="materialDidacticoList"></app-material-didactico>
   </div>
 </app-layout>

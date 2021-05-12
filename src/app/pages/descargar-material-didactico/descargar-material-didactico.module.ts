@@ -9,6 +9,7 @@ import { DescargarMaterialDidacticoPageRoutingModule } from './descargar-materia
 import { DescargarMaterialDidacticoPage } from './descargar-material-didactico.page';
 import { LayoutModule } from 'src/app/components/layout/layout.module';
 import { uiModule } from 'src/app/ui/ui.module';
+import { WebComponentsModule } from 'src/app/components/web/webComponents.module';
 
 @NgModule({
   imports: [
@@ -17,6 +18,7 @@ import { uiModule } from 'src/app/ui/ui.module';
     IonicModule,
     DescargarMaterialDidacticoPageRoutingModule,
     LayoutModule,
+    WebComponentsModule,
     uiModule
   ],
   declarations: [DescargarMaterialDidacticoPage]

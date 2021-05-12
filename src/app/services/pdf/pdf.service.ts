@@ -14,7 +14,10 @@ import { MaterialDidacticoResponse } from 'src/app/models/material-didactico/mat
 export class PdfService {
 
   private urlSendProgramaCurso = 'pdf/curso_programa';
-  private urlSendMaterialDidactico = 'pdf/curso_file'
+  private urlSendMaterialDidactico = 'pdf/curso_file';
+  private urlDownloadMaterialDidactico = 'pdf/download';
+  private urlGetMaterialDidacticoByCurso = 'pdf/findByCurso';
+
   constructor(private httpHelperSrv: HttpHelperService) { }
 
   parsePDFMaterialDidacticoToMaterialDidacticoSend(materialDidactico: MaterialDidactico): IMaterialDidacticoSend{
@@ -76,6 +79,25 @@ export class PdfService {
       return response;
     }).catch(error => {
       return error.error;
+    })
+  }
+
+  getPDFMaterialDidacticoByCurso(cursoId: number): Promise<MaterialDidacticoResponse>{
+    let data = {'cursoId': cursoId};
+    return this.httpHelperSrv.post({url: this.urlGetMaterialDidacticoByCurso, body: data}).then(result => {
+      return result;
+    })
+  }
+
+  downloadFile(cursoId: number, nombreArchivo: string){
+    let data = {'cursoId': cursoId, 'nombreArchivo': nombreArchivo};
+    return this.httpHelperSrv.post({url: this.urlDownloadMaterialDidactico, body: data}).then(result => {
+      console.log(result);
+      window.open(result);
+      return result;
+    }).catch(error =>{
+      console.log(error);
+      
     })
   }
 }

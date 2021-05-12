@@ -22,6 +22,7 @@ export class MaterialDidacticoGestionPage implements OnInit {
   user: User;
   userTypes = UserTypes;
   curso: Curso = new Curso();
+  materialDidacticoList: Array<MaterialDidactico>;
 
   constructor(private route: ActivatedRoute, 
     private userSingleton: UserSingleton,
@@ -39,16 +40,29 @@ export class MaterialDidacticoGestionPage implements OnInit {
         let response = await this.cursoSrv.getCursoById(this.cursoId);
         if(response && response.exito){
           Object.assign(this.curso, response.cursos[0]);
+          this.obtenerMaterialDidactico();
         }
       }
     });
+  }
+
+  async obtenerMaterialDidactico(){
+    let response = await this.pdfSrv.getPDFMaterialDidacticoByCurso(this.cursoId);
+    if(response && response.exito){
+      this.materialDidacticoList = [];
+      let m: MaterialDidactico = new MaterialDidactico();
+      response.cursoArchivos.forEach(cursoArchivo=>{
+        Object.assign(m, cursoArchivo);
+        this.materialDidacticoList.push(m);
+      });
+      console.log(this.materialDidacticoList);
+    }
   }
 
   async createNewArchivo(){
     const modalData = await this.showModal(null);
     
     if(modalData.data){
-      debugger;
       var materialDidactico: MaterialDidactico = new MaterialDidactico();
       Object.assign(materialDidactico, modalData.data);
       materialDidactico.cambiarCurso = this.curso;

@@ -1,11 +1,11 @@
 <div class="mdc-container">
-  <div class="mdc-number dr">1</div>
-  <div class="mdc-title">Puertos</div>
+  <div class="mdc-number dr">{{ index }}</div>
+  <div class="mdc-title">{{ materialDidactico.nombreArchivo.split('.')[0].replace('_', ' ') }}</div>
   <div class="eliminar-btn round-button button">
     <ion-icon name="trash" role="img"></ion-icon>
   </div>
-  <div class="modificar-btn round-button button">
-    <ion-icon name="folder-open" role="img">
+  <div class="modificar-btn round-button button" (click)="emitDownloadAction.emit(materialDidactico)">
+    <ion-icon name="cloud-download" role="img">
     </ion-icon>
   </div>
 </div>

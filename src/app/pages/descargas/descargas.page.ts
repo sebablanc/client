@@ -27,8 +27,8 @@ export class DescargasPage implements OnInit {
 
   goToDownloads(curso: ICursoSend){
     let navigationExtras: NavigationExtras = {
-      state: {
-          'curso': curso
+      queryParams: {
+          id: curso.id
       }
     };
     this.navCtrl.navigateRoot(['descargar-material-didactico'], navigationExtras);
